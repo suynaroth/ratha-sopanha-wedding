@@ -1,5 +1,4 @@
 <script setup>
-import { RouterLink } from 'vue-router'
 import { ref, onMounted } from 'vue'
 
 // State management
@@ -37,28 +36,34 @@ const timelineRefs = ref([])
 const galleryRefs = ref([])
 
 // Data
+const openMap = () => {
+  window.open('https://maps.app.goo.gl/dfduKvGCm3wVjwEj6?g_st=ic', '_blank')
+}
 const images = [
-  { id: 1, url: '/p1.jpg', alt: 'Image 1' },
-  { id: 2, url: '/p2.jpg', alt: 'Image 2' },
-  { id: 3, url: '/p3.jpg', alt: 'Image 3' },
-  { id: 4, url: '/p4.jpg', alt: 'Image 4' },
-  { id: 5, url: '/p5.jpg', alt: 'Image 5' },
-  { id: 6, url: '/p6.jpg', alt: 'Image 6' },
-  { id: 7, url: '/p7.jpg', alt: 'Image 7' },
-  { id: 8, url: '/p8.jpg', alt: 'Image 8' },
-  { id: 9, url: '/p3.jpg', alt: 'Image 9' },
+  { id: 1, url: '/image/e1.JPG', alt: 'Image 1' },
+  { id: 2, url: '/image/e2.JPG', alt: 'Image 2' },
+  { id: 3, url: '/image/e3.JPG', alt: 'Image 3' },
+  { id: 4, url: '/image/n1.JPG', alt: 'Image 4' },
+  { id: 5, url: '/image/n2.JPG', alt: 'Image 5' },
+  { id: 6, url: '/image/n3.JPG', alt: 'Image 6' },
+  { id: 7, url: '/image/p01.jpg', alt: 'Image 7' },
+  { id: 8, url: '/image/p02.jpg', alt: 'Image 8' },
+  { id: 9, url: '/image/p3.JPG', alt: 'Image 9' },
+  { id: 10, url: '/image/p4.JPG', alt: 'Image 10'},
+  { id:11, url: '/image/p5.JPG', alt: 'Image 11' },
+  { id: 12, url: '/image/p6.JPG', alt: 'Image 12'},
 ]
 
 const timelineEvents = [
-  { icon: "/images/ev1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០៦ : ០០ នាទីព្រឹក" },
-  { icon: "/images/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៣០ នាទីព្រឹក" },
-  { icon: "/images/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
-  { icon: "/images/ev3.png", title: "ពិធីពិសាស្លាកំណត់ និង អញ្ជើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឹក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
-  { icon: "/images/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន", time: "ម៉ោង ៨ : ៣០ នាទីព្រឹក" },
-  { icon: "/images/ev5.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ៣០ នាទីព្រឹក" },
-  { icon: "/images/ev6.png", title: "ពិធីបង្វិលពពិល សំពះផ្ទឹមចងដៃ និងបាចផ្កាស្លាពរជ័យ", time: "ម៉ោង ១០ : ៣០ នាទីព្រឹក" },
-  { icon: "/images/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១២ : ០០ ថ្ងៃត្រង់" },
-  { icon: "/images/ev8.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ០០​ ល្ងាច" }
+  { icon: "/icon/ev1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០៦ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev3.png", title: "ពិធីពិសាស្លាកំណត់ និង អញ្ជើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឹក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន", time: "ម៉ោង ៨ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev5.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev6.png", title: "ពិធីបង្វិលពពិល សំពះផ្ទឹមចងដៃ និងបាចផ្កាស្លាពរជ័យ", time: "ម៉ោង ១០ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១១ : ៣០ ថ្ងៃត្រង់" },
+  { icon: "/icon/ev8.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ០០​ ល្ងាច" }
 ]
 
 // Computed
@@ -221,7 +226,7 @@ onMounted(() => {
         <div class="fixed inset-0 z-0">
           <!-- <img src="/images/bg-curve.jpg" class="w-full h-full object-contain" alt="Background" /> -->
           <video autoplay muted loop playsinline class="w-full h-full object-cover">
-            <source src="/images/vdo.mp4" type="video/mp4" />
+            <source src="/icon/vdo.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -238,7 +243,7 @@ onMounted(() => {
             <p class="text-lg md:text-xl lg:text-2xl mb-8 text-[#ffffff] text-center max-w-md">
               The Wedding Day
             </p>
-            <img src="/images/mark-png.svg" alt="Ornament" class="w-50 mb-8" />
+            <!-- <img src="/images/mark-png.svg" alt="Ornament" class="w-50 mb-8" /> -->
             <h3 class="text-lg md:text-xl font-moul leading-relaxed lg:text-6xl mb-4 gold-text text-center">
               សូមគោរពអញ្ជើញ
             </h3>
@@ -263,7 +268,7 @@ onMounted(() => {
     <transition name="fade">
       <section v-if="opened && step === 1" class="story-screen">
         <div class="min-h-screen w-full flex flex-col justify-end items-center px-4 relative">
-          <img src="/p1.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Story background" />
+          <img src="/image/p4.JPG" class="absolute inset-0 w-full h-full object-cover" alt="Story background" />
 
           <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
 
@@ -282,7 +287,7 @@ onMounted(() => {
               <transition name="text-fade">
                 <div v-if="showEventDate" class="animate-fade-in">
                   <p class="text-white/90 text-xl md:text-2xl font-moul mb-3">
-                    ថ្ងៃអាទិត្យ ៧​ កើត​ ខែមាឃ
+                    ថ្ងៃអាទិត្យ ៧ កើត ខែមាឃ
                   </p>
                   <p class="text-white text-5xl md:text-6xl font-moul mb-3">
                     ២៥
@@ -310,7 +315,7 @@ onMounted(() => {
         <div class="fixed inset-0 z-0">
           <!-- <img src="/images/bg-curve.jpg" class="w-full h-full object-contain" alt="Background" /> -->
           <video autoplay muted loop playsinline class="w-full h-full object-cover">
-            <source src="/images/vdo.mp4" type="video/mp4" />
+            <source src="/icon/vdo.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -338,12 +343,12 @@ onMounted(() => {
             <div data-ref="parentsNames" :class="['text-[#7B1F2A] grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
               visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
               <div class="grid grid-rows-2 gap-2">
-                <p class="gold-text">លោក សាយ ថេត</p>
-                <p class="gold-text"> អ្នកស្រី ឡុង ដានេ</p>
+                <p class="gold-text">លោក ប៉ាត់ សុខន</p>
+                <p class="gold-text"> អ្នកស្រី អ៊ុក សុភាព</p>
               </div>
               <div class="grid grid-rows-2 gap-2">
-                <p class="gold-text">លោក សេង តារា</p>
-                <p class="gold-text">អ្នកស្រី​ នូ វន្នី</p>
+                <p class="gold-text">លោក ណុប សុផេន</p>
+                <p class="gold-text">អ្នកស្រី សាង រាសូ</p>
               </div>
             </div>
 
@@ -359,43 +364,52 @@ onMounted(() => {
                 visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី
                 និងជាភ្ញៀវកិត្តិយសបើម្បីប្រសិទ្ធិពរជ័យ សិរីសួស្តីជ័យមង្គលក្នុងកម្មវិធីរៀបមង្គលអាពាហ៍ពិពាហ៍
-                កូនប្រុស​-​កូនស្រី របស់យើងខ្ញុំ
+                កូនប្រុស-កូនស្រី របស់យើងខ្ញុំ
               </p>
 
               <h2 data-ref="coupleNames" :class="['gold-text font-moul text-base leading-relaxed lg:text-5xl mb-4 text-center flex items-center justify-center gap-2 transition-all duration-1000 delay-600',
                 visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                សន វិសាល
-                <img src="/images/logo.png" alt="Logo" class="w-25" />
-                សេង ស្រីនោ
+                តុន សុខភារុណ
+                <!-- <img src="/images/logo.png" alt="Logo" class="w-25" /> -->
+                ណុប សុខសុទ្ធាវី
               </h2>
 
               <p data-ref="dateInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-700',
                 visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃអាទិត្យ ៧កើត ខែមាឃ ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ២៥ ខែមករា
+                ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃចន្ទ ១៣រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ២៦ ខែមីនា
                 ឆ្នាំ ២០២៦
               </p>
 
-              <p data-ref="locationInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-800',
+              <p data-ref="locationInfo" :class="['text-base tracking-wider dust-white-text font-moul leading-loose mb-4 transition-all duration-1000 delay-800',
                 visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                វេលាម៉ោង ៤: 00 រសៀល ​ស្ថិតនៅគេហដ្ឋានខាងស្រី ភូមិអណ្តូងថ្ម ឃុំគុស ស្រុកត្រាំកក់ ខេត្តតាកែវ។
+                វេលាម៉ោង ៥ : ០០ ល្ងាច នៅវិមានពិភពថ្មីសែនសុខ អគារ A រាជធានីភ្នំពេញ។
                 ដោយមេត្រីភាព!
               </p>
 
 
               <div data-ref="detailButton" :class="['mt-6 transition-all duration-1000 delay-900',
                 visibleElements.detailButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                <RouterLink to="/main-event"
-                  class="bg-pink-600 text-white font-nokora px-6 py-2 md:px-8 md:py-3 rounded-full hover:bg-pink-700 hover:scale-105 transition-all duration-300 font-semibold text-lg shadow-lg">
-                  ព័ត៌មានលម្អិត
-                </RouterLink>
+                <button @click="openMap()" class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
+                    backdrop-blur-md bg-white/10 border border-white/40
+                    font-nokora font-semibold text-lg
+                    shadow-[0_8px_32px_0_rgba(31,38,135,0.2)]
+                    hover:bg-white/20 hover:scale-105 transition-all duration-500 active:scale-95">
+                  <span class="relative z-10 dust-white-text font-nokora flex items-center gap-2 sm:gap-3">
+                    មើលផែនទី
+                  </span>
+                </button>
               </div>
 
               <!-- Timeline Section -->
               <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1000',
                 visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                <h2 data-ref="timelineHeader" :class="['text-base text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000',
+                <h2 data-ref="timelineHeader" :class="['text-md text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000',
                   timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍
+                </h2>
+                <h2 data-ref="timelineHeader" :class="['text-base dust-white-text text-center whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
+                  timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  កម្មវិធី ថ្ងៃចន្ទ ទី២៦ ខែមីនា ឆ្នាំ២០២៦
                 </h2>
 
                 <div class="relative">
