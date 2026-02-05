@@ -5,7 +5,7 @@ export const config = {
 export default function handler(request) {
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
   const description = `សុខភារុណ និង សុខសុទ្ធាវី | ២៦ ខែមីនា ឆ្នាំ ២០២៦`
-  const image = 'https://sokphearun-soksotheavy.vercel.app/Image/p01-v2.jpg'
+  const image = 'https://sokphearun-soksotheavy.vercel.app/image/p01-v2.jpg'
   const url = 'https://sokphearun-soksotheavy.vercel.app/'
 
   const reqUrl = new URL(request.url)
