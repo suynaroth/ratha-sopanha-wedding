@@ -7,7 +7,7 @@ export default function handler(req) {
   const guestName = searchParams.get('name') || 'សូមអញ្ជើញ'
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
-  const description = `សុខភារុណ និង សុខសុទ្ធាវី | ២៦ ខែមីនា ឆ្នាំ ២០២៦`
+  const description = `សុខភារុណ និង សុខសុទ្ធាវី | ១៦ ខែមីនា ឆ្នាំ ២០២៦`
   const image = 'https://sokphearun-soksotheavy.vercel.app/image/p01-v2.jpg'
 
   return new Response(`<!DOCTYPE html>

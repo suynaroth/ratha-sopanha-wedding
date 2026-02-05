@@ -276,7 +276,7 @@ onMounted(() => {
 
             <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div>
             <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
-            <h1 class="text-lg gold-text sm:text-3xl whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg">
+            <h1 class="text-lg gold-text sm:text-xl whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg">
               សិរីមង្គលអាពាហ៍ពិពាហ៍
             </h1>
             <p class="text-lg md:text-xl lg:text-2xl mb-8 text-[#ffffff] text-center max-w-md">
@@ -287,7 +287,7 @@ onMounted(() => {
               សូមគោរពអញ្ជើញ
             </h3>
             <div class="w-55 h-1 bg-white/60 mx-auto"></div>
-            <p class="text-lg md:text-xl font-moul lg:text-2xl mb-2 mt-2 gold-text text-center max-w-md">
+            <p class="text-base md:text-lg font-moul lg:text-2xl mb-2 mt-2 gold-text text-center py-1 max-w-md">
               {{ questName }}
             </p>
             <div class="w-55 h-1 bg-white/60 mx-auto mb-5"></div>
