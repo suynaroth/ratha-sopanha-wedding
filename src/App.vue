@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,} from 'vue'
 
 // State management
 const opened = ref(false)
@@ -30,6 +30,9 @@ const timelineHeaderVisible = ref(false)
 const galleryTitleVisible = ref(false)
 const visibleItems = ref({})
 const visibleGalleryItems = ref({})
+const countdown = ref({ days: '00', hours: '00', minutes: '00', seconds: '00' })
+// eslint-disable-next-line no-unused-vars
+let countdownTimer = null
 
 // Refs for scroll animations
 const timelineRefs = ref([])
@@ -39,6 +42,7 @@ const galleryRefs = ref([])
 const openMap = () => {
   window.open('https://maps.app.goo.gl/dfduKvGCm3wVjwEj6?g_st=ic', '_blank')
 }
+
 const images = [
   { id: 1, url: '/image/e1.JPG', alt: 'Image 1' },
   { id: 2, url: '/image/e2.JPG', alt: 'Image 2' },
@@ -215,6 +219,39 @@ onMounted(() => {
   if (nameParam) {
     questName.value = decodeURIComponent(nameParam)
   }
+
+  const targetDate = new Date('2026-03-26T00:00:00')
+
+  const toKhmerDigits = (value) => {
+    const map = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
+    return String(value).replace(/\d/g, (d) => map[d])
+  }
+
+  const updateCountdown = () => {
+    const now = new Date()
+    const diff = targetDate.getTime() - now.getTime()
+    if (diff <= 0) {
+      countdown.value = { days: '០០', hours: '០០', minutes: '០០', seconds: '០០' }
+      return
+    }
+
+    const totalSeconds = Math.floor(diff / 1000)
+    const days = Math.floor(totalSeconds / 86400)
+    const hours = Math.floor((totalSeconds % 86400) / 3600)
+    const minutes = Math.floor((totalSeconds % 3600) / 60)
+    const seconds = totalSeconds % 60
+
+    const pad2 = (n) => String(n).padStart(2, '0')
+    countdown.value = {
+      days: toKhmerDigits(days),
+      hours: toKhmerDigits(pad2(hours)),
+      minutes: toKhmerDigits(pad2(minutes)),
+      seconds: toKhmerDigits(pad2(seconds))
+    }
+  }
+
+  updateCountdown()
+  countdownTimer = setInterval(updateCountdown, 1000)
 })
 </script>
 
@@ -244,7 +281,7 @@ onMounted(() => {
               The Wedding Day
             </p>
             <!-- <img src="/images/mark-png.svg" alt="Ornament" class="w-50 mb-8" /> -->
-            <h3 class="text-lg md:text-xl font-moul leading-relaxed lg:text-6xl mb-4 gold-text text-center">
+            <h3 class="text-lg md:text-xl font-moul leading-relaxed lg:text-xl mb-4 gold-text text-center">
               សូមគោរពអញ្ជើញ
             </h3>
             <div class="w-55 h-1 bg-white/60 mx-auto"></div>
@@ -268,7 +305,7 @@ onMounted(() => {
     <transition name="fade">
       <section v-if="opened && step === 1" class="story-screen">
         <div class="min-h-screen w-full flex flex-col justify-end items-center px-4 relative">
-          <img src="/image/p4.JPG" class="absolute inset-0 w-full h-full object-cover" alt="Story background" />
+          <img src="/image/p02.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Story background" />
 
           <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
 
@@ -287,17 +324,17 @@ onMounted(() => {
               <transition name="text-fade">
                 <div v-if="showEventDate" class="animate-fade-in">
                   <p class="text-white/90 text-xl md:text-2xl font-moul mb-3">
-                    ថ្ងៃអាទិត្យ ៧ កើត ខែមាឃ
+                    ថ្ងៃចន្ទ ១៣រោច ខែផល្គុន
                   </p>
                   <p class="text-white text-5xl md:text-6xl font-moul mb-3">
-                    ២៥
+                    ២៦
                   </p>
                   <p class="text-white/90 text-2xl md:text-3xl font-moul mb-2">
-                    មករា ២០២៦
+                    មីនា ឆ្នាំ ២០២៦
                   </p>
                   <div class="w-32 h-1 bg-white/60 mx-auto mt-6"></div>
                   <p class="text-white/80 text-lg md:text-xl font-nokora mt-4">
-                    January 25, 2026
+                    March 26, 2026
                   </p>
                 </div>
               </transition>
@@ -330,12 +367,12 @@ onMounted(() => {
             shadow-2xl border border-white/30
             overflow-visible">
             <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
-            <h1 data-ref="mainTitle" :class="['gold-text text-lg md:text-2xl font-moul leading-relaxed lg:text-4xl text-center py-2 transition-all duration-1000',
+            <h1 data-ref="mainTitle" :class="['gold-text text-lg md:text-xl font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000',
               visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
               សិរីមង្គលអាពាហ៍ពិពាហ៍
             </h1>
 
-            <p data-ref="subtitle" :class="['text-lg md:text-xl lg:text-2xl mb-8 text-[#ffffff] text-center max-w-md transition-all duration-1000 delay-100',
+            <p data-ref="subtitle" :class="['text-lg md:text-xl lg:text-xl mb-8 text-[#ffffff] text-center max-w-md transition-all duration-1000 delay-100',
               visibleElements.subtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
               The Wedding Day
             </p>
@@ -355,7 +392,7 @@ onMounted(() => {
             <div data-ref="mainCard" :class="['transition-all duration-1000 delay-300',
               visibleElements.mainCard ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
 
-              <h3 data-ref="invitationTitle" :class="['gold-text text-lg md:text-lg font-moul leading-relaxed lg:text-xl mb-4 text-center transition-all duration-1000 delay-400',
+              <h3 data-ref="invitationTitle" :class="['gold-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
                 visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 មានកិត្តិយសសូមគោរពអញ្ជើញ
               </h3>
@@ -367,10 +404,10 @@ onMounted(() => {
                 កូនប្រុស-កូនស្រី របស់យើងខ្ញុំ
               </p>
 
-              <h2 data-ref="coupleNames" :class="['gold-text font-moul text-base leading-relaxed lg:text-5xl mb-4 text-center flex items-center justify-center gap-2 transition-all duration-1000 delay-600',
+              <h2 data-ref="coupleNames" :class="['gold-text font-moul text-base leading-relaxed lg:text-xl mb-4 text-center flex items-center justify-center gap-2 transition-all duration-1000 delay-600',
                 visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 តុន សុខភារុណ
-                <!-- <img src="/images/logo.png" alt="Logo" class="w-25" /> -->
+                <img src="/icon/ev4.png" alt="Logo" class="w-25" />
                 ណុប សុខសុទ្ធាវី
               </h2>
 
@@ -400,6 +437,39 @@ onMounted(() => {
                 </button>
               </div>
 
+              <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
+                visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <img src="/image/e1.JPG" alt="Ornament" class="w-full h-full object-cover -mt-5 bg-transparent rounded-2xl" />
+
+                  <div class="absolute inset-0 flex flex-col justify-between items-center p-4 sm:p-6">
+                    <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
+                      timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                      រាប់ថយក្រោយដល់ពិធីមង្គលអាពាហ៍ពិពាហ៍
+                    </h2>
+
+                    <div class="w-full flex justify-center">
+                      <div class="grid grid-cols-4 gap-2 sm:gap-3">
+                        <div class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
+                          <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.days }}</div>
+                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">ថ្ងៃ</div>
+                        </div>
+                        <div class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
+                          <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.hours }}</div>
+                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">ម៉ោង</div>
+                        </div>
+                        <div class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
+                          <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.minutes }}</div>
+                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">នាទី</div>
+                        </div>
+                        <div class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
+                          <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.seconds }}</div>
+                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">វិនាទី</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
               <!-- Timeline Section -->
               <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1000',
                 visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -407,7 +477,7 @@ onMounted(() => {
                   timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍
                 </h2>
-                <h2 data-ref="timelineHeader" :class="['text-base dust-white-text text-center whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
+                <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
                   timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   កម្មវិធី ថ្ងៃចន្ទ ទី២៦ ខែមីនា ឆ្នាំ២០២៦
                 </h2>
