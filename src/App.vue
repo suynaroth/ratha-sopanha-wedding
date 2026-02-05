@@ -44,18 +44,19 @@ const openMap = () => {
 }
 
 const images = [
-  { id: 1, url: '/image/e1.JPG', alt: 'Image 1' },
-  { id: 2, url: '/image/e2.JPG', alt: 'Image 2' },
-  { id: 3, url: '/image/e3.JPG', alt: 'Image 3' },
+  { id: 1, url: '/image/p4.JPG', alt: 'Image 1' },
+  // { id: 2, url: '/image/e2.JPG', alt: 'Image 2' },
+  { id: 3, url: '/image/p5.JPG', alt: 'Image 3' },
   { id: 4, url: '/image/n1.JPG', alt: 'Image 4' },
   { id: 5, url: '/image/n2.JPG', alt: 'Image 5' },
   { id: 6, url: '/image/n3.JPG', alt: 'Image 6' },
   { id: 7, url: '/image/p01.jpg', alt: 'Image 7' },
   { id: 8, url: '/image/p02.jpg', alt: 'Image 8' },
   { id: 9, url: '/image/p3.JPG', alt: 'Image 9' },
-  { id: 10, url: '/image/p4.JPG', alt: 'Image 10'},
-  { id:11, url: '/image/p5.JPG', alt: 'Image 11' },
-  { id: 12, url: '/image/p6.JPG', alt: 'Image 12'},
+  { id: 10, url: '/image/p6.JPG', alt: 'Image 10'},
+  { id: 11, url: '/image/e1.JPG', alt: 'Image 11'},
+  { id:12, url: '/image/e3.JPG', alt: 'Image 12' },
+
 ]
 
 const timelineEvents = [
@@ -71,6 +72,7 @@ const timelineEvents = [
 ]
 
 // Computed
+// eslint-disable-next-line no-unused-vars
 const getSpanClass = (index) => {
   if (index < 3) return 'col-span-4'
   if (index === 3) return 'col-span-12'
@@ -220,7 +222,7 @@ onMounted(() => {
     questName.value = decodeURIComponent(nameParam)
   }
 
-  const targetDate = new Date('2026-03-26T00:00:00')
+  const targetDate = new Date('2026-03-16T12:00:00')
 
   const toKhmerDigits = (value) => {
     const map = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
@@ -280,8 +282,8 @@ onMounted(() => {
             <p class="text-lg md:text-xl lg:text-2xl mb-8 text-[#ffffff] text-center max-w-md">
               The Wedding Day
             </p>
-            <!-- <img src="/images/mark-png.svg" alt="Ornament" class="w-50 mb-8" /> -->
-            <h3 class="text-lg md:text-xl font-moul leading-relaxed lg:text-xl mb-4 gold-text text-center">
+            <img src="/icon/badge-white.png" alt="Ornament" class="w-50 mb-8" />
+            <h3 class="text-lg md:text-xl font-moul leading-relaxed lg:text-xl mb-4 dust-white-text text-center">
               សូមគោរពអញ្ជើញ
             </h3>
             <div class="w-55 h-1 bg-white/60 mx-auto"></div>
@@ -327,14 +329,14 @@ onMounted(() => {
                     ថ្ងៃចន្ទ ១៣រោច ខែផល្គុន
                   </p>
                   <p class="text-white text-5xl md:text-6xl font-moul mb-3">
-                    ២៦
+                    ១៦
                   </p>
                   <p class="text-white/90 text-2xl md:text-3xl font-moul mb-2">
                     មីនា ឆ្នាំ ២០២៦
                   </p>
                   <div class="w-32 h-1 bg-white/60 mx-auto mt-6"></div>
                   <p class="text-white/80 text-lg md:text-xl font-nokora mt-4">
-                    March 26, 2026
+                    March 16, 2026
                   </p>
                 </div>
               </transition>
@@ -419,9 +421,24 @@ onMounted(() => {
               <h2 data-ref="coupleNames" :class="['gold-text font-moul text-base leading-relaxed lg:text-xl mb-4 text-center flex items-center justify-center gap-2 transition-all duration-1000 delay-600',
                 visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 តុន សុខភារុណ
-                <img src="/icon/ev4.png" alt="Logo" class="w-25" />
+                <img src="/icon/jeaku.png" alt="Logo" class="w-18" />
                 ណុប សុខសុទ្ធាវី
               </h2>
+
+              <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-700',
+                visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <p class="dust-white-text text-xl md:text-2xl font-moul mb-3">
+                    ថ្ងៃចន្ទ ១៣រោច ខែផល្គុន
+                  </p>
+                  <p class="dust-white-text text-5xl md:text-6xl font-moul mb-3">
+                    ១៦
+                  </p>
+                  <p class="dust-white-text text-2xl md:text-3xl font-moul mb-2">
+                    មីនា ឆ្នាំ ២០២៦
+                  </p>
+                  <div class="w-32 h-1 bg-white/60 mx-auto mt-6 mb-8"></div>
+
+                </div>
 
               <p data-ref="dateInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-700',
                 visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -431,8 +448,10 @@ onMounted(() => {
 
               <p data-ref="locationInfo" :class="['text-base tracking-wider dust-white-text font-moul leading-loose mb-4 transition-all duration-1000 delay-800',
                 visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                វេលាម៉ោង ៥ : ០០ ល្ងាច នៅវិមានពិភពថ្មីសែនសុខ អគារ A រាជធានីភ្នំពេញ។
-                ដោយមេត្រីភាព!
+                <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
+                <span class="gold-text">វិមានពិភពថ្មីសែនសុខ អគារ </span>
+                <span class="font-nokora font-extrabold gold-text">A </span>
+                <span class="font-metal">រាជធានីភ្នំពេញ។ ដោយមេត្រីភាព!</span>
               </p>
 
 
@@ -491,7 +510,7 @@ onMounted(() => {
                 </h2>
                 <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
                   timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  កម្មវិធី ថ្ងៃចន្ទ ទី២៦ ខែមីនា ឆ្នាំ២០២៦
+                  កម្មវិធី ថ្ងៃចន្ទ ទី១៦ ខែមីនា ឆ្នាំ២០២៦
                 </h2>
 
                 <div class="relative">
@@ -525,10 +544,10 @@ onMounted(() => {
                 visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  កម្រងរូបភាព
+                  វិចិត្រសាល
                 </h2>
 
-                <div class="grid grid-cols-12 gap-4">
+                <!-- <div class="grid grid-cols-12 gap-4">
                   <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
                     getSpanClass(index),
                     visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -540,7 +559,27 @@ onMounted(() => {
                       <span class="text-white font-medium">View Full</span>
                     </div>
                   </div>
+                </div> -->
+
+                <div class="grid grid-cols-1 gap-4">
+                  <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
+                    visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                    @click="selectedImg = img.url">
+                    <img :src="img.url" :alt="img.alt"
+                      class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+                    <div
+                      class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <span class="text-white font-medium">View Full</span>
+                    </div>
+                  </div>
                 </div>
+                <h2 data-ref="galleryTitle" :class="['text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000',
+                  galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  ស្កេនមើលទីតាំងពិធី
+                </h2>
+                <img src="/icon/qr-code.svg" alt="QR Code"
+                  class="mx-auto my-6 w-48 h-48 object-cover rounded-lg shadow-lg border border-white/30" />
+
 
                 <Teleport to="body">
                   <transition name="fade">
@@ -559,6 +598,64 @@ onMounted(() => {
                   </transition>
                 </Teleport>
               </div>
+
+              <!-- Footer -->
+              <footer class="theab-footer mt-10">
+                <div class="theab-footer__brand">
+                  <div class="theab-footer__logo">
+                    <img src="/icon/theab-icon.jpg" alt="TheabStudio logo" class="theab-footer__logo-img" />
+                  </div>
+                  <div class="theab-footer__text">
+                    <span class="theab-footer__title">Made by</span>
+                    <span class="theab-footer__name">TheabStudio</span>
+                  </div>
+                </div>
+
+                <div class="theab-footer__social">
+                  <a
+                    class="theab-footer__btn"
+                    href="https://www.facebook.com/share/1AVegr6kjM/?mibextid=wwXIfr"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="TheabStudio on Facebook"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
+                      <path
+                        fill="currentColor"
+                        d="M13.5 9H16V6h-2.5C11.6 6 10 7.6 10 9.5V12H8v3h2v6h3v-6h2.2l.3-3H13v-2.1c0-.5.4-.9.9-.9Z"
+                      />
+                    </svg>
+                  </a>
+                  <a
+                    class="theab-footer__btn"
+                    href="https://www.instagram.com/theab.studio?igsh=MTA2cjNkZzRodWw4ag%3D%3D&utm_source=qr"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="TheabStudio on Instagram"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
+                      <path
+                        fill="currentColor"
+                        d="M12 8.7a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6Zm7.1-.8a4.5 4.5 0 0 0-2.6-2.6c-1-.4-2.1-.5-4.5-.5s-3.5.1-4.5.5a4.5 4.5 0 0 0-2.6 2.6c-.4 1-.5 2.1-.5 4.5s.1 3.5.5 4.5a4.5 4.5 0 0 0 2.6 2.6c1 .4 2.1.5 4.5.5s3.5-.1 4.5-.5a4.5 4.5 0 0 0 2.6-2.6c.4-1 .5-2.1.5-4.5s-.1-3.5-.5-4.5ZM12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm5.2-9.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"
+                      />
+                    </svg>
+                  </a>
+                  <a
+                    class="theab-footer__btn"
+                    href="https://t.me/nar0th"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="TheabStudio on Telegram"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
+                      <path
+                        fill="currentColor"
+                        d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </footer>
             </div>
           </div>
         </div>
@@ -676,5 +773,99 @@ onMounted(() => {
 
 .delay-1100 {
   transition-delay: 1100ms;
+}
+
+.theab-footer {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.12));
+  border-radius: 1.5rem;
+}
+
+.theab-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theab-footer__logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2b1b1b;
+  background: radial-gradient(circle at 30% 30%, #fff6c2, #f2c94c 55%, #d99c18 100%);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  font-family: "Cinzel Decorative", serif;
+}
+
+.theab-footer__logo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.theab-footer__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.theab-footer__title {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: "Nokora", serif;
+}
+
+.theab-footer__name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff1c6;
+  letter-spacing: 0.04em;
+  font-family: "Cinzel", serif;
+}
+
+.theab-footer__social {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.theab-footer__btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #f8e8b2;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  transition: transform 200ms ease, background 200ms ease, color 200ms ease;
+}
+
+.theab-footer__btn:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.theab-footer__icon {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 640px) {
+  .theab-footer {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 </style>
