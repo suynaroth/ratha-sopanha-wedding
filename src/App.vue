@@ -40,7 +40,7 @@ const galleryRefs = ref([])
 
 // Data
 const openMap = () => {
-  window.open('https://maps.app.goo.gl/dfduKvGCm3wVjwEj6?g_st=ic', '_blank')
+  window.open('https://maps.app.goo.gl/dG6MqsvsTbBiemTZ9?g_st=ic', '_blank')
 }
 
 const images = [
@@ -380,12 +380,24 @@ onMounted(() => {
             <div data-ref="parentsNames" :class="['text-[#7B1F2A] grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
               visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
               <div class="grid grid-rows-2 gap-2">
-                <p class="gold-text">លោក ប៉ាត់ សុខន</p>
-                <p class="gold-text"> អ្នកស្រី អ៊ុក សុភាព</p>
+                <div>
+                  <span class="dust-white-text font-metal">លោក </span>
+                  <span class="gold-text">ប៉ាត់ សុខន</span>
+                </div>
+                <div>
+                  <span class="dust-white-text font-metal">អ្នកស្រី </span>
+                  <span class="gold-text">អ៊ុក សុភាព</span>
+                </div>
               </div>
               <div class="grid grid-rows-2 gap-2">
-                <p class="gold-text">លោក ណុប សុផេន</p>
-                <p class="gold-text">អ្នកស្រី សាង រាសូ</p>
+                <div>
+                  <span class="dust-white-text font-metal">លោក </span>
+                  <span class="gold-text">ណុប សុផេន</span>
+                </div>
+                <div>
+                  <span class="dust-white-text font-metal">អ្នកស្រី </span>
+                  <span class="gold-text">សាង រាសូ</span>
+                </div>
               </div>
             </div>
 

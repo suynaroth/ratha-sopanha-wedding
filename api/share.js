@@ -2,11 +2,15 @@ export const config = {
   runtime: 'edge',
 }
 
-export default function handler() {
+export default function handler(request) {
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
   const description = `តុន សុខភារុណ និង ណុប សុខសុទ្ធាវី • ថ្ងៃចន្ទ ទី២៦ ខែមីនា ឆ្នាំ២០២៦`
   const image = 'https://sokphearun-soksotheavy.vercel.app/image/p01.jpg'
   const url = 'https://sokphearun-soksotheavy.vercel.app/'
+  const userAgent = request?.headers?.get('user-agent') || ''
+  const isBot = /facebookexternalhit|Twitterbot|TelegramBot|Slackbot|WhatsApp|Discordbot|Googlebot|bingbot|LinkedInBot|SkypeUriPreview|Pinterest|Embedly|quora link preview|outbrain|vkShare|W3C_Validator|facebot|ia_archiver/i.test(
+    userAgent
+  )
 
   return new Response(`<!DOCTYPE html>
 <html lang="km">
@@ -39,18 +43,15 @@ export default function handler() {
   <meta name="twitter:description" content="${description}" />
   <meta name="twitter:image" content="${image}" />
 
-  <!-- Redirect to main site -->
-  <meta http-equiv="refresh" content="0;url=/" />
+  ${isBot ? '' : '<meta http-equiv="refresh" content="0;url=/" />'}
 </head>
 <body>
-  <script>
-    window.location.href = '/';
-  </script>
+  ${isBot ? '<a href="/">Continue</a>' : '<script>window.location.href = \'/\';</script>'}
 </body>
 </html>`, {
     headers: {
       'content-type': 'text/html; charset=UTF-8',
+      'cache-control': 'public, max-age=300, s-maxage=600, stale-while-revalidate=600',
     },
   })
 }
-
