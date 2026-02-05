@@ -3,18 +3,14 @@ export const config = {
 }
 
 export default function handler(request) {
-  const baseTitle = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
-  const baseDescription = `តុន សុខភារុណ និង ណុប សុខសុទ្ធាវី | ថ្ងៃចន្ទ ទី ២៦ ខែមីនា ឆ្នាំ ២០២៦`
+  const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
+  const description = `សុខភារុណ និង សុខសុទ្ធាវី | ២៦ ខែមីនា ឆ្នាំ ២០២៦`
   const image = 'https://sokphearun-soksotheavy.vercel.app/image/p01.jpg'
   const url = 'https://sokphearun-soksotheavy.vercel.app/'
 
   const reqUrl = new URL(request.url)
   const guest = (reqUrl.searchParams.get('name') || '').trim()
   const safeGuest = guest.replace(/[<>]/g, '')
-  const title = safeGuest ? `${baseTitle} • ${safeGuest}` : baseTitle
-  const description = safeGuest
-    ? `${safeGuest} • ${baseDescription}`
-    : baseDescription
   const redirectQuery = safeGuest ? `?name=${encodeURIComponent(safeGuest)}` : ''
   const redirectUrl = `${url}${redirectQuery}`
 
@@ -40,11 +36,12 @@ export default function handler(request) {
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="${redirectUrl}" />
+  <meta property="og:url" content="${url}" />
   <meta property="og:site_name" content="${title}" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${description}" />
   <meta property="og:image" content="${image}" />
+  <meta property="og:image:url" content="${image}" />
   <meta property="og:image:secure_url" content="${image}" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
@@ -53,10 +50,11 @@ export default function handler(request) {
 
   <!-- Twitter / Telegram / WhatsApp -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="${redirectUrl}" />
+  <meta name="twitter:url" content="${url}" />
   <meta name="twitter:title" content="${title}" />
   <meta name="twitter:description" content="${description}" />
   <meta name="twitter:image" content="${image}" />
+  <meta name="twitter:image:alt" content="${title}" />
 </head>
 <body>
   <a href="${redirectUrl}">Continue</a>
