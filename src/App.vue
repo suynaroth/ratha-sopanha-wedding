@@ -441,7 +441,7 @@ onMounted(() => {
 
               <p data-ref="dateInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-700',
                 visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃចន្ទ ១៣រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ២៦ ខែមីនា
+                ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃចន្ទ ១៣រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១៦ ខែមីនា
                 ឆ្នាំ ២០២៦
               </p>
 
