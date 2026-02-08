@@ -701,7 +701,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Footer -->
-                <footer class="theab-footer mt-10">
+                <footer class="theab-footer mt-10 mb-25">
                   <div class="theab-footer__brand">
                     <div class="theab-footer__logo">
                       <img src="/icon/theab-icon.jpg" alt="TheabStudio logo" class="theab-footer__logo-img" />
@@ -916,8 +916,8 @@ onMounted(() => {
   place-items: center;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #2b1b1b;
-  background: radial-gradient(circle at 30% 30%, #fff6c2, #f2c94c 55%, #d99c18 100%);
+  color: #c49850;
+  background: #c49850;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
   font-family: "Cinzel Decorative", serif;
 }
@@ -937,14 +937,14 @@ onMounted(() => {
 
 .theab-footer__title {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: #c49850;
   font-family: "Nokora", serif;
 }
 
 .theab-footer__name {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff1c6;
+  color: #c49850;
   letter-spacing: 0.04em;
   font-family: "Cinzel", serif;
 }
@@ -961,7 +961,7 @@ onMounted(() => {
   display: grid;
   place-items: center;
   color: #f8e8b2;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #c49850;
   background: rgba(255, 255, 255, 0.08);
   transition: transform 200ms ease, background 200ms ease, color 200ms ease;
 }
@@ -975,6 +975,7 @@ onMounted(() => {
 .theab-footer__icon {
   width: 20px;
   height: 20px;
+  color: #c49850;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
