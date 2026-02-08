@@ -696,7 +696,7 @@ onMounted(() => {
                       class="w-full rounded-lg p-3 text-sm font-metal bg-white/80 text-[#6b4a2f] placeholder-[#6b4a2f]/70 outline-none"></textarea>
                     <a :href="telegramRsvpUrl" target="_blank" rel="noreferrer"
                       class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#2AABEE] text-white font-nokora font-semibold transition hover:scale-105 active:scale-95">
-                      ផ្ញើរការបញ្ជាក់វត្តមានតាមតេលេក្រាម<span><svg viewBox="0 0 24 24" aria-hidden="true"
+                      ផ្ញើរតាមតេលេក្រាម<span><svg viewBox="0 0 24 24" aria-hidden="true"
                           class="theab-footer__icon">
                           <path fill="#fff"
                             d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z" />
