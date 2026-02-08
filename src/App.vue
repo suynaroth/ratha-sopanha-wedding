@@ -214,7 +214,7 @@ onMounted(() => {
     questName.value = decodeURIComponent(nameParam)
   }
 
-  const targetDate = new Date('2026-03-16T12:00:00')
+  const targetDate = new Date('2026-02-23T12:00:00')
 
   const toKhmerDigits = (value) => {
     const map = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
@@ -256,29 +256,51 @@ onMounted(() => {
       <div class="min-h-screen w-full flex flex-col justify-start px-4">
         <div class="fixed inset-0 z-0">
           <img src="/image/bg.jpg" class="w-full h-full object-contain" alt="Background" />
+          <!-- Floral overlays -->
+        <img
+          src="/icon/flower.png"
+          alt=""
+          class="floral-overlay floral-overlay--top"
+          aria-hidden="true" />
+        <img
+          src="/icon/flower.png"
+          alt=""
+          class="floral-overlay floral-overlay--bottom"
+          aria-hidden="true" />
           <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover"> -->
           <!-- <source src="/icon/vdo.mp4" type="video/mp4" /> -->
           <!-- </video> -->
+        </div>
+        <!-- Butterflies (behind content) -->
+        <div class="butterfly-layer" aria-hidden="true">
+          <span class="butterfly butterfly--1"></span>
+          <span class="butterfly butterfly--2"></span>
+          <span class="butterfly butterfly--3"></span>
+          <span class="butterfly butterfly--4"></span>
+          <span class="butterfly butterfly--5"></span>
+          <span class="butterfly butterfly--6"></span>
+          <span class="butterfly butterfly--7"></span>
+          <span class="butterfly butterfly--8"></span>
         </div>
 
         <div class="relative z-10 flex flex-col justify-center pt-20 items-center text-center">
           <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div>
           <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
-          <h1 class="text-lg text-black sm:text-xl whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg">
+          <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg">
             សិរីមង្គលអាពាហ៍ពិពាហ៍
           </h1>
-          <p class="text-lg md:text-xl lg:text-2xl mb-8 text-[#ffffff] text-center max-w-md">
+          <p class="text-lg md:text-xl lg:text-2xl mb-8 brown-text text-center max-w-md">
             The Wedding Day
           </p>
-          <img src="/icon/badge-white.png" alt="Ornament" class="w-50 mb-8" />
-          <h3 class="text-lg md:text-xl font-moul leading-relaxed lg:text-xl mb-4 dust-white-text text-center">
+          <img src="/icon/badge.png" alt="Ornament" class="w-50 mb-8" />
+          <h3 class="text-lg md:text-xl mt-10 font-moul leading-relaxed lg:text-xl mb-4 text-[#ef9ab2] text-center">
             សូមគោរពអញ្ជើញ
           </h3>
-          <div class="w-55 h-1 bg-white/60 mx-auto"></div>
-          <p class="text-base md:text-lg font-moul lg:text-2xl mb-2 mt-2 gold-text text-center py-1 max-w-md">
+          <img src="/icon/bar.png" alt="Heart" class="w-full rotate-180" />
+          <p class="text-base md:text-lg font-moul lg:text-2xl mb-2 mt-2 brown-text text-center py-1 max-w-md">
             {{ questName }}
           </p>
-          <div class="w-55 h-1 bg-white/60 mx-auto mb-5"></div>
+          <img src="/icon/bar.png" alt="Heart" class="w-full mb-8" />
           <button class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
              backdrop-blur-md bg-white/10 border border-white/40
              text-[#7B1F2A] font-nokora font-semibold text-lg
@@ -356,6 +378,18 @@ onMounted(() => {
           </video> -->
         </div>
 
+        <!-- Butterflies (behind content) -->
+        <div class="butterfly-layer" aria-hidden="true">
+          <span class="butterfly butterfly--1"></span>
+          <span class="butterfly butterfly--2"></span>
+          <span class="butterfly butterfly--3"></span>
+          <span class="butterfly butterfly--4"></span>
+          <span class="butterfly butterfly--5"></span>
+          <span class="butterfly butterfly--6"></span>
+          <span class="butterfly butterfly--7"></span>
+          <span class="butterfly butterfly--8"></span>
+        </div>
+
         <!-- Content -->
         <div class="relative z-10 w-full px-8 flex flex-col justify-center pt-15 items-center text-center">
 
@@ -366,7 +400,7 @@ onMounted(() => {
             border-4 border-white shadow-2xl
             flex flex-col overflow-hidden"> -->
           <div class="relative w-full max-w-md h-[90vh]">
-            <div class="overflow-y-auto w-full h-full p-6 md:p-10 custom-scrollbar">
+            <div class="overflow-y-auto w-full h-full pt-5 custom-scrollbar">
               <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
               <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-10 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
                 visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -421,7 +455,7 @@ onMounted(() => {
                 <h2 data-ref="coupleNames" :class="['brown-text font-moul text-base leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-2 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   ឌីន គីមស្រ៊ី
-                  <img src="/icon/jeaku.png" alt="Logo" class="w-18" />
+                  <img src="/icon/brown-jeaku.png" alt="Logo" class="w-18" />
                   អ៊ុច សុខហេង
                 </h2>
 
@@ -430,13 +464,15 @@ onMounted(() => {
                   <p class="brown-text text-xl md:text-2xl font-moul mb-3">
                     ថ្ងៃចន្ទ ៧កើត ខែផល្គុន
                   </p>
-                  <p class="brown-text text-5xl md:text-6xl font-moul mb-3">
+                  <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
+                  <p class="brown-text text-5xl md:text-6xl font-moul">
                     ២៣
                   </p>
-                  <p class="brown-text text-2xl md:text-3xl font-moul mb-2">
+                  <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
+                  <p class="brown-text text-2xl md:text-3xl font-moul mb-10">
                     កុម្ភៈ ២០២៦
                   </p>
-                  <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-6 mb-8"></div>
+
 
                 </div>
 
@@ -447,15 +483,15 @@ onMounted(() => {
                  flex flex-col overflow-hidden">
                   <p data-ref="dateInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-900',
                     visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃចន្ទ ៧កើត ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១៦
-                    ខែមីនា
+                    ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃចន្ទ ៧កើត ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ២៣
+                    ខែកុម្ភៈ
                     ឆ្នាំ ២០២៦
                   </p>
 
                   <p data-ref="locationInfo" :class="['text-base tracking-wider dust-white-text font-moul leading-loose mb-4 transition-all duration-1000 delay-1000',
                     visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
-                    <span class="gold-text">ផ្សារទំនើបអុីអន២ សែនសុខ (ជាន់ទី៣) </span>
+                    <span class="">ផ្សារទំនើបអុីអន២ សែនសុខ (ជាន់ទី៣) </span>
                     <!-- <span class="font-nokora font-extrabold gold-text">A </span> -->
                     <span class="font-metal">។ ដោយមេត្រីភាព!</span>
                   </p>
@@ -556,11 +592,11 @@ onMounted(() => {
                 <!-- Timeline Section -->
                 <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1300',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <h2 data-ref="timelineHeader" :class="['text-md text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
+                  <h2 data-ref="timelineHeader" :class="['brown-text text-md text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍
                   </h2>
-                  <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
+                  <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     កម្មវិធី ថ្ងៃចន្ទ ទី២៣ ខែកុម្ភៈ ឆ្នាំ២០២៦
                   </h2>
@@ -582,10 +618,10 @@ onMounted(() => {
                         </div>
                         <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700',
                           visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                          <p class="text-text-light font-nokora gold-text text-lg font-semibold leading-normal">
+                          <p class="text-text-light font-nokora brown-text text-lg font-semibold leading-normal">
                             {{ event.title }}
                           </p>
-                          <p class="text-base dust-white-text font-moul leading-normal">{{ event.time }}</p>
+                          <p class="text-base text-[#ef9ab2] font-moul leading-normal">{{ event.time }}</p>
                         </div>
                       </template>
                     </div>
@@ -595,10 +631,10 @@ onMounted(() => {
                 <!-- Gallery Section -->
                 <div data-ref="gallerySection" :class="['relative transition-all duration-1000 delay-1600',
                   visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
+                  <!-- <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     វិចិត្រសាល
-                  </h2>
+                  </h2> -->
 
                   <!-- <div class="grid grid-cols-12 gap-4">
                   <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
@@ -614,7 +650,7 @@ onMounted(() => {
                   </div>
                 </div> -->
 
-                  <div class="grid grid-cols-1 gap-4">
+                  <!-- <div class="grid grid-cols-1 gap-4">
                     <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
                       visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                       @click="selectedImg = img.url">
@@ -625,12 +661,12 @@ onMounted(() => {
                         <span class="text-white font-medium">View Full</span>
                       </div>
                     </div>
-                  </div>
-                  <h2 data-ref="galleryTitle" :class="['text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
+                  </div> -->
+                  <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     ស្កេនមើលទីតាំងពិធី
                   </h2>
-                  <img src="/icon/qr-code.svg" alt="QR Code"
+                  <img src="/icon/map-qr.svg" alt="QR Code"
                     class="mx-auto my-6 w-48 h-48 object-cover rounded-lg shadow-lg border border-white/30" />
 
 
@@ -650,6 +686,18 @@ onMounted(() => {
                       </div>
                     </transition>
                   </Teleport>
+                  <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
+                  visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  សេចក្តីថ្លែងអំណរគុណ និងសូមអភ័យទោស
+                </h3>
+
+                <p data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                  visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  យើងខ្ញុំសូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅចំពោះការអញ្ជើញចូលរួមជា ភ្ញៀវកិត្តិយស ក្នុងពិធីរបស់យើងខ្ញុំ និងសូមខន្តីអភ័យទោសដោយពុំបានអញ្ជើញ
+                  ដោយផ្ទាល់ និងការសរសេរឈ្មោះរបស់ភ្ញៀវកិត្តិយសមិនបានត្រឹមត្រូវ ឫពុំបានសេសេរឈ្មោះ ។
+                  សូមជូនពរ ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា និងភ្ញៀវកិត្តិយសទាំងអស់ សិរីសួស្តីជ័យមង្គល និងទទួលបានជោគជ័យគ្រប់ភារកិច្ច ។
+                  សូមអរគុណ និងសូមអភ័យទោសម្ដងទៀត!
+                </p>
                 </div>
 
                 <!-- Footer -->
@@ -940,6 +988,110 @@ onMounted(() => {
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
+}
+
+.butterfly-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.butterfly {
+  position: absolute;
+  width: 36px;
+  height: 28px;
+  opacity: 0.7;
+  animation: butterfly-fly 18s linear infinite;
+}
+
+.butterfly::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Cpath fill='%23ffd37a' d='M32 24c-3-6-10-14-20-14C5 10 1 17 4 23c3 7 12 8 19 7-2 7-1 15 9 15s11-8 9-15c7 1 16 0 19-7 3-6-1-13-8-13-10 0-17 8-20 14z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  animation: butterfly-flap 1.3s ease-in-out infinite;
+}
+
+@keyframes butterfly-flap {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.65);
+  }
+}
+
+@keyframes butterfly-fly {
+  0% {
+    transform: translate(-10vw, 10vh) rotate(5deg);
+  }
+  50% {
+    transform: translate(55vw, -10vh) rotate(-8deg);
+  }
+  100% {
+    transform: translate(110vw, 15vh) rotate(10deg);
+  }
+}
+
+.butterfly--1 {
+  top: 15vh;
+  left: -10vw;
+  animation-duration: 16s;
+}
+
+.butterfly--2 {
+  top: 35vh;
+  left: -25vw;
+  animation-duration: 20s;
+  animation-delay: -4s;
+}
+
+.butterfly--3 {
+  top: 60vh;
+  left: -20vw;
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+
+.butterfly--4 {
+  top: 75vh;
+  left: -35vw;
+  animation-duration: 18s;
+  animation-delay: -2s;
+}
+
+.butterfly--5 {
+  top: 10vh;
+  left: -40vw;
+  animation-duration: 24s;
+  animation-delay: -10s;
+}
+
+.butterfly--6 {
+  top: 45vh;
+  left: -30vw;
+  animation-duration: 19s;
+  animation-delay: -6s;
+}
+
+.butterfly--7 {
+  top: 70vh;
+  left: -15vw;
+  animation-duration: 21s;
+  animation-delay: -12s;
+}
+
+.butterfly--8 {
+  top: 25vh;
+  left: -50vw;
+  animation-duration: 23s;
+  animation-delay: -14s;
 }
 
 .floral-overlay {
