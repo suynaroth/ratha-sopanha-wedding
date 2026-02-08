@@ -488,7 +488,7 @@ onMounted(() => {
                   <p data-ref="locationInfo" :class="['text-base tracking-wider dust-white-text font-moul leading-loose mb-4 transition-all duration-1000 delay-1000',
                     visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
-                    <span class="">ផ្សារទំនើបអុីអន២ សែនសុខ (ជាន់ទី៣) </span>
+                    <span class="">ផ្សារទំនើបអ៉ីអន២ សែនសុខ (ជាន់ទី៣) </span>
                     <!-- <span class="font-nokora font-extrabold gold-text">A </span> -->
                     <span class="font-metal">។ ដោយមេត្រីភាព!</span>
                   </p>
