@@ -7,8 +7,7 @@ export default function handler(req) {
   const guestName = searchParams.get('name') || 'សូមអញ្ជើញ'
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
-  const description = `សុខភារុណ និង សុខសុទ្ធាវី | ១៦ ខែមីនា ឆ្នាំ ២០២៦`
-  const image = 'https://sokphearun-soksotheavy.vercel.app/image/p01-v2.jpg'
+  const description = `គីមស្រ៊ី និង សុខហេង | ២៣ ខែកុម្ភៈ ឆ្នាំ ២០២៦`
 
   return new Response(`<!DOCTYPE html>
 <html lang="km">
@@ -19,7 +18,6 @@ export default function handler(req) {
   <!-- Open Graph -->
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${description}" />
-  <meta property="og:image" content="${image}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/png" />
