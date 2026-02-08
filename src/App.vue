@@ -39,7 +39,7 @@ const rsvpStatus = ref('yes')
 const rsvpMessage = ref('')
 
 const telegramRsvpUrl = computed(() => {
-  const base = 'https://t.me/nar0th'
+  const base = 'https://t.me/sokheng_ouch'
   const statusText = rsvpStatus.value === 'yes' ? 'Can join' : 'Cannot join'
   const name = questName.value?.trim() ? questName.value.trim() : 'Guest'
   const message = rsvpMessage.value.trim()
@@ -78,7 +78,7 @@ const images = [
 const timelineEvents = [
   { icon: "/icon/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ០០ នាទីព្រឹក" },
   { icon: "/icon/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev3.png", title: "ពិធីពិសាស្លាកំណត់ និង អញ្ជើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឹក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev3.png", title: "ពិធីពិសារស្លាកំណត់ និង អញ្ជើញភ្ញៀវកិត្តិយសពិសារអាហារពេលព្រឹក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន", time: "ម៉ោង ៨ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/ev5.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/ev6.png", title: "ពិធីបង្វិលពពិល សំពះផ្ទឹមចងដៃ និងបាចផ្កាស្លាពរជ័យ", time: "ម៉ោង ១០ : ៣០ នាទីព្រឹក" },
@@ -302,7 +302,7 @@ onMounted(() => {
             សូមគោរពអញ្ជើញ
           </h3>
           <img src="/icon/bar.png" alt="Heart" class="w-full rotate-180" />
-          <p class="text-xl md:text-xl font-moul lg:text-2xl mb-2 mt-2 gold-text text-center py-1 max-w-md">
+          <p class="text-xl md:text-xl font-moul lg:text-2xl mb-2 mt-2 text-[#c49850] text-center py-1 max-w-md">
             {{ questName }}
           </p>
           <img src="/icon/bar.png" alt="Heart" class="w-full mb-8" />
@@ -439,7 +439,7 @@ onMounted(() => {
                 <p data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី
-                  និងជាភ្ញៀវកិត្តិយសបើម្បីប្រសិទ្ធិពរជ័យ សិរីសួស្តីជ័យមង្គលក្នុងកម្មវិធីរៀបមង្គលអាពាហ៍ពិពាហ៍
+                  និងជាភ្ញៀវកិត្តិយសដើម្បីប្រសិទ្ធិពរជ័យ សិរីសួស្តីជ័យមង្គលក្នុងកម្មវិធីរៀបមង្គលអាពាហ៍ពិពាហ៍
                   កូនប្រុស-កូនស្រី របស់យើងខ្ញុំ
                 </p>
 
