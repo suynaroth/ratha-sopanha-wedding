@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted,} from 'vue'
+import { ref, onMounted, } from 'vue'
 
 // State management
 const opened = ref(false)
@@ -7,7 +7,9 @@ const questName = ref('')
 const step = ref(1)
 const audio = ref(null)
 const selectedImg = ref(null)
+// eslint-disable-next-line no-unused-vars
 const showSaveDate = ref(true)
+// eslint-disable-next-line no-unused-vars
 const showEventDate = ref(false)
 
 // Visibility tracking
@@ -39,6 +41,7 @@ const timelineRefs = ref([])
 const galleryRefs = ref([])
 
 // Data
+// eslint-disable-next-line no-unused-vars
 const openMap = () => {
   window.open('https://maps.app.goo.gl/dG6MqsvsTbBiemTZ9?g_st=ic', '_blank')
 }
@@ -53,9 +56,9 @@ const images = [
   { id: 7, url: '/image/p01.jpg', alt: 'Image 7' },
   { id: 8, url: '/image/p02.jpg', alt: 'Image 8' },
   { id: 9, url: '/image/p3.JPG', alt: 'Image 9' },
-  { id: 10, url: '/image/p6.JPG', alt: 'Image 10'},
-  { id: 11, url: '/image/e1.JPG', alt: 'Image 11'},
-  { id:12, url: '/image/e3.JPG', alt: 'Image 12' },
+  { id: 10, url: '/image/p6.JPG', alt: 'Image 10' },
+  { id: 11, url: '/image/e1.JPG', alt: 'Image 11' },
+  { id: 12, url: '/image/e3.JPG', alt: 'Image 12' },
 
 ]
 
@@ -81,31 +84,18 @@ const getSpanClass = (index) => {
 
 // Methods
 const openInvitation = () => {
-  // Try to play music but don't block the invitation flow
   audio.value = new Audio('/songs/song.mp3')
   audio.value.play().catch(err => console.log('Audio play failed:', err))
 
   opened.value = true
 
-  // Animated text transitions
-  showSaveDate.value = true
-  showEventDate.value = false
+  // Jump straight to step 2 (Main Invitation)
+  step.value = 2
 
+  // Ensure DOM is ready before setting up observers
   setTimeout(() => {
-    showSaveDate.value = false
-    setTimeout(() => {
-      showEventDate.value = true
-    }, 400)
-  }, 1500)
-
-  // Show main invitation regardless of audio state
-  setTimeout(() => {
-    step.value = 2
-    // Use nextTick to ensure DOM is ready before setting up observers
-    setTimeout(() => {
-      setupScrollObservers()
-    }, 100)
-  }, 6000)
+    setupScrollObservers()
+  }, 100)
 }
 
 const closeLightbox = () => {
@@ -130,6 +120,9 @@ const setGalleryRef = (el, index) => {
 const createObserver = (callback, threshold = 0.2) => {
   return new IntersectionObserver(callback, {
     threshold,
+    // Add the card's scrollable div as the root if needed,
+    // or keep it null to default to the viewport inside the fixed card.
+    root: document.querySelector('.overflow-y-auto'),
     rootMargin: '0px 0px -50px 0px'
   })
 }
@@ -262,48 +255,43 @@ onMounted(() => {
     <section v-if="!opened" class="landing">
       <div class="min-h-screen w-full flex flex-col justify-start px-4">
         <div class="fixed inset-0 z-0">
-          <!-- <img src="/images/bg-curve.jpg" class="w-full h-full object-contain" alt="Background" /> -->
-          <video autoplay muted loop playsinline class="w-full h-full object-cover">
-            <source src="/icon/vdo.mp4" type="video/mp4" />
-          </video>
+          <img src="/image/bg.jpg" class="w-full h-full object-contain" alt="Background" />
+          <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover"> -->
+          <!-- <source src="/icon/vdo.mp4" type="video/mp4" /> -->
+          <!-- </video> -->
         </div>
 
         <div class="relative z-10 flex flex-col justify-center pt-20 items-center text-center">
-          <div class="backdrop-blur-xs bg-white/10 rounded-[2.5rem] p-10 flex flex-col items-center
-              text-center max-w-md shadow-2xl border border-white/30
-              relative overflow-hidden">
-
-            <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div>
-            <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
-            <h1 class="text-lg gold-text sm:text-xl whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg">
-              សិរីមង្គលអាពាហ៍ពិពាហ៍
-            </h1>
-            <p class="text-lg md:text-xl lg:text-2xl mb-8 text-[#ffffff] text-center max-w-md">
-              The Wedding Day
-            </p>
-            <img src="/icon/badge-white.png" alt="Ornament" class="w-50 mb-8" />
-            <h3 class="text-lg md:text-xl font-moul leading-relaxed lg:text-xl mb-4 dust-white-text text-center">
-              សូមគោរពអញ្ជើញ
-            </h3>
-            <div class="w-55 h-1 bg-white/60 mx-auto"></div>
-            <p class="text-base md:text-lg font-moul lg:text-2xl mb-2 mt-2 gold-text text-center py-1 max-w-md">
-              {{ questName }}
-            </p>
-            <div class="w-55 h-1 bg-white/60 mx-auto mb-5"></div>
-            <button class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
+          <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div>
+          <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
+          <h1 class="text-lg text-black sm:text-xl whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg">
+            សិរីមង្គលអាពាហ៍ពិពាហ៍
+          </h1>
+          <p class="text-lg md:text-xl lg:text-2xl mb-8 text-[#ffffff] text-center max-w-md">
+            The Wedding Day
+          </p>
+          <img src="/icon/badge-white.png" alt="Ornament" class="w-50 mb-8" />
+          <h3 class="text-lg md:text-xl font-moul leading-relaxed lg:text-xl mb-4 dust-white-text text-center">
+            សូមគោរពអញ្ជើញ
+          </h3>
+          <div class="w-55 h-1 bg-white/60 mx-auto"></div>
+          <p class="text-base md:text-lg font-moul lg:text-2xl mb-2 mt-2 gold-text text-center py-1 max-w-md">
+            {{ questName }}
+          </p>
+          <div class="w-55 h-1 bg-white/60 mx-auto mb-5"></div>
+          <button class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
              backdrop-blur-md bg-white/10 border border-white/40
              text-[#7B1F2A] font-nokora font-semibold text-lg
              shadow-[0_8px_32px_0_rgba(31,38,135,0.2)]
              hover:bg-white/20 hover:scale-105 transition-all duration-500 active:scale-95" @click="openInvitation">
-              បើកធៀប
-            </button>
-          </div>
+            បើកធៀប
+          </button>
         </div>
       </div>
     </section>
 
     <!-- Story Splash -->
-    <transition name="fade">
+    <!-- <transition name="fade">
       <section v-if="opened && step === 1" class="story-screen">
         <div class="min-h-screen w-full flex flex-col justify-end items-center px-4 relative">
           <img src="/image/p02.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Story background" />
@@ -343,133 +331,194 @@ onMounted(() => {
           </div>
         </div>
       </section>
-    </transition>
+    </transition> -->
 
     <!-- Main Invitation -->
     <section v-if="opened && step === 2" class="invitation">
       <div class="relative min-h-screen w-full flex flex-col items-center">
+        <!-- Floral overlays -->
+        <img
+          src="/icon/flower.png"
+          alt=""
+          class="floral-overlay floral-overlay--top"
+          aria-hidden="true" />
+        <img
+          src="/icon/flower.png"
+          alt=""
+          class="floral-overlay floral-overlay--bottom"
+          aria-hidden="true" />
 
         <!-- Background -->
         <div class="fixed inset-0 z-0">
-          <!-- <img src="/images/bg-curve.jpg" class="w-full h-full object-contain" alt="Background" /> -->
-          <video autoplay muted loop playsinline class="w-full h-full object-cover">
+          <img src="/image/bg.jpg" class="w-full h-full object-contain" alt="Background" />
+          <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover">
             <source src="/icon/vdo.mp4" type="video/mp4" />
-          </video>
+          </video> -->
         </div>
 
         <!-- Content -->
-        <div class="relative z-10 w-full px-8 flex flex-col justify-center pt-24 items-center text-center">
+        <div class="relative z-10 w-full px-8 flex flex-col justify-center pt-15 items-center text-center">
 
           <!-- Glass Card -->
-          <div class="relative w-full max-w-md
-            backdrop-blur-xs bg-white/10
+          <!-- <div class="relative w-full max-w-md h-[85vh]
+            bg-[#c49850]
             rounded-3xl md:rounded-[2.5rem]
-            p-3.5 md:p-10
-            shadow-2xl border border-white/30
-            overflow-visible">
-            <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
-            <h1 data-ref="mainTitle" :class="['gold-text text-lg md:text-xl font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000',
-              visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-              សិរីមង្គលអាពាហ៍ពិពាហ៍
-            </h1>
+            border-4 border-white shadow-2xl
+            flex flex-col overflow-hidden"> -->
+          <div class="relative w-full max-w-md h-[90vh]">
+            <div class="overflow-y-auto w-full h-full p-6 md:p-10 custom-scrollbar">
+              <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
+              <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-10 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
+                visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                សិរីមង្គលអាពាហ៍ពិពាហ៍
+              </h1>
 
-            <p data-ref="subtitle" :class="['text-lg md:text-xl lg:text-xl mb-8 text-[#ffffff] text-center max-w-md transition-all duration-1000 delay-100',
-              visibleElements.subtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-              The Wedding Day
-            </p>
-
-            <div data-ref="parentsNames" :class="['text-[#7B1F2A] grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
-              visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-              <div class="grid grid-rows-2 gap-2">
-                <div>
-                  <span class="dust-white-text font-metal">លោក </span>
-                  <span class="gold-text">ប៉ាត់ សុខន</span>
+              <div data-ref="parentsNames" :class="['brown-text grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
+                visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                <div class="grid grid-rows-2 gap-2">
+                  <div>
+                    <span class="font-metal">លោក </span>
+                    <span>ជូ ស្រឿន</span>
+                  </div>
+                  <div>
+                    <span class="font-metal">អ្នកស្រី </span>
+                    <span class="">វ៉ា ស៊ីម</span>
+                  </div>
                 </div>
-                <div>
-                  <span class="dust-white-text font-metal">អ្នកស្រី </span>
-                  <span class="gold-text">អ៊ុក សុភាព</span>
-                </div>
-              </div>
-              <div class="grid grid-rows-2 gap-2">
-                <div>
-                  <span class="dust-white-text font-metal">លោក </span>
-                  <span class="gold-text">ណុប សុផេន</span>
-                </div>
-                <div>
-                  <span class="dust-white-text font-metal">អ្នកស្រី </span>
-                  <span class="gold-text">សាង រាសូ</span>
+                <div class="grid grid-rows-2 gap-2">
+                  <div>
+                    <span class="font-metal">លោក </span>
+                    <span>មុំ សម្រស់</span>
+                  </div>
+                  <div>
+                    <span class="font-metal">អ្នកស្រី </span>
+                    <span>ជា ផល្លីតា</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div data-ref="mainCard" :class="['transition-all duration-1000 delay-300',
-              visibleElements.mainCard ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+              <div data-ref="mainCard" :class="['transition-all duration-1000 delay-300',
+                visibleElements.mainCard ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
 
-              <h3 data-ref="invitationTitle" :class="['gold-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
-                visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                មានកិត្តិយសសូមគោរពអញ្ជើញ
-              </h3>
+                <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
+                  visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  មានកិត្តិយសសូមគោរពអញ្ជើញ
+                </h3>
 
-              <p data-ref="invitationText" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
-                visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី
-                និងជាភ្ញៀវកិត្តិយសបើម្បីប្រសិទ្ធិពរជ័យ សិរីសួស្តីជ័យមង្គលក្នុងកម្មវិធីរៀបមង្គលអាពាហ៍ពិពាហ៍
-                កូនប្រុស-កូនស្រី របស់យើងខ្ញុំ
-              </p>
+                <p data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                  visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី
+                  និងជាភ្ញៀវកិត្តិយសបើម្បីប្រសិទ្ធិពរជ័យ សិរីសួស្តីជ័យមង្គលក្នុងកម្មវិធីរៀបមង្គលអាពាហ៍ពិពាហ៍
+                  កូនប្រុស-កូនស្រី របស់យើងខ្ញុំ
+                </p>
 
-              <h2 data-ref="coupleNames" :class="['gold-text font-moul text-base leading-relaxed lg:text-xl mb-4 text-center flex items-center justify-center gap-2 transition-all duration-1000 delay-600',
-                visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                តុន សុខភារុណ
-                <img src="/icon/jeaku.png" alt="Logo" class="w-18" />
-                ណុប សុខសុទ្ធាវី
-              </h2>
+                <div data-ref="coupleNames" :class="['grid grid-cols-2 gap-2 mb-5 font-moul leading-relaxed mt-10 text-center max-w-md transition-all duration-1000 delay-600',
+                  visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <p class="brown-text font-moulpali">កូនប្រុសនាម</p>
+                  <p class="brown-text font-moulpali">កូនស្រីនាម</p>
+                </div>
 
-              <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-700',
-                visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <p class="dust-white-text text-xl md:text-2xl font-moul mb-3">
-                    ថ្ងៃចន្ទ ១៣រោច ខែផល្គុន
+                <h2 data-ref="coupleNames" :class="['brown-text font-moul text-base leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-2 transition-all duration-1000 delay-700',
+                  visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  ឌីន គីមស្រ៊ី
+                  <img src="/icon/jeaku.png" alt="Logo" class="w-18" />
+                  អ៊ុច សុខហេង
+                </h2>
+
+                <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
+                  visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <p class="brown-text text-xl md:text-2xl font-moul mb-3">
+                    ថ្ងៃចន្ទ ៧កើត ខែផល្គុន
                   </p>
-                  <p class="dust-white-text text-5xl md:text-6xl font-moul mb-3">
-                    ១៦
+                  <p class="brown-text text-5xl md:text-6xl font-moul mb-3">
+                    ២៣
                   </p>
-                  <p class="dust-white-text text-2xl md:text-3xl font-moul mb-2">
-                    មីនា ឆ្នាំ ២០២៦
+                  <p class="brown-text text-2xl md:text-3xl font-moul mb-2">
+                    កុម្ភៈ ២០២៦
                   </p>
-                  <div class="w-32 h-1 bg-white/60 mx-auto mt-6 mb-8"></div>
+                  <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-6 mb-8"></div>
 
                 </div>
 
-              <p data-ref="dateInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-700',
-                visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃចន្ទ ១៣រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១៦ ខែមីនា
-                ឆ្នាំ ២០២៦
-              </p>
+                <div class="relative w-full max-w-md p-6
+                 bg-[#c49850]
+                 rounded-3xl md:rounded-[2.5rem]
+                 border-4 border-white shadow-2xl
+                 flex flex-col overflow-hidden">
+                  <p data-ref="dateInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-900',
+                    visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                    ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃចន្ទ ៧កើត ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១៦
+                    ខែមីនា
+                    ឆ្នាំ ២០២៦
+                  </p>
 
-              <p data-ref="locationInfo" :class="['text-base tracking-wider dust-white-text font-moul leading-loose mb-4 transition-all duration-1000 delay-800',
-                visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
-                <span class="gold-text">វិមានពិភពថ្មីសែនសុខ អគារ </span>
-                <span class="font-nokora font-extrabold gold-text">A </span>
-                <span class="font-metal">រាជធានីភ្នំពេញ។ ដោយមេត្រីភាព!</span>
-              </p>
+                  <p data-ref="locationInfo" :class="['text-base tracking-wider dust-white-text font-moul leading-loose mb-4 transition-all duration-1000 delay-1000',
+                    visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                    <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
+                    <span class="gold-text">ផ្សារទំនើបអុីអន២ សែនសុខ (ជាន់ទី៣) </span>
+                    <!-- <span class="font-nokora font-extrabold gold-text">A </span> -->
+                    <span class="font-metal">។ ដោយមេត្រីភាព!</span>
+                  </p>
+                  <div class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg transition-all duration-1000 delay-1100"
+                    :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3906.697880214546!2d104.88279527584474!3d11.599669143468102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109522e1adbf683%3A0x3f4395cd35ec9617!2sAEON%20Mall%20Sen%20Sok%20City!5e0!3m2!1sen!2skh!4v1770492834601!5m2!1sen!2skh"
+                      class="w-full h-60 md:h-72"
+                      style="border:0;"
+                      allowfullscreen=""
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                    <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1200',
+                      timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                      រាប់ថយក្រោយដល់ពិធីមង្គលអាពាហ៍ពិពាហ៍
+                    </h2>
+
+                    <div class="w-full flex justify-center">
+                      <div class="grid grid-cols-4 gap-2 sm:gap-3">
+                        <div
+                          class="min-w-20 sm:min-w-20 text-center ">
+                          <div class="text-2xl sm:text-2xl font-moul dust-white-text">{{ countdown.days }}</div>
+                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text tracking-wide">ថ្ងៃ</div>
+                        </div>
+                        <div
+                          class="min-w-20 sm:min-w-20 text-center ">
+                          <div class="text-2xl sm:text-2xl font-moul dust-white-text">{{ countdown.hours }}</div>
+                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text tracking-wide">ម៉ោង</div>
+                        </div>
+                        <div
+                          class="min-w-20 sm:min-w-20 text-center ">
+                          <div class="text-2xl sm:text-2xl font-moul dust-white-text">{{ countdown.minutes }}</div>
+                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text tracking-wide">នាទី</div>
+                        </div>
+                        <div
+                          class="min-w-20 sm:min-w-20 text-center ">
+                          <div class="text-2xl sm:text-2xl font-moul dust-white-text">{{ countdown.seconds }}</div>
+                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text tracking-wide">វិនាទី</div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
 
 
-              <div data-ref="detailButton" :class="['mt-6 transition-all duration-1000 delay-900',
-                visibleElements.detailButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                <button @click="openMap()" class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
+                <!-- <div data-ref="detailButton" :class="['mt-6 transition-all duration-1000 delay-900',
+                  visibleElements.detailButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <button @click="openMap()" class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
                     backdrop-blur-md bg-white/10 border border-white/40
                     font-nokora font-semibold text-lg
                     shadow-[0_8px_32px_0_rgba(31,38,135,0.2)]
                     hover:bg-white/20 hover:scale-105 transition-all duration-500 active:scale-95">
-                  <span class="relative z-10 dust-white-text font-nokora flex items-center gap-2 sm:gap-3">
-                    មើលផែនទី
-                  </span>
-                </button>
-              </div>
+                    <span class="relative z-10 dust-white-text font-nokora flex items-center gap-2 sm:gap-3">
+                      មើលផែនទី
+                    </span>
+                  </button>
+                </div> -->
 
-              <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
-                visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <img src="/image/e1.JPG" alt="Ornament" class="w-full h-full object-cover -mt-5 bg-transparent rounded-2xl" />
+                <!-- <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
+                  visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <img src="/image/e1.JPG" alt="Ornament"
+                    class="w-full h-full object-cover -mt-5 bg-transparent rounded-2xl" />
 
                   <div class="absolute inset-0 flex flex-col justify-between items-center p-4 sm:p-6">
                     <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
@@ -479,74 +528,79 @@ onMounted(() => {
 
                     <div class="w-full flex justify-center">
                       <div class="grid grid-cols-4 gap-2 sm:gap-3">
-                        <div class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
+                        <div
+                          class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.days }}</div>
                           <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">ថ្ងៃ</div>
                         </div>
-                        <div class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
+                        <div
+                          class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.hours }}</div>
                           <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">ម៉ោង</div>
                         </div>
-                        <div class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
+                        <div
+                          class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.minutes }}</div>
                           <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">នាទី</div>
                         </div>
-                        <div class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
+                        <div
+                          class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.seconds }}</div>
                           <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">វិនាទី</div>
                         </div>
                       </div>
                     </div>
                   </div>
-              </div>
+                </div> -->
 
-              <!-- Timeline Section -->
-              <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1000',
-                visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                <h2 data-ref="timelineHeader" :class="['text-md text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000',
-                  timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍
-                </h2>
-                <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
-                  timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  កម្មវិធី ថ្ងៃចន្ទ ទី១៦ ខែមីនា ឆ្នាំ២០២៦
-                </h2>
+                <!-- Timeline Section -->
+                <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1300',
+                  visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <h2 data-ref="timelineHeader" :class="['text-md text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
+                    timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                    កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍
+                  </h2>
+                  <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
+                    timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                    កម្មវិធី ថ្ងៃចន្ទ ទី២៣ ខែកុម្ភៈ ឆ្នាំ២០២៦
+                  </h2>
 
-                <div class="relative">
-                  <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-secondary dark:bg-primary/30 h-full">
-                  </div>
+                  <div class="relative">
+                    <div
+                      class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-secondary dark:bg-primary/30 h-full">
+                    </div>
 
-                  <div class="grid grid-cols-[auto_1fr] gap-x-4 -gap-y-2 text-left">
-                    <template v-for="(event, index) in timelineEvents" :key="index">
-                      <div :ref="el => setTimelineRef(el, index, 'icon')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
-                        visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                        <div class="text-primary text-3xl">
-                          <img :src="event.icon" alt="event icon"
-                            class="w-18 sm:w-12 md:w-16 rounded-xl bg-transparent mix-blend-multiply" />
+                    <div class="grid grid-cols-[auto_1fr] gap-x-4 -gap-y-2 text-left">
+                      <template v-for="(event, index) in timelineEvents" :key="index">
+                        <div :ref="el => setTimelineRef(el, index, 'icon')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
+                          visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                          <div class="text-primary text-3xl">
+                            <img :src="event.icon" alt="event icon"
+                              class="w-18 sm:w-12 md:w-16 rounded-xl bg-transparent mix-blend-multiply" />
+                          </div>
+                          <div class="w-0.5 bg-secondary dark:bg-primary/30 h-2"></div>
                         </div>
-                        <div class="w-0.5 bg-secondary dark:bg-primary/30 h-2"></div>
-                      </div>
-                      <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700 delay-150',
-                        visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                        <p class="text-text-light font-nokora gold-text text-lg font-semibold leading-normal">
-                          {{ event.title }}
-                        </p>
-                        <p class="text-base dust-white-text font-moul leading-normal">{{ event.time }}</p>
-                      </div>
-                    </template>
+                        <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700',
+                          visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                          <p class="text-text-light font-nokora gold-text text-lg font-semibold leading-normal">
+                            {{ event.title }}
+                          </p>
+                          <p class="text-base dust-white-text font-moul leading-normal">{{ event.time }}</p>
+                        </div>
+                      </template>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Gallery Section -->
-              <div data-ref="gallerySection" :class="['relative transition-all duration-1000 delay-1100',
-                visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000',
-                  galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  វិចិត្រសាល
-                </h2>
+                <!-- Gallery Section -->
+                <div data-ref="gallerySection" :class="['relative transition-all duration-1000 delay-1600',
+                  visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
+                    galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                    វិចិត្រសាល
+                  </h2>
 
-                <!-- <div class="grid grid-cols-12 gap-4">
+                  <!-- <div class="grid grid-cols-12 gap-4">
                   <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
                     getSpanClass(index),
                     visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -560,101 +614,82 @@ onMounted(() => {
                   </div>
                 </div> -->
 
-                <div class="grid grid-cols-1 gap-4">
-                  <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
-                    visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    @click="selectedImg = img.url">
-                    <img :src="img.url" :alt="img.alt"
-                      class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
-                    <div
-                      class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span class="text-white font-medium">View Full</span>
+                  <div class="grid grid-cols-1 gap-4">
+                    <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
+                      visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                      @click="selectedImg = img.url">
+                      <img :src="img.url" :alt="img.alt"
+                        class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
+                      <div
+                        class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="text-white font-medium">View Full</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <h2 data-ref="galleryTitle" :class="['text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000',
-                  galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  ស្កេនមើលទីតាំងពិធី
-                </h2>
-                <img src="/icon/qr-code.svg" alt="QR Code"
-                  class="mx-auto my-6 w-48 h-48 object-cover rounded-lg shadow-lg border border-white/30" />
+                  <h2 data-ref="galleryTitle" :class="['text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
+                    galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                    ស្កេនមើលទីតាំងពិធី
+                  </h2>
+                  <img src="/icon/qr-code.svg" alt="QR Code"
+                    class="mx-auto my-6 w-48 h-48 object-cover rounded-lg shadow-lg border border-white/30" />
 
 
-                <Teleport to="body">
-                  <transition name="fade">
-                    <div v-if="selectedImg"
-                      class="fixed inset-0 z-1000 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
-                      @click="closeLightbox">
-                      <button class="absolute top-6 right-6 text-white text-4xl hover:text-gray-300 transition"
+                  <Teleport to="body">
+                    <transition name="fade">
+                      <div v-if="selectedImg"
+                        class="fixed inset-0 z-1000 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
                         @click="closeLightbox">
-                        &times;
-                      </button>
-                      <img :src="selectedImg"
-                        class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transition-all" @click.stop
-                        alt="Full size image" />
-                      <p class="absolute bottom-6 text-white/60 text-sm">Click anywhere to close</p>
+                        <button class="absolute top-6 right-6 text-white text-4xl hover:text-gray-300 transition"
+                          @click="closeLightbox">
+                          &times;
+                        </button>
+                        <img :src="selectedImg"
+                          class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transition-all"
+                          @click.stop alt="Full size image" />
+                        <p class="absolute bottom-6 text-white/60 text-sm">Click anywhere to close</p>
+                      </div>
+                    </transition>
+                  </Teleport>
+                </div>
+
+                <!-- Footer -->
+                <footer class="theab-footer mt-10">
+                  <div class="theab-footer__brand">
+                    <div class="theab-footer__logo">
+                      <img src="/icon/theab-icon.jpg" alt="TheabStudio logo" class="theab-footer__logo-img" />
                     </div>
-                  </transition>
-                </Teleport>
+                    <div class="theab-footer__text">
+                      <span class="theab-footer__title">Made by</span>
+                      <span class="theab-footer__name">TheabStudio</span>
+                    </div>
+                  </div>
+
+                  <div class="theab-footer__social">
+                    <a class="theab-footer__btn" href="https://www.facebook.com/share/1AVegr6kjM/?mibextid=wwXIfr"
+                      target="_blank" rel="noreferrer" aria-label="TheabStudio on Facebook">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
+                        <path fill="currentColor"
+                          d="M13.5 9H16V6h-2.5C11.6 6 10 7.6 10 9.5V12H8v3h2v6h3v-6h2.2l.3-3H13v-2.1c0-.5.4-.9.9-.9Z" />
+                      </svg>
+                    </a>
+                    <a class="theab-footer__btn"
+                      href="https://www.instagram.com/theab.studio?igsh=MTA2cjNkZzRodWw4ag%3D%3D&utm_source=qr"
+                      target="_blank" rel="noreferrer" aria-label="TheabStudio on Instagram">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
+                        <path fill="currentColor"
+                          d="M12 8.7a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6Zm7.1-.8a4.5 4.5 0 0 0-2.6-2.6c-1-.4-2.1-.5-4.5-.5s-3.5.1-4.5.5a4.5 4.5 0 0 0-2.6 2.6c-.4 1-.5 2.1-.5 4.5s.1 3.5.5 4.5a4.5 4.5 0 0 0 2.6 2.6c1 .4 2.1.5 4.5.5s3.5-.1 4.5-.5a4.5 4.5 0 0 0 2.6-2.6c.4-1 .5-2.1.5-4.5s-.1-3.5-.5-4.5ZM12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm5.2-9.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" />
+                      </svg>
+                    </a>
+                    <a class="theab-footer__btn" href="https://t.me/nar0th" target="_blank" rel="noreferrer"
+                      aria-label="TheabStudio on Telegram">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
+                        <path fill="currentColor"
+                          d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z" />
+                      </svg>
+                    </a>
+                  </div>
+                </footer>
               </div>
-
-              <!-- Footer -->
-              <footer class="theab-footer mt-10">
-                <div class="theab-footer__brand">
-                  <div class="theab-footer__logo">
-                    <img src="/icon/theab-icon.jpg" alt="TheabStudio logo" class="theab-footer__logo-img" />
-                  </div>
-                  <div class="theab-footer__text">
-                    <span class="theab-footer__title">Made by</span>
-                    <span class="theab-footer__name">TheabStudio</span>
-                  </div>
-                </div>
-
-                <div class="theab-footer__social">
-                  <a
-                    class="theab-footer__btn"
-                    href="https://www.facebook.com/share/1AVegr6kjM/?mibextid=wwXIfr"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="TheabStudio on Facebook"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
-                      <path
-                        fill="currentColor"
-                        d="M13.5 9H16V6h-2.5C11.6 6 10 7.6 10 9.5V12H8v3h2v6h3v-6h2.2l.3-3H13v-2.1c0-.5.4-.9.9-.9Z"
-                      />
-                    </svg>
-                  </a>
-                  <a
-                    class="theab-footer__btn"
-                    href="https://www.instagram.com/theab.studio?igsh=MTA2cjNkZzRodWw4ag%3D%3D&utm_source=qr"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="TheabStudio on Instagram"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
-                      <path
-                        fill="currentColor"
-                        d="M12 8.7a3.3 3.3 0 1 0 0 6.6 3.3 3.3 0 0 0 0-6.6Zm7.1-.8a4.5 4.5 0 0 0-2.6-2.6c-1-.4-2.1-.5-4.5-.5s-3.5.1-4.5.5a4.5 4.5 0 0 0-2.6 2.6c-.4 1-.5 2.1-.5 4.5s.1 3.5.5 4.5a4.5 4.5 0 0 0 2.6 2.6c1 .4 2.1.5 4.5.5s3.5-.1 4.5-.5a4.5 4.5 0 0 0 2.6-2.6c.4-1 .5-2.1.5-4.5s-.1-3.5-.5-4.5ZM12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm5.2-9.1a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"
-                      />
-                    </svg>
-                  </a>
-                  <a
-                    class="theab-footer__btn"
-                    href="https://t.me/nar0th"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label="TheabStudio on Telegram"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
-                      <path
-                        fill="currentColor"
-                        d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </footer>
             </div>
           </div>
         </div>
@@ -672,8 +707,14 @@ onMounted(() => {
   filter:
     drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) drop-shadow(0 2px 4px rgba(36, 29, 29, 0.3)) drop-shadow(0 0 12px rgba(241, 214, 59, 0.5));
 }
+
+.brown-text {
+  color: #c49850;
+}
+
 .dust-white-text {
-  color: #fcf4f4; /* Your specific color */
+  color: #fcf4f4;
+  /* Your specific color */
 
   /* Layer 1: Sharp dark outline (0.8 opacity) for immediate legibility
     Layer 2: Soft dark spread to create depth against the flowers
@@ -681,7 +722,6 @@ onMounted(() => {
   */
   filter:
     drop-shadow(0 2px 2px rgba(0, 0, 0, 0.8))
-
 }
 
 .fade-enter-active,
@@ -774,6 +814,34 @@ onMounted(() => {
   transition-delay: 1100ms;
 }
 
+.delay-1200 {
+  transition-delay: 1200ms;
+}
+
+.delay-1300 {
+  transition-delay: 1300ms;
+}
+
+.delay-1400 {
+  transition-delay: 1400ms;
+}
+
+.delay-1500 {
+  transition-delay: 1500ms;
+}
+
+.delay-1600 {
+  transition-delay: 1600ms;
+}
+
+.delay-1700 {
+  transition-delay: 1700ms;
+}
+
+.delay-1800 {
+  transition-delay: 1800ms;
+}
+
 .theab-footer {
   margin-top: 2.5rem;
   padding: 1.25rem 1rem 1.5rem;
@@ -859,6 +927,45 @@ onMounted(() => {
 .theab-footer__icon {
   width: 20px;
   height: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.floral-overlay {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 22vh;
+  object-fit: cover;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.floral-overlay--top {
+  top: -70px;
+  transform: rotate(180deg);
+}
+
+.floral-overlay--bottom {
+  bottom: -70px;
+
+}
+
+/* Ensure the invitation section doesn't scroll the whole page */
+.invitation {
+  overflow: hidden;
+  height: 100vh;
 }
 
 @media (max-width: 640px) {
