@@ -8,7 +8,7 @@ export default function handler(req) {
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
   const description = `គីមស្រ៊ី និង សុខហេង | ២៣ ខែកុម្ភៈ ឆ្នាំ ២០២៦`
-  const image = 'https://kimsry-sokheng.vercel.app/image/p01.jpg'
+  const image = 'https://kimsry-sokheng.vercel.app/image/p1.jpg'
 
   return new Response(`<!DOCTYPE html>
 <html lang="km">
