@@ -2,41 +2,62 @@ export const config = {
   runtime: 'edge',
 }
 
+const BOT_UA_PATTERN =
+  /facebookexternalhit|facebot|twitterbot|slackbot|discordbot|telegrambot|linkedinbot|whatsapp|skypeuripreview|googlebot|bingbot|pinterest|vkshare/i
+
+const escapeHtml = (value = '') =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
 export default function handler(req) {
-  const { searchParams } = new URL(req.url)
-  const guestName = searchParams.get('name') || 'សូមអញ្ជើញ'
+  const currentUrl = new URL(req.url)
+  const guestName = currentUrl.searchParams.get('name') || 'Guest'
+  const userAgent = req.headers.get('user-agent') || ''
+  const isBot = BOT_UA_PATTERN.test(userAgent)
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
-  const description = `តង សៀង និង ឡាំ ដាណេ | ០៦ ខែមីនា ឆ្នាំ ២០២៦`
-  const image = 'https://sieng-dane.vercel.app/icon/badge.png'
+  const description = `តង សៀង និង ឡាំ ដាណេ  | ០៦ មីនា ២០២៦`
+  const image = `${currentUrl.origin}/icon/badge.png`
+  const appUrl = `${currentUrl.origin}/?name=${encodeURIComponent(guestName)}`
 
-  return new Response(`<!DOCTYPE html>
-<html lang="km">
+  // Real users should open the app directly.
+  if (!isBot) {
+    return Response.redirect(appUrl, 302)
+  }
+
+  // Crawlers should receive stable OG metadata HTML.
+  return new Response(
+    `<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>${title}</title>
-
-  <!-- Open Graph -->
-  <meta property="og:image" content="${image}" />
-  <meta property="og:title" content="${title}" />
-  <meta property="og:description" content="${description}" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/png" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${escapeHtml(title)}</title>
   <meta property="og:type" content="website" />
-
-  <!-- WhatsApp / Telegram -->
+  <meta property="og:site_name" content="Theab Studio" />
+  <meta property="og:url" content="${escapeHtml(currentUrl.href)}" />
+  <meta property="og:title" content="${escapeHtml(title)}" />
+  <meta property="og:description" content="${escapeHtml(description)}" />
+  <meta property="og:image" content="${escapeHtml(image)}" />
+  <meta property="og:image:type" content="image/png" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${escapeHtml(title)}" />
+  <meta name="twitter:description" content="${escapeHtml(description)}" />
+  <meta name="twitter:image" content="${escapeHtml(image)}" />
 </head>
 <body>
-  <script>
-    location.replace('/?name=${encodeURIComponent(guestName)}')
-  </script>
+  <a href="${escapeHtml(appUrl)}">Open invitation</a>
 </body>
-</html>`, {
-    headers: {
-      'content-type': 'text/html; charset=UTF-8',
-    },
-  })
+</html>`,
+    {
+      headers: {
+        'content-type': 'text/html; charset=UTF-8',
+        'cache-control': 'public, max-age=0, s-maxage=600',
+      },
+    }
+  )
 }
