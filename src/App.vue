@@ -39,7 +39,7 @@ const rsvpStatus = ref('yes')
 const rsvpMessage = ref('')
 
 const telegramRsvpUrl = computed(() => {
-  const base = 'https://t.me/sokheng_ouch'
+  const base = 'https://t.me/+855966557263'
   const statusText = rsvpStatus.value === 'yes' ? 'Can join' : 'Cannot join'
   const name = questName.value?.trim() ? questName.value.trim() : 'Guest'
   const message = rsvpMessage.value.trim()
@@ -221,7 +221,7 @@ onMounted(() => {
     questName.value = decodeURIComponent(nameParam)
   }
 
-  const targetDate = new Date('2026-02-23T12:00:00')
+  const targetDate = new Date('2026-03-06T12:00:00')
 
   const toKhmerDigits = (value) => {
     const map = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
@@ -264,8 +264,12 @@ onMounted(() => {
         <div class="fixed inset-0 z-0">
           <!-- <img src="/image/gate2x.png" class="w-full h-full object-contain" alt="Background" /> -->
           <!-- Floral overlays -->
-          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top" aria-hidden="true" />
-          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom" aria-hidden="true" />
+          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
+          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
+          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left-angle" aria-hidden="true" />
+          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right-angle" aria-hidden="true" />
+          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-left" aria-hidden="true" />
+          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" />
           <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover"> -->
           <!-- <source src="/icon/vdo.mp4" type="video/mp4" /> -->
           <!-- </video> -->
@@ -295,11 +299,11 @@ onMounted(() => {
           <h3 class="text-lg md:text-xl mt-10 font-moul leading-relaxed lg:text-xl mb-4 text-[#ef9ab2] text-center">
             សូមគោរពអញ្ជើញ
           </h3>
-          <img src="/icon/bar.png" alt="Heart" class="w-full rotate-180" />
+          <img src="/icon/bar.png" alt="Heart" class="w-80% rotate-180" />
           <p class="text-xl md:text-xl font-moul lg:text-2xl mb-2 mt-2 text-[#c49850] text-center py-1 max-w-md">
             {{ questName }}
           </p>
-          <img src="/icon/bar.png" alt="Heart" class="w-full mb-8" />
+          <img src="/icon/bar.png" alt="Heart" class="w-80% mb-8" />
           <button class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
              backdrop-blur-md bg-white/10 border border-white/40
              text-[#7B1F2A] font-nokora font-semibold text-lg
@@ -358,8 +362,12 @@ onMounted(() => {
     <section v-if="opened && step === 2" class="invitation">
       <div class="relative min-h-screen w-full flex flex-col items-center">
         <!-- Floral overlays -->
-        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top" aria-hidden="true" />
-        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left-angle" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right-angle" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-left" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" />
 
         <!-- Background -->
         <div class="fixed inset-0 z-0">
@@ -403,21 +411,21 @@ onMounted(() => {
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>ជូ ស្រឿន</span>
+                    <span>ស៊ឹម សៃ</span>
                   </div>
                   <div>
                     <span class="font-metal">អ្នកស្រី </span>
-                    <span class="">វ៉ា ស៊ីម</span>
+                    <span class="">ស៊ឹម នី</span>
                   </div>
                 </div>
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>មុំ សម្រស់</span>
+                    <span>ជា រិន</span>
                   </div>
                   <div>
                     <span class="font-metal">អ្នកស្រី </span>
-                    <span>ជា ផល្លីតា</span>
+                    <span>វង វឿន</span>
                   </div>
                 </div>
               </div>
@@ -443,11 +451,11 @@ onMounted(() => {
                   <p class="brown-text font-moulpali">កូនស្រីនាម</p>
                 </div>
 
-                <h2 data-ref="coupleNames" :class="['brown-text font-moul text-base leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-2 transition-all duration-1000 delay-700',
+                <h2 data-ref="coupleNames" :class="['brown-text font-moul text-base leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-8 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  ឌីន គីមស្រ៊ី
+                  តង សៀង
                   <img src="/icon/brown-jeaku.png" alt="Logo" class="w-18" />
-                  អ៊ុច សុខហេង
+                  ឡាំ ដាណេ
                 </h2>
 
                 <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
@@ -457,11 +465,11 @@ onMounted(() => {
                   </p>
                   <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-5xl md:text-6xl font-moul">
-                    ២៣
+                    ០៦
                   </p>
                   <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-2xl md:text-3xl font-moul mb-10">
-                    កុម្ភៈ ២០២៦
+                    មីនា ២០២៦
                   </p>
 
 
@@ -474,17 +482,17 @@ onMounted(() => {
                  flex flex-col overflow-hidden">
                   <p data-ref="dateInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-900',
                     visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃចន្ទ ៧កើត ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ២៣
-                    ខែកុម្ភៈ
+                    ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃសុក្រ ៣រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ០៦
+                    ខែមីនា
                     ឆ្នាំ ២០២៦
                   </p>
 
                   <p data-ref="locationInfo" :class="['text-base tracking-wider dust-white-text font-moul leading-loose mb-4 transition-all duration-1000 delay-1000',
                     visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
-                    <span class="">ផ្សារទំនើបអ៉ីអន២ សែនសុខ (ជាន់ទី៣) </span>
+                    <span class="">គេហដ្ឋានខាងស្រី</span>
                     <!-- <span class="font-nokora font-extrabold gold-text">A </span> -->
-                    <span class="font-metal">។ ដោយមេត្រីភាព!</span>
+                    <span class="font-metal">ភូមិវាលតូច ឃុំអណ្តូងពោធិ៍ ស្រុកបារាយណ៍ ខេត្តកំពង់ធំ។ ដោយមេត្រីភាព!</span>
                   </p>
                   <div
                     class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg transition-all duration-1000 delay-1100"
@@ -614,7 +622,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Gallery Section -->
-                <div data-ref="gallerySection" :class="['relative transition-all duration-1000 delay-1600',
+                <!-- <div data-ref="gallerySection" :class="['relative transition-all duration-1000 delay-1600',
                   visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -635,56 +643,6 @@ onMounted(() => {
                     </div>
                   </div>
 
-                  <h2 data-ref="galleryTitle" :class="['brown-text text-lg sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
-                    galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    ទទួលចំណងដៃ
-                  </h2>
-                  <img src="/icon/qr-aba.png" alt="QR Code"
-                    class="mx-auto my-6 w-48 h-48 object-cover rounded-3xl shadow-lg border border-white/30" />
-
-                  <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-2 mb-8 sm:text-xl text-center whitespace-nowrap font-sans font-bold bg-white/10 p-1 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
-                    galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    SOKHENG AND KIMSRY
-                  </h2>
-
-                  <!-- RSVP Section -->
-                  <div class="mt-8 p-5 bg-white/10 rounded-2xl border border-white/20 text-left">
-                    <h3 class="brown-text text-lg font-sans font-extrabold text-center mb-3">RSVP</h3>
-                    <p class="brown-text font-metal leading-loose text-sm text-center mb-4">
-                      សូមបញ្ជាក់វត្តមានរបស់អ្នក ដើម្បីឲ្យយើងខ្ញុំអាចរៀបចំការត្រៀមខ្លួនបានល្អប្រសើរឡើង
-                    </p>
-                    <div class="flex items-center justify-center gap-4 mb-4">
-                      <label :class="[
-                        'flex-1 flex items-center justify-center py-3 px-4 rounded-xl border-2 cursor-pointer transition-all duration-200 font-metal text-sm',
-                        rsvpStatus === 'yes'
-                          ? 'border-emerald-500 bg-emerald-50 text-emerald-700 shadow-sm'
-                          : 'border-gray-100 bg-white text-gray-500 hover:border-emerald-100'
-                      ]">
-                        <input type="radio" name="rsvp" value="yes" v-model="rsvpStatus" class="hidden" />
-                        <span>អាចចូលរួម</span>
-                      </label>
-
-                      <label :class="[
-                        'flex-1 flex items-center justify-center py-3 px-4 rounded-xl border-2 cursor-pointer transition-all duration-200 font-metal text-sm',
-                        rsvpStatus === 'no'
-                          ? 'border-red-400 bg-red-50 text-red-800 shadow-sm'
-                          : 'border-gray-100 bg-white text-gray-500 hover:border-red-100'
-                      ]">
-                        <input type="radio" name="rsvp" value="no" v-model="rsvpStatus" class="hidden" />
-                        <span>មិនបានចូលរួម</span>
-                      </label>
-                    </div>
-                    <textarea v-model="rsvpMessage" rows="3" placeholder="ផ្ញើរសារ (optional)"
-                      class="w-full rounded-lg p-3 text-sm font-metal bg-white/80 text-[#6b4a2f] placeholder-[#6b4a2f]/70 outline-none"></textarea>
-                    <a :href="telegramRsvpUrl" target="_blank" rel="noreferrer"
-                      class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#2AABEE] text-white font-nokora font-semibold transition hover:scale-105 active:scale-95">
-                      ផ្ញើរតាមតេលេក្រាម<span><svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
-                          <path fill="#fff"
-                            d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z" />
-                        </svg></span>
-                    </a>
-                  </div>
-
                   <Teleport to="body">
                     <transition name="fade">
                       <div v-if="selectedImg"
@@ -701,22 +659,73 @@ onMounted(() => {
                       </div>
                     </transition>
                   </Teleport>
-                  <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
-                    visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    សេចក្តីថ្លែងអំណរគុណ និងសូមអភ័យទោស
-                  </h3>
 
-                  <p data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
-                    visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    យើងខ្ញុំសូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅចំពោះការអញ្ជើញចូលរួមជា ភ្ញៀវកិត្តិយស ក្នុងពិធីរបស់យើងខ្ញុំ
-                    និងសូមខន្តីអភ័យទោសដោយពុំបានអញ្ជើញ
-                    ដោយផ្ទាល់ និងការសរសេរឈ្មោះរបស់ភ្ញៀវកិត្តិយសមិនបានត្រឹមត្រូវ ឫពុំបានសេសេរឈ្មោះ ។
-                    សូមជូនពរ ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា និងភ្ញៀវកិត្តិយសទាំងអស់
-                    សិរីសួស្តីជ័យមង្គល
-                    និងទទួលបានជោគជ័យគ្រប់ភារកិច្ច ។
-                    សូមអរគុណ និងសូមអភ័យទោសម្ដងទៀត!
+                </div> -->
+
+                <h2 data-ref="galleryTitle" :class="['brown-text text-lg sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
+                  galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  ស្គេនមើលទីតាំងពិធី
+                </h2>
+                <img src="/icon/map-qr.svg" alt="QR Code"
+                  class="mx-auto my-6 w-48 h-48 object-cover rounded-3xl shadow-lg border border-white/30" />
+
+                <!-- <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-2 mb-8 sm:text-xl text-center whitespace-nowrap font-sans font-bold bg-white/10 p-1 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
+                  galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  SOKHENG AND KIMSRY
+                </h2> -->
+                <!-- RSVP Section -->
+                <div class="mt-8 p-5 bg-white/10 rounded-2xl border border-white/20 text-left">
+                  <h3 class="brown-text text-lg font-sans font-extrabold text-center mb-3">RSVP</h3>
+                  <p class="brown-text font-metal leading-loose text-sm text-center mb-4">
+                    សូមបញ្ជាក់វត្តមានរបស់អ្នក ដើម្បីឲ្យយើងខ្ញុំអាចរៀបចំការត្រៀមខ្លួនបានល្អប្រសើរឡើង
                   </p>
+                  <div class="flex items-center justify-center gap-4 mb-4">
+                    <label :class="[
+                      'flex-1 flex items-center justify-center py-3 px-4 rounded-xl border-2 cursor-pointer transition-all duration-200 font-metal text-sm',
+                      rsvpStatus === 'yes'
+                        ? 'border-emerald-500 bg-emerald-50 text-emerald-700 shadow-sm'
+                        : 'border-gray-100 bg-white text-gray-500 hover:border-emerald-100'
+                    ]">
+                      <input type="radio" name="rsvp" value="yes" v-model="rsvpStatus" class="hidden" />
+                      <span>អាចចូលរួម</span>
+                    </label>
+
+                    <label :class="[
+                      'flex-1 flex items-center justify-center py-3 px-4 rounded-xl border-2 cursor-pointer transition-all duration-200 font-metal text-sm',
+                      rsvpStatus === 'no'
+                        ? 'border-red-400 bg-red-50 text-red-800 shadow-sm'
+                        : 'border-gray-100 bg-white text-gray-500 hover:border-red-100'
+                    ]">
+                      <input type="radio" name="rsvp" value="no" v-model="rsvpStatus" class="hidden" />
+                      <span>មិនបានចូលរួម</span>
+                    </label>
+                  </div>
+                  <textarea v-model="rsvpMessage" rows="3" placeholder="ផ្ញើរសារ (optional)"
+                    class="w-full rounded-lg p-3 text-sm font-metal bg-white/80 text-[#6b4a2f] placeholder-[#6b4a2f]/70 outline-none"></textarea>
+                  <a :href="telegramRsvpUrl" target="_blank" rel="noreferrer"
+                    class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#2AABEE] text-white font-nokora font-semibold transition hover:scale-105 active:scale-95">
+                    ផ្ញើរតាមតេលេក្រាម<span><svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
+                        <path fill="#fff"
+                          d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z" />
+                      </svg></span>
+                  </a>
                 </div>
+
+                <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
+                  visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  សេចក្តីថ្លែងអំណរគុណ និងសូមអភ័យទោស
+                </h3>
+
+                <p data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                  visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  យើងខ្ញុំសូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅចំពោះការអញ្ជើញចូលរួមជា ភ្ញៀវកិត្តិយស ក្នុងពិធីរបស់យើងខ្ញុំ
+                  និងសូមខន្តីអភ័យទោសដោយពុំបានអញ្ជើញ
+                  ដោយផ្ទាល់ និងការសរសេរឈ្មោះរបស់ភ្ញៀវកិត្តិយសមិនបានត្រឹមត្រូវ ឫពុំបានសេសេរឈ្មោះ ។
+                  សូមជូនពរ ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា និងភ្ញៀវកិត្តិយសទាំងអស់
+                  សិរីសួស្តីជ័យមង្គល
+                  និងទទួលបានជោគជ័យគ្រប់ភារកិច្ច ។
+                  សូមអរគុណ និងសូមអភ័យទោសម្ដងទៀត!
+                </p>
 
                 <!-- Footer -->
                 <footer class="theab-footer mt-10 mb-25">
@@ -1119,23 +1128,184 @@ onMounted(() => {
 
 .floral-overlay {
   position: fixed;
-  left: 0;
-  width: 100%;
+  width: min(58vw, 320px);
   height: 22vh;
-  object-fit: cover;
+  object-fit: contain;
   z-index: 20;
   pointer-events: none;
+  will-change: transform;
+  transform-origin: center;
 }
 
-.floral-overlay--top {
+.floral-overlay--top-left {
   top: -70px;
+  left: -18px;
   transform: rotate(180deg);
+  animation: floral-wind-top-left 9s ease-in-out infinite;
 }
 
-.floral-overlay--bottom {
+.floral-overlay--top-right {
+  top: -70px;
+  right: -18px;
+  transform: rotate(180deg) scaleX(-1);
+  animation: floral-wind-top-right 9.8s ease-in-out infinite -1.2s;
+}
+
+.floral-overlay--top-left-angle {
+  top: -58px;
+  left: -64px;
+  transform: rotate(135deg);
+  animation: floral-wind-top-left-angle 8.8s ease-in-out infinite -0.6s;
+}
+
+.floral-overlay--top-right-angle {
+  top: -58px;
+  right: -64px;
+  transform: rotate(-135deg);
+  animation: floral-wind-top-right-angle 8.6s ease-in-out infinite -1.7s;
+}
+
+.floral-overlay--bottom-left {
   bottom: -70px;
-
+  left: -18px;
+  height: 28vh;
+  animation: floral-wind-bottom-left 10.5s ease-in-out infinite -0.8s;
 }
+
+.floral-overlay--bottom-right {
+  bottom: -70px;
+  right: -18px;
+  height: 28vh;
+  transform: scaleX(-1);
+  animation: floral-wind-bottom-right 10.9s ease-in-out infinite -2.1s;
+}
+
+@keyframes floral-wind-top-left {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(180deg);
+  }
+
+  25% {
+    transform: translate3d(6px, -4px, 0) rotate(183deg);
+  }
+
+  50% {
+    transform: translate3d(-4px, 3px, 0) rotate(178deg);
+  }
+
+  75% {
+    transform: translate3d(5px, -2px, 0) rotate(182deg);
+  }
+}
+
+@keyframes floral-wind-top-right {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(180deg) scaleX(-1);
+  }
+
+  25% {
+    transform: translate3d(-6px, -4px, 0) rotate(177deg) scaleX(-1);
+  }
+
+  50% {
+    transform: translate3d(4px, 3px, 0) rotate(182deg) scaleX(-1);
+  }
+
+  75% {
+    transform: translate3d(-5px, -2px, 0) rotate(178deg) scaleX(-1);
+  }
+}
+
+@keyframes floral-wind-top-left-angle {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(135deg);
+  }
+
+  25% {
+    transform: translate3d(7px, -3px, 0) rotate(139deg);
+  }
+
+  50% {
+    transform: translate3d(-5px, 4px, 0) rotate(131deg);
+  }
+
+  75% {
+    transform: translate3d(6px, -2px, 0) rotate(137deg);
+  }
+}
+
+@keyframes floral-wind-top-right-angle {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-135deg);
+  }
+
+  25% {
+    transform: translate3d(-7px, -3px, 0) rotate(-139deg);
+  }
+
+  50% {
+    transform: translate3d(5px, 4px, 0) rotate(-131deg);
+  }
+
+  75% {
+    transform: translate3d(-6px, -2px, 0) rotate(-137deg);
+  }
+}
+
+@keyframes floral-wind-bottom-left {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate3d(5px, -5px, 0) rotate(3deg);
+  }
+
+  50% {
+    transform: translate3d(-4px, 4px, 0) rotate(-2deg);
+  }
+
+  75% {
+    transform: translate3d(4px, -3px, 0) rotate(2deg);
+  }
+}
+
+@keyframes floral-wind-bottom-right {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scaleX(-1);
+  }
+
+  25% {
+    transform: translate3d(-5px, -5px, 0) rotate(-3deg) scaleX(-1);
+  }
+
+  50% {
+    transform: translate3d(4px, 4px, 0) rotate(2deg) scaleX(-1);
+  }
+
+  75% {
+    transform: translate3d(-4px, -3px, 0) rotate(-2deg) scaleX(-1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floral-overlay {
+    animation: none !important;
+  }
+}
+
 
 /* Ensure the invitation section doesn't scroll the whole page */
 .invitation {
