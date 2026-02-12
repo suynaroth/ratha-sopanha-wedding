@@ -8,6 +8,7 @@ export default function handler(req) {
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
   const description = `គីមស្រ៊ី និង សុខហេង | ២៣ ខែកុម្ភៈ ឆ្នាំ ២០២៦`
+  const image = 'https://kimsry-sokheng.vercel.app/image/p01.jpg'
 
   return new Response(`<!DOCTYPE html>
 <html lang="km">
@@ -16,6 +17,7 @@ export default function handler(req) {
   <title>${title}</title>
 
   <!-- Open Graph -->
+  <meta property="og:image" content="${image}" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${description}" />
   <meta property="og:image:width" content="1200" />

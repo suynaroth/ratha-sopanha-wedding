@@ -60,18 +60,15 @@ const openMap = () => {
 }
 
 const images = [
-  { id: 1, url: '/image/p4.JPG', alt: 'Image 1' },
-  // { id: 2, url: '/image/e2.JPG', alt: 'Image 2' },
-  { id: 3, url: '/image/p5.JPG', alt: 'Image 3' },
-  { id: 4, url: '/image/n1.JPG', alt: 'Image 4' },
-  { id: 5, url: '/image/n2.JPG', alt: 'Image 5' },
-  { id: 6, url: '/image/n3.JPG', alt: 'Image 6' },
-  { id: 7, url: '/image/p01.jpg', alt: 'Image 7' },
-  { id: 8, url: '/image/p02.jpg', alt: 'Image 8' },
-  { id: 9, url: '/image/p3.JPG', alt: 'Image 9' },
-  { id: 10, url: '/image/p6.JPG', alt: 'Image 10' },
-  { id: 11, url: '/image/e1.JPG', alt: 'Image 11' },
-  { id: 12, url: '/image/e3.JPG', alt: 'Image 12' },
+  { id: 1, url: '/image/p1.jpg', alt: 'Image 1' },
+  { id: 2, url: '/image/p2.jpg', alt: 'Image 2' },
+  { id: 3, url: '/image/p3.jpg', alt: 'Image 3' },
+  { id: 4, url: '/image/p4.jpg', alt: 'Image 4' },
+  { id: 5, url: '/image/p5.jpg', alt: 'Image 5' },
+  { id: 6, url: '/image/p6.jpg', alt: 'Image 6' },
+  { id: 7, url: '/image/p7.jpg', alt: 'Image 7' },
+  { id: 8, url: '/image/p1.jpg', alt: 'Image 8' },
+  // { id: 9, url: '/image/p1.jpg', alt: 'Image 9' },
 
 ]
 
@@ -89,10 +86,9 @@ const timelineEvents = [
 // Computed
 // eslint-disable-next-line no-unused-vars
 const getSpanClass = (index) => {
-  if (index < 3) return 'col-span-4'
-  if (index === 3) return 'col-span-12'
-  if (index > 3 && index < 6) return 'col-span-6'
-  return 'col-span-4'
+  // Pattern: 2-1-2-3 items per row on a 12-column grid.
+  const pattern = ['col-span-6', 'col-span-6', 'col-span-12', 'col-span-6', 'col-span-6', 'col-span-4', 'col-span-4', 'col-span-4']
+  return pattern[index] || 'col-span-4'
 }
 
 // Methods
@@ -268,7 +264,7 @@ onMounted(() => {
     <section v-if="!opened" class="landing">
       <div class="min-h-screen w-full flex flex-col justify-start px-4">
         <div class="fixed inset-0 z-0">
-          <img src="/image/bg.jpg" class="w-full h-full object-contain" alt="Background" />
+          <!-- <img src="/image/gate2x.png" class="w-full h-full object-contain" alt="Background" /> -->
           <!-- Floral overlays -->
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top" aria-hidden="true" />
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom" aria-hidden="true" />
@@ -622,27 +618,14 @@ onMounted(() => {
                 <!-- Gallery Section -->
                 <div data-ref="gallerySection" :class="['relative transition-all duration-1000 delay-1600',
                   visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <!-- <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
+                  <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul gold-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     វិចិត្រសាល
-                  </h2> -->
+                  </h2>
 
-                  <!-- <div class="grid grid-cols-12 gap-4">
-                  <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
-                    getSpanClass(index),
-                    visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    @click="selectedImg = img.url">
-                    <img :src="img.url" :alt="img.alt"
-                      class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
-                    <div
-                      class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span class="text-white font-medium">View Full</span>
-                    </div>
-                  </div>
-                </div> -->
-
-                  <!-- <div class="grid grid-cols-1 gap-4">
+                  <div class="grid grid-cols-12 gap-4">
                     <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
+                      getSpanClass(index),
                       visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                       @click="selectedImg = img.url">
                       <img :src="img.url" :alt="img.alt"
@@ -652,7 +635,8 @@ onMounted(() => {
                         <span class="text-white font-medium">View Full</span>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
+
                   <h2 data-ref="galleryTitle" :class="['brown-text text-lg sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     ទទួលចំណងដៃ
@@ -696,8 +680,7 @@ onMounted(() => {
                       class="w-full rounded-lg p-3 text-sm font-metal bg-white/80 text-[#6b4a2f] placeholder-[#6b4a2f]/70 outline-none"></textarea>
                     <a :href="telegramRsvpUrl" target="_blank" rel="noreferrer"
                       class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#2AABEE] text-white font-nokora font-semibold transition hover:scale-105 active:scale-95">
-                      ផ្ញើរតាមតេលេក្រាម<span><svg viewBox="0 0 24 24" aria-hidden="true"
-                          class="theab-footer__icon">
+                      ផ្ញើរតាមតេលេក្រាម<span><svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
                           <path fill="#fff"
                             d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z" />
                         </svg></span>
