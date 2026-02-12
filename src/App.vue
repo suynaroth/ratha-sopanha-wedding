@@ -52,7 +52,6 @@ const telegramRsvpUrl = computed(() => {
 // Refs for scroll animations
 const timelineRefs = ref([])
 const galleryRefs = ref([])
-const imageOrientation = ref({})
 
 // Data
 // eslint-disable-next-line no-unused-vars
@@ -61,14 +60,14 @@ const openMap = () => {
 }
 
 const images = [
-  { id: 1, url: '/image/p1.jpg', alt: 'Image 1' },
+  { id: 1, url: '/image/p4.jpg', alt: 'Image 1' },
   { id: 2, url: '/image/p2.jpg', alt: 'Image 2' },
-  { id: 3, url: '/image/p4.jpg', alt: 'Image 3' },
-  { id: 4, url: '/image/p3.jpg', alt: 'Image 4' },
-  { id: 5, url: '/image/p5.jpg', alt: 'Image 5' },
-  { id: 6, url: '/image/p6.jpg', alt: 'Image 6' },
-  { id: 7, url: '/image/p7.jpg', alt: 'Image 7' },
-  { id: 8, url: '/image/p1.jpg', alt: 'Image 8' },
+  { id: 3, url: '/image/p3.jpg', alt: 'Image 3' },
+  { id: 4, url: '/image/n1.jpg', alt: 'Image 4' },
+  { id: 5, url: '/image/n2.jpg', alt: 'Image 5' },
+  { id: 6, url: '/image/p1.jpg', alt: 'Image 6' },
+  // { id: 7, url: '/image/p7.jpg', alt: 'Image 7' },
+  // { id: 8, url: '/image/p1.jpg', alt: 'Image 8' },
   // { id: 9, url: '/image/p1.jpg', alt: 'Image 9' },
 
 ]
@@ -85,14 +84,9 @@ const timelineEvents = [
 ]
 
 // Computed
-const getGalleryItemClass = (img, index) => {
-  const orientation = imageOrientation.value[img.id]
-
-  // Fallback keeps a 1-2-1-2 rhythm before image metadata is loaded.
-  const fallbackLandscape = index % 3 === 0
-  const isLandscape = orientation ? orientation === 'landscape' : fallbackLandscape
-
-  return isLandscape ? 'col-span-12' : 'col-span-6'
+const getGalleryItemClass = (index) => {
+  // 2-1-2-1 pattern: two half-width cards, then one full-width card.
+  return index % 3 === 2 ? 'col-span-12' : 'col-span-6'
 }
 
 // Methods
@@ -128,11 +122,6 @@ const setGalleryRef = (el, index) => {
   if (el) {
     galleryRefs.value[index] = el
   }
-}
-
-const setImageOrientation = (event, imageId) => {
-  const { naturalWidth, naturalHeight } = event.target
-  imageOrientation.value[imageId] = naturalWidth >= naturalHeight ? 'landscape' : 'portrait'
 }
 
 const createObserver = (callback, threshold = 0.2) => {
@@ -634,12 +623,11 @@ onMounted(() => {
 
                   <div class="grid grid-cols-12 gap-4">
                     <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
-                      getGalleryItemClass(img, index),
+                      getGalleryItemClass(index),
                       visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                       @click="selectedImg = img.url">
                       <img :src="img.url" :alt="img.alt"
-                        class="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                        @load="setImageOrientation($event, img.id)" />
+                        class="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" />
                       <div
                         class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <span class="text-white font-medium">View Full</span>
