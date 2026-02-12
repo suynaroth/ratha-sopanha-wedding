@@ -7,7 +7,7 @@ export default function handler(req) {
   const guestName = searchParams.get('name') || 'សូមអញ្ជើញ'
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
-  const description = `គីមស្រ៊ី និង សុខហេង | ២៣ ខែកុម្ភៈ ឆ្នាំ ២០២៦`
+  const description = `តង សៀង និង ឡាំ ដាណេ | ០៦ ខែមីនា ឆ្នាំ ២០២៦`
   const image = 'https://sieng-dane.vercel.app/icon/badge.png'
 
   return new Response(`<!DOCTYPE html>
