@@ -20,8 +20,8 @@ export default function handler(req) {
   const isBot = BOT_UA_PATTERN.test(userAgent)
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
-  const description = `តង សៀង និង ឡាំ ដាណេ  | ០៦ មីនា ២០២៦`
-  const image = `${currentUrl.origin}/icon/badge.png`
+  const description = `ចាន់ផារ៉ាត់ និង សុត្ថាចន្ធីម៉ា  | ១២ មីនា ២០២៦`
+  const image = `${currentUrl.origin}/image/logo.png`
   const appUrl = `${currentUrl.origin}/?name=${encodeURIComponent(guestName)}`
 
   // Real users should open the app directly.
