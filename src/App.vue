@@ -356,7 +356,7 @@ onMounted(() => {
 
         <!-- Background -->
         <div class="fixed inset-0 z-0 bg-[#344125]">
-          <img src="/image/pattern.jpg" class="w-full h-full object-contain" alt="Background" />
+          <img src="/image/pattern.jpg" class="w-full h-full object-contain pattern-bg-image" alt="Background" />
           <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover">
             <source src="/icon/vdo.mp4" type="video/mp4" />
           </video> -->
@@ -1370,6 +1370,12 @@ onMounted(() => {
 }
 
 @media (max-width: 640px) {
+  .pattern-bg-image {
+    object-fit: cover;
+    transform: scale(1.06);
+    transform-origin: center;
+  }
+
   .theab-footer {
     flex-direction: column;
     text-align: center;
