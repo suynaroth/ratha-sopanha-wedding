@@ -37,11 +37,19 @@ const countdown = ref({ days: '00', hours: '00', minutes: '00', seconds: '00' })
 let countdownTimer = null
 const rsvpStatus = ref('yes')
 const rsvpMessage = ref('')
+const locale = ref('km')
+const isEnglish = computed(() => locale.value === 'en')
+
+const switchLocale = (nextLocale) => {
+  locale.value = nextLocale
+}
 
 const telegramRsvpUrl = computed(() => {
   const base = 'https://t.me/+855966557263'
-  const statusText = rsvpStatus.value === 'yes' ? 'Can join' : 'Cannot join'
-  const name = questName.value?.trim() ? questName.value.trim() : 'Guest'
+  const statusText = rsvpStatus.value === 'yes'
+    ? (isEnglish.value ? 'Can join' : 'អាចចូលរួម')
+    : (isEnglish.value ? 'Cannot join' : 'មិនអាចចូលរួម')
+  const name = questName.value?.trim() ? questName.value.trim() : (isEnglish.value ? 'Guest' : 'ភ្ញៀវ')
   const message = rsvpMessage.value.trim()
   const fullText = message
     ? `RSVP - ${name}: ${statusText}. Message: ${message}`
@@ -72,16 +80,31 @@ const images = [
 
 ]
 
-const timelineEvents = [
-  { icon: "/icon/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev3.png", title: "ពិធីពិសារស្លាកំណត់ និង អញ្ជើញភ្ញៀវកិត្តិយសពិសារអាហារពេលព្រឹក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន", time: "ម៉ោង ៨ : ៣០ នាទីព្រឹក" },
+const timelineEventsKm = [
+  { icon: "/icon/ev1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០៦ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៤០ នាទីព្រឹក" },
+  { icon: "/icon/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ១០ នាទីព្រឹក" },
+  { icon: "/icon/ev3.png", title: "ពិធីពិសារស្លាកំណត់ និងព្រេនផ្លែឈើ ", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន និងអញ្ជើញភ្ញៀវកិត្តិយសពិសារអាហារពេលព្រឹក", time: "ម៉ោង ៨ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev1.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៨ : ៤០ នាទីព្រឹក" },
   { icon: "/icon/ev5.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/ev6.png", title: "ពិធីបង្វិលពពិល សំពះផ្ទឹមចងដៃ និងបាចផ្កាស្លាពរជ័យ", time: "ម៉ោង ១០ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev6.png", title: "ពិធីសំពះពេលា បង្វិលពពិល សំពះផ្ទឹម និងពិធីសែនចងដៃ", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
   { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១១ : ៣០ ថ្ងៃត្រង់" },
   { icon: "/icon/ev8.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ០០​ ល្ងាច" }
 ]
+
+const timelineEventsEn = [
+  { icon: "/icon/ev2.png", title: "Guest arrival and welcome", time: "06:00 AM" },
+  { icon: "/icon/ev9.png", title: "Ceremony opening", time: "07:00 AM" },
+  { icon: "/icon/ev3.png", title: "Blessing and breakfast", time: "07:30 AM" },
+  { icon: "/icon/ev4.png", title: "Ring exchange", time: "08:30 AM" },
+  { icon: "/icon/ev5.png", title: "Hair cutting ritual", time: "09:30 AM" },
+  { icon: "/icon/ev6.png", title: "Traditional blessing ritual", time: "10:30 AM" },
+  { icon: "/icon/ev7.png", title: "Lunch reception", time: "11:30 AM" },
+  { icon: "/icon/ev8.png", title: "Evening reception", time: "05:00 PM" }
+]
+
+const timelineEvents = computed(() => (isEnglish.value ? timelineEventsEn : timelineEventsKm))
 
 // Computed
 const getGalleryItemClass = (index) => {
@@ -221,7 +244,7 @@ onMounted(() => {
     questName.value = decodeURIComponent(nameParam)
   }
 
-  const targetDate = new Date('2026-03-06T12:00:00')
+  const targetDate = new Date('2026-03-12T06:00:00')
 
   const toKhmerDigits = (value) => {
     const map = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
@@ -258,18 +281,23 @@ onMounted(() => {
 
 <template>
   <div id="app">
+    <div class="lang-switcher">
+      <button type="button" :class="['lang-switcher__btn', locale === 'km' ? 'is-active' : '']" @click="switchLocale('km')">KH</button>
+      <button type="button" :class="['lang-switcher__btn', locale === 'en' ? 'is-active' : '']" @click="switchLocale('en')">EN</button>
+    </div>
+
     <!-- Landing Section -->
     <section v-if="!opened" class="landing">
       <div class="min-h-screen w-full flex flex-col justify-start px-4">
         <div class="fixed inset-0 z-0">
-          <!-- <img src="/image/gate2x.png" class="w-full h-full object-contain" alt="Background" /> -->
+          <img src="/image/cover.jpg" class="w-full h-full object-contain" alt="Background" />
           <!-- Floral overlays -->
-          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
+          <!-- <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left-angle" aria-hidden="true" />
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right-angle" aria-hidden="true" />
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-left" aria-hidden="true" />
-          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" />
+          <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" /> -->
           <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover"> -->
           <!-- <source src="/icon/vdo.mp4" type="video/mp4" /> -->
           <!-- </video> -->
@@ -287,91 +315,49 @@ onMounted(() => {
         </div>
 
         <div class="relative z-10 flex flex-col justify-center pt-20 items-center text-center">
-          <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0  pointer-events-none"></div>
           <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
-          <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul p-3 sm:p-4 rounded-lg">
+          <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul mb-15 p-3 sm:p-4 rounded-lg">
             សិរីមង្គលអាពាហ៍ពិពាហ៍
           </h1>
-          <p class="text-lg md:text-xl lg:text-2xl mb-8 brown-text text-center max-w-md">
-            The Wedding Day
-          </p>
-          <img src="/icon/badge.png" alt="Ornament" class="w-50 mb-8" />
-          <h3 class="text-lg md:text-xl mt-10 font-moul leading-relaxed lg:text-xl mb-4 text-[#ef9ab2] text-center">
+          <img src="/image/logo.png" alt="Ornament" class="w-50 mb-8" />
+          <h3 class="text-lg md:text-xl mt-10 font-moul leading-relaxed lg:text-xl mb-4 brown-text text-center">
             សូមគោរពអញ្ជើញ
           </h3>
-          <img src="/icon/bar.png" alt="Heart" class="w-80% rotate-180" />
-          <p class="text-xl md:text-xl font-moul lg:text-2xl mb-2 mt-2 text-[#c49850] text-center py-1 max-w-md">
-            {{ questName }}
-          </p>
-          <img src="/icon/bar.png" alt="Heart" class="w-80% mb-8" />
-          <button class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
+          <div class="guest-name-tag mb-8">
+            <img src="/image/name-tag.png" alt="" aria-hidden="true" class="guest-name-tag__bg" />
+            <p class="guest-name-tag__text font-moul brown-text text-base">
+              {{ questName }}
+            </p>
+          </div>
+          <button
+            class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
              backdrop-blur-md bg-white/10 border border-white/40
              text-[#7B1F2A] font-nokora font-semibold text-lg
              shadow-[0_8px_32px_0_rgba(31,38,135,0.2)]
-             hover:bg-white/20 hover:scale-105 transition-all duration-500 active:scale-95" @click="openInvitation">
-            បើកធៀប
+             hover:bg-white/20 hover:scale-105 transition-all duration-500 active:scale-95"
+            @click="openInvitation">
+            {{ isEnglish ? 'Open Invitation' : 'បើកធិប' }}
           </button>
+
         </div>
       </div>
     </section>
-
-    <!-- Story Splash -->
-    <!-- <transition name="fade">
-      <section v-if="opened && step === 1" class="story-screen">
-        <div class="min-h-screen w-full flex flex-col justify-end items-center px-4 relative">
-          <img src="/image/p02.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Story background" />
-
-          <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"></div>
-
-          <div class="absolute bottom-0 left-0 right-0 z-10 pb-20">
-            <div class="text-center px-4">
-              <transition name="text-fade">
-                <div v-if="showSaveDate" class="mb-8">
-                  <p
-                    class="font-save-date text-white text-4xl font-cinzel font-bold md:text-5xl uppercase tracking-[0.2em] mb-2">
-                    Save the date
-                  </p>
-                  <div class="w-20 h-1 bg-white/60 mx-auto mt-4"></div>
-                </div>
-              </transition>
-
-              <transition name="text-fade">
-                <div v-if="showEventDate" class="animate-fade-in">
-                  <p class="text-white/90 text-xl md:text-2xl font-moul mb-3">
-                    ថ្ងៃចន្ទ ១៣រោច ខែផល្គុន
-                  </p>
-                  <p class="text-white text-5xl md:text-6xl font-moul mb-3">
-                    ១៦
-                  </p>
-                  <p class="text-white/90 text-2xl md:text-3xl font-moul mb-2">
-                    មីនា ឆ្នាំ ២០២៦
-                  </p>
-                  <div class="w-32 h-1 bg-white/60 mx-auto mt-6"></div>
-                  <p class="text-white/80 text-lg md:text-xl font-nokora mt-4">
-                    March 16, 2026
-                  </p>
-                </div>
-              </transition>
-            </div>
-          </div>
-        </div>
-      </section>
-    </transition> -->
 
     <!-- Main Invitation -->
     <section v-if="opened && step === 2" class="invitation">
       <div class="relative min-h-screen w-full flex flex-col items-center">
         <!-- Floral overlays -->
-        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
+        <!-- <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left-angle" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right-angle" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-left" aria-hidden="true" />
-        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" /> -->
 
         <!-- Background -->
         <div class="fixed inset-0 z-0">
-          <img src="/image/bg.jpg" class="w-full h-full object-contain" alt="Background" />
+          <img src="/image/bg1.jpg" class="w-full h-full object-contain" alt="Background" />
           <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover">
             <source src="/icon/vdo.mp4" type="video/mp4" />
           </video> -->
@@ -399,7 +385,7 @@ onMounted(() => {
             border-4 border-white shadow-2xl
             flex flex-col overflow-hidden"> -->
           <div class="relative w-full max-w-md h-[90vh]">
-            <div class="overflow-y-auto w-full h-full pt-5 custom-scrollbar">
+            <div class="overflow-y-auto w-full h-full pt-20 custom-scrollbar">
               <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
               <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-10 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
                 visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -410,22 +396,22 @@ onMounted(() => {
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2">
                   <div>
-                    <span class="font-metal">លោក </span>
-                    <span>ស៊ឹម សៃ</span>
+                    <span class="font-metal">លោកស្រី </span>
+                    <span>ស្រី ស៊ីណា</span>
                   </div>
                   <div>
-                    <span class="font-metal">អ្នកស្រី </span>
-                    <span class="">ស៊ឹម នី</span>
+                    <!-- <span class="font-metal">អ្នកស្រី </span>
+                    <span class="">ស៊ឹម នី</span> -->
                   </div>
                 </div>
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>ជា រិន</span>
+                    <span>ជា សឹង្ហវុធ</span>
                   </div>
                   <div>
-                    <span class="font-metal">អ្នកស្រី </span>
-                    <span>វង វឿន</span>
+                    <span class="font-metal">លោកស្រី </span>
+                    <span>ឡុង សុត្ថាម៉ាឡា</span>
                   </div>
                 </div>
               </div>
@@ -433,14 +419,20 @@ onMounted(() => {
               <div data-ref="mainCard" :class="['transition-all duration-1000 delay-300',
                 visibleElements.mainCard ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
 
-                <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
-                  visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  មានកិត្តិយសសូមគោរពអញ្ជើញ
+                <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg leading-relaxed lg:text-lg mt-12 mb-4 text-center transition-all duration-1000 delay-400',
+                  visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  {{ isEnglish ? 'Respectfully Invited' : 'មានកិត្តិយសសូមគោរពអញ្ជើញ' }}
                 </h3>
 
-                <p data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                <p v-if="isEnglish" data-ref="invitationText" :class="['brown-text font-nokora leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី
+                  We are honored to invite you to join us as respected guests and share your blessings on our wedding ceremony.
+                </p>
+
+                <p v-else data-ref="invitationText" :class="['green-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                  visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  សម្តេច ឯកឧត្តម លោកជំទាវ លោកអ្នកឧកញ៉ា អ្នកឧកញ៉ា ឧកញ៉ា លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី
                   និងជាភ្ញៀវកិត្តិយសដើម្បីប្រសិទ្ធិពរជ័យ សិរីសួស្តីជ័យមង្គលក្នុងកម្មវិធីរៀបមង្គលអាពាហ៍ពិពាហ៍
                   កូនប្រុស-កូនស្រី របស់យើងខ្ញុំ
                 </p>
@@ -453,19 +445,19 @@ onMounted(() => {
 
                 <h2 data-ref="coupleNames" :class="['brown-text font-moul text-base leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-8 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  តង សៀង
+                  មាន ចាន់ផារ៉ាត់
                   <img src="/icon/brown-jeaku.png" alt="Logo" class="w-18" />
-                  ឡាំ ដាណេ
+                  ជា សុត្ថាចន្ធីម៉ា
                 </h2>
 
                 <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
                   visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <p class="brown-text text-xl md:text-2xl font-moul mb-3">
-                    ថ្ងៃចន្ទ ៧កើត ខែផល្គុន
+                    ថ្ងៃព្រហស្បតិ៍ ៩រោច ខែផល្គុន
                   </p>
                   <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-5xl md:text-6xl font-moul">
-                    ០៦
+                    ១២
                   </p>
                   <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-2xl md:text-3xl font-moul mb-10">
@@ -475,60 +467,60 @@ onMounted(() => {
 
                 </div>
 
-                <div class="relative w-full max-w-md p-6
+                <!-- <div class="relative w-full max-w-md p-6
                  bg-[#c49850]
                  rounded-3xl md:rounded-[2.5rem]
                  border-4 border-white shadow-2xl
-                 flex flex-col overflow-hidden">
-                  <p data-ref="dateInfo" :class="['dust-white-text font-metal leading-loose mb-4 transition-all duration-1000 delay-900',
+                 flex flex-col overflow-hidden"> -->
+                  <p data-ref="dateInfo" :class="['green-text font-metal leading-loose transition-all duration-1000 delay-900',
                     visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    ដែលនឹងប្រព្រឹត្តទៅនៅថ្ងៃសុក្រ ៣រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ០៦
+                    នៅថ្ងៃព្រហស្បតិ៍ ៩រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១២
                     ខែមីនា
                     ឆ្នាំ ២០២៦
                   </p>
 
-                  <p data-ref="locationInfo" :class="['text-base tracking-wider dust-white-text font-moul leading-loose mb-4 transition-all duration-1000 delay-1000',
+                  <p data-ref="locationInfo" :class="['text-base tracking-wider green-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
                     visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                     <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
-                    <span class="">គេហដ្ឋានខាងស្រី</span>
-                    <!-- <span class="font-nokora font-extrabold gold-text">A </span> -->
-                    <span class="font-metal">ភូមិវាលតូច ឃុំអណ្តូងពោធិ៍ ស្រុកបារាយណ៍ ខេត្តកំពង់ធំ។ ដោយមេត្រីភាព!</span>
+                    <span class="">មជ្ឈមណ្ឌលសន្និបាត និងពិព័រណ៍អន្តរជាតិជ្រោយចង្វារ</span>
+                    <span class="font-metal"> OCIC</span>
+                    <span class="font-metal"> អគារ G </span>
                   </p>
-                  <div
+                  <!-- <div
                     class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg transition-all duration-1000 delay-1100"
                     :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3906.697880214546!2d104.88279527584474!3d11.599669143468102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109522e1adbf683%3A0x3f4395cd35ec9617!2sAEON%20Mall%20Sen%20Sok%20City!5e0!3m2!1sen!2skh!4v1770492834601!5m2!1sen!2skh"
                       class="w-full h-60 md:h-72" style="border:0;" allowfullscreen="" loading="lazy"
                       referrerpolicy="no-referrer-when-downgrade"></iframe>
-                  </div>
-                  <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1200',
+                  </div> -->
+                  <h2 data-ref="timelineHeader" :class="['text-base leading-loose brown-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1200',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    រាប់ថយក្រោយដល់ពិធីមង្គលអាពាហ៍ពិពាហ៍
+                    រាប់ថយក្រោយដល់ថ្ងៃពិធី
                   </h2>
 
                   <div class="w-full flex justify-center">
                     <div class="grid grid-cols-4 gap-2 sm:gap-3">
                       <div class="min-w-20 sm:min-w-20 text-center ">
-                        <div class="text-2xl sm:text-2xl font-moul dust-white-text">{{ countdown.days }}</div>
-                        <div class="text-[12px] sm:text-xs font-nokora dust-white-text tracking-wide">ថ្ងៃ</div>
+                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.days }}</div>
+                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">ថ្ងៃ</div>
                       </div>
                       <div class="min-w-20 sm:min-w-20 text-center ">
-                        <div class="text-2xl sm:text-2xl font-moul dust-white-text">{{ countdown.hours }}</div>
-                        <div class="text-[12px] sm:text-xs font-nokora dust-white-text tracking-wide">ម៉ោង</div>
+                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.hours }}</div>
+                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">ម៉ោង</div>
                       </div>
                       <div class="min-w-20 sm:min-w-20 text-center ">
-                        <div class="text-2xl sm:text-2xl font-moul dust-white-text">{{ countdown.minutes }}</div>
-                        <div class="text-[12px] sm:text-xs font-nokora dust-white-text tracking-wide">នាទី</div>
+                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.minutes }}</div>
+                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">នាទី</div>
                       </div>
                       <div class="min-w-20 sm:min-w-20 text-center ">
-                        <div class="text-2xl sm:text-2xl font-moul dust-white-text">{{ countdown.seconds }}</div>
-                        <div class="text-[12px] sm:text-xs font-nokora dust-white-text tracking-wide">វិនាទី</div>
+                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.seconds }}</div>
+                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">វិនាទី</div>
                       </div>
                     </div>
                   </div>
 
-                </div>
+                <!-- </div> -->
 
 
                 <!-- <div data-ref="detailButton" :class="['mt-6 transition-all duration-1000 delay-900',
@@ -587,11 +579,11 @@ onMounted(() => {
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <h2 data-ref="timelineHeader" :class="['brown-text text-md text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍
+                    {{ isEnglish ? 'Wedding Ceremony' : 'កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍' }}
                   </h2>
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                    កម្មវិធី ថ្ងៃចន្ទ ទី២៣ ខែកុម្ភៈ ឆ្នាំ២០២៦
+                    {{ isEnglish ? 'Thursday, March 12, 2026' : 'កម្មវិធី ថ្ងៃព្រហស្បតិ៍ ទី១២ ខែមីនា ឆ្នាំ២០២៦' }}
                   </h2>
 
                   <div class="relative">
@@ -611,10 +603,10 @@ onMounted(() => {
                         </div>
                         <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700',
                           visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                          <p class="text-text-light font-nokora brown-text text-lg font-semibold leading-normal">
+                          <p class="text-text-light font-nokora brown-text text-base font-semibold leading-normal">
                             {{ event.title }}
                           </p>
-                          <p class="text-base text-[#ef9ab2] font-moul leading-normal">{{ event.time }}</p>
+                          <p class="text-base green-text font-moul leading-normal">{{ event.time }}</p>
                         </div>
                       </template>
                     </div>
@@ -664,7 +656,7 @@ onMounted(() => {
 
                 <h2 data-ref="galleryTitle" :class="['brown-text text-lg sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  ស្គេនមើលទីតាំងពិធី
+                  {{ isEnglish ? 'Scan to view location' : 'ស្កេនមើលទីតាំងពិធី' }}
                 </h2>
                 <img src="/icon/map-qr.svg" alt="QR Code"
                   class="mx-auto my-6 w-48 h-48 object-cover rounded-3xl shadow-lg border border-white/30" />
@@ -675,9 +667,11 @@ onMounted(() => {
                 </h2> -->
                 <!-- RSVP Section -->
                 <div class="mt-8 p-5 bg-white/10 rounded-2xl border border-white/20 text-left">
-                  <h3 class="brown-text text-lg font-sans font-extrabold text-center mb-3">RSVP</h3>
+                  <h3 class="brown-text text-lg font-sans font-extrabold text-center mb-3">{{ isEnglish ? 'RSVP' : 'បញ្ជាក់ការចូលរួម' }}</h3>
                   <p class="brown-text font-metal leading-loose text-sm text-center mb-4">
-                    សូមបញ្ជាក់វត្តមានរបស់អ្នក ដើម្បីឲ្យយើងខ្ញុំអាចរៀបចំការត្រៀមខ្លួនបានល្អប្រសើរឡើង
+                    {{ isEnglish
+                      ? 'Please confirm your attendance so we can prepare your seat and reception arrangement.'
+                      : 'សូមបញ្ជាក់វត្តមានរបស់អ្នក ដើម្បីឲ្យយើងខ្ញុំអាចរៀបចំការទទួលបានល្អប្រសើរឡើង' }}
                   </p>
                   <div class="flex items-center justify-center gap-4 mb-4">
                     <label :class="[
@@ -687,7 +681,7 @@ onMounted(() => {
                         : 'border-gray-100 bg-white text-gray-500 hover:border-emerald-100'
                     ]">
                       <input type="radio" name="rsvp" value="yes" v-model="rsvpStatus" class="hidden" />
-                      <span>អាចចូលរួម</span>
+                      <span>{{ isEnglish ? 'Can join' : 'អាចចូលរួម' }}</span>
                     </label>
 
                     <label :class="[
@@ -697,14 +691,14 @@ onMounted(() => {
                         : 'border-gray-100 bg-white text-gray-500 hover:border-red-100'
                     ]">
                       <input type="radio" name="rsvp" value="no" v-model="rsvpStatus" class="hidden" />
-                      <span>មិនបានចូលរួម</span>
+                      <span>{{ isEnglish ? 'Cannot join' : 'មិនអាចចូលរួម' }}</span>
                     </label>
                   </div>
-                  <textarea v-model="rsvpMessage" rows="3" placeholder="ផ្ញើរសារ (optional)"
+                  <textarea v-model="rsvpMessage" rows="3" :placeholder="isEnglish ? 'Message (optional)' : 'ផ្ញើរសារ (optional)'"
                     class="w-full rounded-lg p-3 text-sm font-metal bg-white/80 text-[#6b4a2f] placeholder-[#6b4a2f]/70 outline-none"></textarea>
                   <a :href="telegramRsvpUrl" target="_blank" rel="noreferrer"
                     class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#2AABEE] text-white font-nokora font-semibold transition hover:scale-105 active:scale-95">
-                    ផ្ញើរតាមតេលេក្រាម<span><svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
+                    {{ isEnglish ? 'Send via Telegram' : 'ផ្ញើរតាមតេលេក្រាម' }}<span><svg viewBox="0 0 24 24" aria-hidden="true" class="theab-footer__icon">
                         <path fill="#fff"
                           d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z" />
                       </svg></span>
@@ -713,10 +707,15 @@ onMounted(() => {
 
                 <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
                   visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  សេចក្តីថ្លែងអំណរគុណ និងសូមអភ័យទោស
+                  {{ isEnglish ? 'Thanks and Apology' : 'សេចក្ដីថ្លែងអំណរគុណ និងសូមអភ័យទោស' }}
                 </h3>
 
-                <p data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                <p v-if="isEnglish" data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                  visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  We deeply thank you for joining our ceremony. If there is any mistake in our invitation wording or guest listing, we sincerely ask for your understanding and forgiveness.
+                </p>
+
+                <p v-else data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   យើងខ្ញុំសូមថ្លែងអំណរគុណយ៉ាងជ្រាលជ្រៅចំពោះការអញ្ជើញចូលរួមជា ភ្ញៀវកិត្តិយស ក្នុងពិធីរបស់យើងខ្ញុំ
                   និងសូមខន្តីអភ័យទោសដោយពុំបានអញ្ជើញ
@@ -734,7 +733,7 @@ onMounted(() => {
                       <img src="/icon/theab-icon.jpg" alt="TheabStudio logo" class="theab-footer__logo-img" />
                     </div>
                     <div class="theab-footer__text">
-                      <span class="theab-footer__title">Made by</span>
+                      <span class="theab-footer__title">{{ isEnglish ? 'Made by' : 'បង្កើតដោយ' }}</span>
                       <span class="theab-footer__name">TheabStudio</span>
                     </div>
                   </div>
@@ -768,6 +767,11 @@ onMounted(() => {
             </div>
           </div>
         </div>
+
+        <!-- Outer Frame Overlay -->
+        <div class="fixed inset-0 z-20 pointer-events-none">
+          <img src="/image/frame.png" class="w-full h-full object-contain" alt="" aria-hidden="true" />
+        </div>
       </div>
     </section>
   </div>
@@ -784,7 +788,36 @@ onMounted(() => {
 }
 
 .brown-text {
-  color: #c49850;
+  color: #b88c4f;
+}
+
+.green-text{
+  color: #344125;
+}
+
+.guest-name-tag {
+  position: relative;
+  width: min(88vw, 360px);
+}
+
+.guest-name-tag__bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.guest-name-tag__text {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-inline: 1.25rem;
+  font-size: clamp(1rem, 2.8vw, 1.35rem);
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dust-white-text {
@@ -1005,17 +1038,45 @@ onMounted(() => {
   color: #c49850;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+.lang-switcher {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 40;
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.3rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
+.lang-switcher__btn {
+  border: none;
+  min-width: 42px;
+  height: 34px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #7B1F2A;
   background: transparent;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
+.lang-switcher__btn.is-active {
+  background: #7B1F2A;
+  color: #fff;
+}
+
+.custom-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .butterfly-layer {
