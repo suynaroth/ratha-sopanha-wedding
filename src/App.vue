@@ -288,7 +288,7 @@ onMounted(() => {
 
     <!-- Landing Section -->
     <section v-if="!opened" class="landing">
-      <div class="min-h-screen w-full flex flex-col justify-start px-4">
+      <div class="min-h-screen w-full flex flex-col bg-[#344125] justify-start px-4">
         <div class="fixed inset-0 z-0">
           <img src="/image/cover.jpg" class="w-full h-full object-contain" alt="Background" />
           <!-- Floral overlays -->
