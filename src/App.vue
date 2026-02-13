@@ -385,26 +385,23 @@ onMounted(() => {
             border-4 border-white shadow-2xl
             flex flex-col overflow-hidden"> -->
           <div class="relative w-full max-w-md h-[90vh]">
-            <div class="overflow-y-auto w-full h-full pt-20 custom-scrollbar">
+            <div class="overflow-y-auto w-full h-full pt-10 custom-scrollbar">
               <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
-              <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-10 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
+              <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-5 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
                 visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 សិរីមង្គលអាពាហ៍ពិពាហ៍
               </h1>
 
-              <div data-ref="parentsNames" :class="['brown-text grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
+              <div data-ref="parentsNames" :class="['brown-text text-base grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោកស្រី </span>
                     <span>ស្រី ស៊ីណា</span>
                   </div>
-                  <div>
-                    <!-- <span class="font-metal">អ្នកស្រី </span>
-                    <span class="">ស៊ឹម នី</span> -->
-                  </div>
+
                 </div>
-                <div class="grid grid-rows-2 gap-2">
+                <div class="grid grid-rows-2">
                   <div>
                     <span class="font-metal">លោក </span>
                     <span>ជា សឹង្ហវុធ</span>
