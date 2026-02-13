@@ -348,12 +348,12 @@ onMounted(() => {
     <section v-if="opened && step === 2" class="invitation">
       <div class="relative min-h-screen w-full flex flex-col items-center">
         <!-- Floral overlays -->
-        <!-- <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left-angle" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right-angle" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-left" aria-hidden="true" />
-        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" /> -->
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" />
 
         <!-- Background -->
         <div class="fixed inset-0 z-0 bg-[#344125]">
@@ -769,9 +769,9 @@ onMounted(() => {
         </div>
 
         <!-- Outer Frame Overlay -->
-        <div class="fixed inset-0 z-20 pointer-events-none">
+        <!-- <div class="fixed inset-0 z-20 pointer-events-none">
           <img src="/image/frame.png" class="w-full h-full object-contain" alt="" aria-hidden="true" />
-        </div>
+        </div> -->
       </div>
     </section>
   </div>
