@@ -317,7 +317,7 @@ onMounted(() => {
         <div class="relative z-10 flex flex-col justify-center pt-20 items-center text-center">
           <div class="absolute inset-0  pointer-events-none"></div>
           <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
-          <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul mb-15 p-3 sm:p-4 rounded-lg">
+          <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul m p-3 sm:p-4 rounded-lg">
             សិរីមង្គលអាពាហ៍ពិពាហ៍
           </h1>
           <img src="/image/logo.png" alt="Ornament" class="w-50 mb-8" />
