@@ -385,7 +385,7 @@ onMounted(() => {
             border-4 border-white shadow-2xl
             flex flex-col overflow-hidden"> -->
           <div class="relative w-full max-w-md h-[90vh]">
-            <div class="overflow-y-auto w-full h-full pt-10 custom-scrollbar">
+            <div class="overflow-y-auto w-full h-full custom-scrollbar">
               <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
               <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-5 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
                 visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
