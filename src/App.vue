@@ -150,9 +150,8 @@ const setGalleryRef = (el, index) => {
 const createObserver = (callback, threshold = 0.2) => {
   return new IntersectionObserver(callback, {
     threshold,
-    // Add the card's scrollable div as the root if needed,
-    // or keep it null to default to the viewport inside the fixed card.
-    root: document.querySelector('.overflow-y-auto'),
+    // Use viewport root since content is no longer inside an inner scroll container.
+    root: null,
     rootMargin: '0px 0px -50px 0px'
   })
 }
@@ -357,7 +356,7 @@ onMounted(() => {
 
         <!-- Background -->
         <div class="fixed inset-0 z-0 bg-[#344125]">
-          <img src="/image/bg.jpg" class="w-full h-full object-contain" alt="Background" />
+          <img src="/image/pattern.jpg" class="w-full h-full object-contain" alt="Background" />
           <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover">
             <source src="/icon/vdo.mp4" type="video/mp4" />
           </video> -->
@@ -384,8 +383,8 @@ onMounted(() => {
             rounded-3xl md:rounded-[2.5rem]
             border-4 border-white shadow-2xl
             flex flex-col overflow-hidden"> -->
-          <div class="relative w-full max-w-md h-[90vh]">
-            <div class="overflow-y-auto w-full h-full custom-scrollbar">
+          <div class="relative w-full max-w-md">
+            <div class="w-full pt-10">
               <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
               <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-5 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
                 visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -1365,10 +1364,9 @@ onMounted(() => {
 }
 
 
-/* Ensure the invitation section doesn't scroll the whole page */
 .invitation {
-  overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 @media (max-width: 640px) {
