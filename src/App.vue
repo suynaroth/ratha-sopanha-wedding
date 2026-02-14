@@ -455,9 +455,9 @@ onMounted(() => {
                 <h2 data-ref="coupleNames" :class="['brown-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-4 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                  {{ isEnglish ? 'Mean Chanpharath' : 'មាន ចាន់ផារ៉ាត់' }}
+                  {{ isEnglish ? 'MEAN Chanpharath' : 'មាន ចាន់ផារ៉ាត់' }}
                   <img src="/icon/brown-jeaku.png" alt="Logo" class="w-12" />
-                  {{ isEnglish ? 'Chea Sothachanthymar' : 'ជា សុត្ថាចន្ធីម៉ា' }}
+                  {{ isEnglish ? 'CHEA Sothachanthymar' : 'ជា សុត្ថាចន្ធីម៉ា' }}
                 </h2>
 
                 <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
