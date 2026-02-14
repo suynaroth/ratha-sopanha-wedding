@@ -398,7 +398,7 @@ onMounted(() => {
                 សិរីមង្គលអាពាហ៍ពិពាហ៍
               </h1>
 
-              <div data-ref="parentsNames" :class="['brown-text text-primary grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
+              <div data-ref="parentsNames" :class="['brown-text text-primary whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2 text-left">
                   <div>
@@ -414,7 +414,7 @@ onMounted(() => {
                   </div>
                   <div>
                     <span class="font-metal">លោកស្រី </span>
-                    <span>ឡុង សុត្ថាម៉ាឡា</span>
+                    <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span>
                   </div>
                 </div>
               </div>
@@ -450,7 +450,7 @@ onMounted(() => {
                 <h2 data-ref="coupleNames" :class="['brown-text font-moul text-base leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-4 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   មាន ចាន់ផារ៉ាត់
-                  <img src="/icon/brown-jeaku.png" alt="Logo" class="w-18" />
+                  <img src="/icon/brown-jeaku.png" alt="Logo" class="w-12" />
                   ជា សុត្ថាចន្ធីម៉ា
                 </h2>
 
