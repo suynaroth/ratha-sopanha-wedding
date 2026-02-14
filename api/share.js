@@ -21,7 +21,7 @@ export default function handler(req) {
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
   const description = `ចាន់ផារ៉ាត់ និង សុត្ថាចន្ធីម៉ា  | ១២ មីនា ២០២៦`
-  const image = `${currentUrl.origin}/image/logo.png`
+  const image = `${currentUrl.origin}/image/meta.jpg`
   const appUrl = `${currentUrl.origin}/?name=${encodeURIComponent(guestName)}`
 
   // Real users should open the app directly.
