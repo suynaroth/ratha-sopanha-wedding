@@ -416,7 +416,7 @@ onMounted(() => {
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2 text-left">
                   <div>
-                    <span class="font-metal ">Mrs. SRY Sina </span>
+                    <span class="font-metal ">Mrs. SREY Sina </span>
                     <!-- <span>ស្រី ស៊ីណា</span> -->
                   </div>
 
