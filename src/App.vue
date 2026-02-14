@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 
 // State management
 const opened = ref(false)
@@ -42,6 +42,15 @@ const isEnglish = computed(() => locale.value === 'en')
 
 const switchLocale = (nextLocale) => {
   locale.value = nextLocale
+}
+
+const toKhmerDigits = (value) => {
+  const map = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
+  return String(value).replace(/\d/g, (d) => map[d])
+}
+
+const formatCountdownNumber = (value) => {
+  return isEnglish.value ? String(value) : toKhmerDigits(value)
 }
 
 const telegramRsvpUrl = computed(() => {
@@ -99,12 +108,12 @@ const timelineEventsKm = [
 ]
 
 const timelineEventsEn = [
-  { icon: "/icon/ev2.png", title: "Guest arrival and welcome", time: "06:00 AM" },
-  { icon: "/icon/ev9.png", title: "Ceremony opening", time: "07:00 AM" },
+  { icon: "/icon/ev2.png", title: "Guest arrival and welcome", time: "06:40 AM" },
+  { icon: "/icon/ev9.png", title: "Ceremony opening", time: "07:10 AM" },
   { icon: "/icon/ev3.png", title: "Blessing and breakfast", time: "07:30 AM" },
-  { icon: "/icon/ev4.png", title: "Ring exchange", time: "08:30 AM" },
+  { icon: "/icon/ev4.png", title: "Ring exchange", time: "08:00 AM" },
   { icon: "/icon/ev5.png", title: "Hair cutting ritual", time: "09:30 AM" },
-  { icon: "/icon/ev6.png", title: "Traditional blessing ritual", time: "10:30 AM" },
+  { icon: "/icon/ev6.png", title: "Traditional blessing ritual", time: "11:00 AM" },
   { icon: "/icon/ev7.png", title: "Lunch reception", time: "11:30 AM" },
   { icon: "/icon/ev8.png", title: "Evening reception", time: "05:00 PM" }
 ]
@@ -250,16 +259,16 @@ onMounted(() => {
 
   const targetDate = new Date('2026-03-12T06:00:00')
 
-  const toKhmerDigits = (value) => {
-    const map = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩']
-    return String(value).replace(/\d/g, (d) => map[d])
-  }
-
   const updateCountdown = () => {
     const now = new Date()
     const diff = targetDate.getTime() - now.getTime()
     if (diff <= 0) {
-      countdown.value = { days: '០០', hours: '០០', minutes: '០០', seconds: '០០' }
+      countdown.value = {
+        days: formatCountdownNumber('00'),
+        hours: formatCountdownNumber('00'),
+        minutes: formatCountdownNumber('00'),
+        seconds: formatCountdownNumber('00')
+      }
       return
     }
 
@@ -271,15 +280,16 @@ onMounted(() => {
 
     const pad2 = (n) => String(n).padStart(2, '0')
     countdown.value = {
-      days: toKhmerDigits(days),
-      hours: toKhmerDigits(pad2(hours)),
-      minutes: toKhmerDigits(pad2(minutes)),
-      seconds: toKhmerDigits(pad2(seconds))
+      days: formatCountdownNumber(days),
+      hours: formatCountdownNumber(pad2(hours)),
+      minutes: formatCountdownNumber(pad2(minutes)),
+      seconds: formatCountdownNumber(pad2(seconds))
     }
   }
 
   updateCountdown()
   countdownTimer = setInterval(updateCountdown, 1000)
+  watch(locale, updateCountdown)
 })
 </script>
 
@@ -494,7 +504,7 @@ onMounted(() => {
                 <p v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-nokora leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   Thursday, March 12, 2026 at 5:00 PM
-                  AT CHROY CHANGVA INTERNATIONAL CONVENTION AND EXHIBITION CENTER ( OCIC BUILDING G )
+                  AT CHROY CHANGVA INTERNATIONAL CONVENTION AND EXHIBITION CENTER (OCIC BUILDING G)
                 </p>
 
                 <p v-else data-ref="locationInfo" :class="['text-base tracking-wider green-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
@@ -525,19 +535,21 @@ onMounted(() => {
                   <div class="grid grid-cols-4 gap-2 sm:gap-3">
                     <div class="min-w-20 sm:min-w-20 text-center ">
                       <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.days }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">ថ្ងៃ</div>
+                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">
+                        {{ isEnglish ? 'Days' : 'ថ្ងៃ' }}
+                      </div>
                     </div>
                     <div class="min-w-20 sm:min-w-20 text-center ">
                       <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.hours }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">ម៉ោង</div>
+                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Hours' : 'ម៉ោង' }}</div>
                     </div>
                     <div class="min-w-20 sm:min-w-20 text-center ">
                       <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.minutes }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">នាទី</div>
+                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Minutes' : 'នាទី' }}</div>
                     </div>
                     <div class="min-w-20 sm:min-w-20 text-center ">
                       <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.seconds }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">វិនាទី</div>
+                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Seconds' : 'វិនាទី' }}</div>
                     </div>
                   </div>
                 </div>
