@@ -668,7 +668,7 @@ onMounted(() => {
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'ABA KHQR' : 'ទទួលចំណងដៃ' }}
                 </h2>
-                <img src="/image/qr-aba.jpg" alt="QR Code"
+                <img src="/image/qr-aba-usd.jpg" alt="QR Code"
                   class="mx-auto my-6 w-48 h-48 object-cover rounded-3xl shadow-lg border border-white/30" />
                   <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-2 mb-8 sm:text-xl text-center whitespace-nowrap font-sans font-bold bg-white/10 p-1 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
