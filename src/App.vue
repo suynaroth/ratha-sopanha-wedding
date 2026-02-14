@@ -323,16 +323,19 @@ onMounted(() => {
         <div class="relative z-10 flex flex-col justify-center pt-20 items-center text-center">
           <div class="absolute inset-0  pointer-events-none"></div>
           <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
-          <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul m p-3 sm:p-4 rounded-lg">
-            សិរីមង្គលអាពាហ៍ពិពាហ៍
+          <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul m p-3 sm:p-4 rounded-lg"
+          :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif'}">
+             {{ isEnglish ? 'The Wedding Day' : 'សិរីមង្គលអាពាហ៍ពិពាហ៍' }}
           </h1>
           <img src="/image/logo.png" alt="Ornament" class="w-50 mb-8" />
-          <h3 class="text-lg md:text-xl mt-10 font-moul leading-relaxed lg:text-xl mb-4 brown-text text-center">
-            សូមគោរពអញ្ជើញ
+          <h3 class="text-lg md:text-xl mt-10 font-moul leading-relaxed lg:text-xl mb-4 brown-text text-center"
+          :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+            {{ isEnglish ? 'Respectfully Invited' : 'សូមគោរពអញ្ជើញ' }}
           </h3>
           <div class="guest-name-tag mb-8">
             <img src="/image/name-tag.png" alt="" aria-hidden="true" class="guest-name-tag__bg" />
-            <p class="guest-name-tag__text font-moul brown-text text-base">
+            <p class="guest-name-tag__text font-moul brown-text text-base"
+            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif'}">
               {{ questName }}
             </p>
           </div>
@@ -394,8 +397,9 @@ onMounted(() => {
             <div class="w-full pt-10">
               <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
               <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-5 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
-                visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                សិរីមង្គលអាពាហ៍ពិពាហ៍
+                visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif'}">
+                {{ isEnglish ? 'The Wedding Day' : 'សិរីមង្គលអាពាហ៍ពិពាហ៍' }}
               </h1>
 
               <div data-ref="parentsNames" :class="['brown-text text-sm whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
@@ -442,16 +446,18 @@ onMounted(() => {
                 </p>
 
                 <div data-ref="coupleNames" :class="['grid grid-cols-2 gap-2 mb-5 font-moul leading-relaxed mt-10 text-center max-w-md transition-all duration-1000 delay-600',
-                  visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <p class="brown-text font-moulpali">កូនប្រុសនាម</p>
-                  <p class="brown-text font-moulpali">កូនស្រីនាម</p>
+                  visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  <p class="brown-text font-moulpali">{{ isEnglish ? 'Groom' : 'កូនប្រុសនាម' }}</p>
+                  <p class="brown-text font-moulpali">{{ isEnglish ? 'Bride' : 'កូនស្រីនាម' }}</p>
                 </div>
 
                 <h2 data-ref="coupleNames" :class="['brown-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-4 transition-all duration-1000 delay-700',
-                  visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  មាន ចាន់ផារ៉ាត់
+                  visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  {{ isEnglish ? 'Mean Chanpharath' : 'មាន ចាន់ផារ៉ាត់' }}
                   <img src="/icon/brown-jeaku.png" alt="Logo" class="w-12" />
-                  ជា សុត្ថាចន្ធីម៉ា
+                  {{ isEnglish ? 'Chea Sothachanthymar' : 'ជា សុត្ថាចន្ធីម៉ា' }}
                 </h2>
 
                 <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
@@ -477,15 +483,25 @@ onMounted(() => {
                  rounded-3xl md:rounded-[2.5rem]
                  border-4 border-white shadow-2xl
                  flex flex-col overflow-hidden"> -->
-                <p data-ref="dateInfo" :class="['green-text font-metal leading-loose transition-all duration-1000 delay-900',
+                <!-- <p data-ref="dateInfo" :class="['green-text font-metal leading-loose transition-all duration-1000 delay-900',
                   visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   នៅថ្ងៃព្រហស្បតិ៍ ៩រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១២
                   ខែមីនា
                   ឆ្នាំ ២០២៦
+                </p> -->
+
+
+                <p v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-nokora leading-loose mb-4 transition-all duration-1000 delay-500',
+                  visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  Thursday, March 12, 2026 at 5:00 PM
+                  AT CHROY CHANGVA INTERNATIONAL CONVENTION AND EXHIBITION CENTER ( OCIC BUILDING G )
                 </p>
 
-                <p data-ref="locationInfo" :class="['text-base tracking-wider green-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
+                <p v-else data-ref="locationInfo" :class="['text-base tracking-wider green-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <span class="font-metal">នៅថ្ងៃព្រហស្បតិ៍ ៩រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១២
+                  ខែមីនា
+                  ឆ្នាំ ២០២៦</span>
                   <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
                   <span class="">មជ្ឈមណ្ឌលសន្និបាត និងពិព័រណ៍អន្តរជាតិជ្រោយចង្វារ</span>
                   <span class="font-metal"> OCIC</span>
