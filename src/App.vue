@@ -412,7 +412,28 @@ onMounted(() => {
                 {{ isEnglish ? 'The Wedding Day' : 'សិរីមង្គលអាពាហ៍ពិពាហ៍' }}
               </h1>
 
-              <div data-ref="parentsNames" :class="['brown-text text-sm whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
+              <div v-if="isEnglish" data-ref="parentsNames" :class="['brown-text text-sm whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
+                visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                <div class="grid grid-rows-2 gap-2 text-left">
+                  <div>
+                    <span class="font-metal ">Mrs. SRY Sina </span>
+                    <!-- <span>ស្រី ស៊ីណា</span> -->
+                  </div>
+
+                </div>
+                <div class="grid grid-rows-2">
+                  <div>
+                    <span class="font-metal">Mr. CHEA Singhvuth </span>
+                    <!-- <span>ជា សឹង្ហវុធ</span> -->
+                  </div>
+                  <div>
+                    <span class="font-metal">Mrs. LONG Sothamala </span>
+                    <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
+                  </div>
+                </div>
+              </div>
+
+              <div v-else data-ref="parentsNames" :class="['brown-text text-sm whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2 text-left">
                   <div>
