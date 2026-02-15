@@ -56,7 +56,7 @@ const formatCountdownNumber = (value) => {
 }
 
 const telegramRsvpUrl = computed(() => {
-  const base = 'https://t.me/Chanpharath'
+  const base = 'https://t.me/RozaOfficially'
   const statusText = rsvpStatus.value === 'yes'
     ? (isEnglish.value ? 'Can join' : 'អាចចូលរួម')
     : (isEnglish.value ? 'Cannot join' : 'មិនអាចចូលរួម')
@@ -92,7 +92,8 @@ const images = [
   { id: 11, url: '/image/p11.jpg', alt: 'Image 11' },
   { id: 12, url: '/image/p12.jpg', alt: 'Image 12' },
   { id: 13, url: '/image/p13.jpg', alt: 'Image 13' },
-  { id: 14, url: '/image/p14.jpg', alt: 'Image 14' }
+  { id: 14, url: '/image/p14.jpg', alt: 'Image 14' },
+  { id: 15, url: '/image/p15.jpg', alt: 'Image 15' },
 ]
 
 
@@ -782,13 +783,13 @@ onMounted(() => {
                   </h2> -->
 
 
-                <h2 data-ref="galleryTitle" :class="['brown-text text-lg sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
+                <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Scan to view location' : 'ស្កេនមើលទីតាំងពិធី' }}
                 </h2>
                 <img src="/icon/qr-code.svg" alt="QR Code"
-                  class="mx-auto my-6 w-48 h-48 object-cover rounded-3xl shadow-lg border border-white/30" />
+                  class="mx-auto my-2 w-48 h-48 object-cover rounded-3xl shadow-lg border border-white/30" />
 
                 <!-- <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-2 mb-8 sm:text-xl text-center whitespace-nowrap font-sans font-bold bg-white/10 p-1 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -797,7 +798,7 @@ onMounted(() => {
                 <!-- RSVP Section -->
                 <div class="mt-8 p-5 bg-white/10 rounded-2xl border border-white/20 text-left">
                   <h3 class="brown-text text-lg font-sans font-extrabold text-center mb-3"
-                    :style="isEnglish ? '' : 'font-family: Khmer OS Battambang, sans-serif'">{{ isEnglish ? 'RSVP' :
+                    :style="isEnglish ? '' : 'font-family: Nokora, sans-serif'">{{ isEnglish ? 'RSVP' :
                       'បញ្ជាក់ការចូលរួម'
                     }}</h3>
                   <p class="brown-text font-metal leading-loose text-sm text-center mb-4">
