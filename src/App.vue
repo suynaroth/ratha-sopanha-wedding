@@ -69,7 +69,7 @@ const telegramRsvpUrl = computed(() => {
 })
 
 // Refs for scroll animations
-const timelineRefs = ref([])
+const timelineRefs = ref({})
 const galleryRefs = ref([])
 
 // Data
@@ -171,13 +171,15 @@ const closeLightbox = () => {
   selectedImg.value = null
 }
 
-const setTimelineRef = (el, index, type) => {
-  if (el) {
-    if (!timelineRefs.value[index]) {
-      timelineRefs.value[index] = {}
-    }
-    timelineRefs.value[index][type] = el
+const setTimelineRef = (el, index, type, group = 'default') => {
+  if (!el) return
+  if (!timelineRefs.value[group]) {
+    timelineRefs.value[group] = []
   }
+  if (!timelineRefs.value[group][index]) {
+    timelineRefs.value[group][index] = {}
+  }
+  timelineRefs.value[group][index][type] = el
 }
 
 const setGalleryRef = (el, index) => {
@@ -245,17 +247,19 @@ const setupScrollObservers = () => {
     }
 
     // Observe timeline items with staggered animation
-    timelineRefs.value.forEach((refs, index) => {
-      if (refs?.icon) {
-        const observer = createObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              visibleItems.value[index] = true
-            }, index * 100)
-          }
-        })
-        observer.observe(refs.icon)
-      }
+    Object.entries(timelineRefs.value).forEach(([groupKey, groupItems]) => {
+      groupItems.forEach((refs, index) => {
+        if (refs?.icon) {
+          const observer = createObserver(([entry]) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                visibleItems.value[`${groupKey}-${index}`] = true
+              }, index * 100)
+            }
+          })
+          observer.observe(refs.icon)
+        }
+      })
     })
 
     // Observe gallery items with staggered animation
@@ -701,8 +705,7 @@ onMounted(() => {
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Wedding Ceremony' : 'កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍' }}
                   </h2>
-                  <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
-                    timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                  <h2 class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all]"
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធី ថ្ងៃសៅរ៍ ទី១៤ ខែមីនា ឆ្នាំ២០២៦' }}
                   </h2>
@@ -713,8 +716,8 @@ onMounted(() => {
 
                     <div class="grid grid-cols-[auto_1fr] gap-x-4 -gap-y-2 text-left">
                       <template v-for="(event, index) in timelineEventsfday" :key="index">
-                        <div :ref="el => setTimelineRef(el, index, 'icon')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
-                          visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                        <div :ref="el => setTimelineRef(el, index, 'icon', 'day1')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
+                          visibleItems[`day1-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                           <div class="text-primary text-3xl">
                             <img :src="event.icon" alt="event icon"
                               class="w-18 sm:w-12 md:w-16 rounded-xl bg-transparent mix-blend-multiply" />
@@ -722,7 +725,7 @@ onMounted(() => {
                           <div class="w-0.5 bg-secondary dark:bg-primary/30 h-2"></div>
                         </div>
                         <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700',
-                          visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                          visibleItems[`day1-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                           <p class="text-text-light font-nokora brown-text text-base font-semibold leading-normal">
                             {{ event.title }}
                           </p>
@@ -745,8 +748,8 @@ onMounted(() => {
 
                     <div class="grid grid-cols-[auto_1fr] gap-x-4 -gap-y-2 text-left">
                       <template v-for="(event, index) in timelineEvents" :key="index">
-                        <div :ref="el => setTimelineRef(el, index, 'icon')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
-                          visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                        <div :ref="el => setTimelineRef(el, index, 'icon', 'day2')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
+                          visibleItems[`day2-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                           <div class="text-primary text-3xl">
                             <img :src="event.icon" alt="event icon"
                               class="w-18 sm:w-12 md:w-16 rounded-xl bg-transparent mix-blend-multiply" />
@@ -754,7 +757,7 @@ onMounted(() => {
                           <div class="w-0.5 bg-secondary dark:bg-primary/30 h-2"></div>
                         </div>
                         <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700',
-                          visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                          visibleItems[`day2-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                           <p class="text-text-light font-nokora brown-text text-base font-semibold leading-normal">
                             {{ event.title }}
                           </p>
@@ -1685,5 +1688,3 @@ onMounted(() => {
   }
 }
 </style>
-
-
