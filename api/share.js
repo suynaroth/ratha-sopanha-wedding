@@ -20,7 +20,7 @@ export default function handler(req) {
   const isBot = BOT_UA_PATTERN.test(userAgent)
 
   const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
-  const description = `ចាន់ផារ៉ាត់ និង សុត្ថាចន្ធីម៉ា  | ១២ មីនា ២០២៦`
+  const description = `ទីទី និង រ៉ូហ្សា  | ១៥ មីនា ២០២៦`
   const image = `${currentUrl.origin}/image/meta.jpg`
   const appUrl = `${currentUrl.origin}/?name=${encodeURIComponent(guestName)}`
 

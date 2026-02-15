@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed, watch, nextTick } from 'vue'
 
 // State management
 const opened = ref(false)
@@ -7,6 +7,8 @@ const questName = ref('')
 const step = ref(1)
 const audio = ref(null)
 const selectedImg = ref(null)
+const introVideoRef = ref(null)
+const showIntroText = ref(false)
 // eslint-disable-next-line no-unused-vars
 const showSaveDate = ref(true)
 // eslint-disable-next-line no-unused-vars
@@ -127,19 +129,35 @@ const getGalleryItemClass = (index) => {
 }
 
 // Methods
-const openInvitation = () => {
+const startMainInvitation = () => {
+  step.value = 2
   audio.value = new Audio('/songs/song.mp3')
   audio.value.play().catch(err => console.log('Audio play failed:', err))
-
-  opened.value = true
-
-  // Jump straight to step 2 (Main Invitation)
-  step.value = 2
 
   // Ensure DOM is ready before setting up observers
   setTimeout(() => {
     setupScrollObservers()
   }, 100)
+}
+
+const openInvitation = () => {
+  opened.value = true
+  step.value = 1
+
+  nextTick(() => {
+    introVideoRef.value?.play().catch(err => console.log('Video play failed:', err))
+  })
+}
+
+const handleIntroEnded = () => {
+  if (step.value !== 2) {
+    startMainInvitation()
+  }
+}
+
+const handleIntroTimeUpdate = (event) => {
+  const current = event?.target?.currentTime ?? 0
+  showIntroText.value = current >= 4
 }
 
 const closeLightbox = () => {
@@ -257,7 +275,7 @@ onMounted(() => {
     questName.value = decodeURIComponent(nameParam)
   }
 
-  const targetDate = new Date('2026-03-12T06:00:00')
+  const targetDate = new Date('2026-03-15T06:00:00')
 
   const updateCountdown = () => {
     const now = new Date()
@@ -296,17 +314,17 @@ onMounted(() => {
 <template>
   <div id="app">
     <div class="lang-switcher">
-      <button type="button" :class="['lang-switcher__btn', locale === 'km' ? 'is-active' : '']"
-        @click="switchLocale('km')">KH</button>
+      <button type="button" :class="['font-nokora lang-switcher__btn', locale === 'km' ? 'is-active' : '']"
+        @click="switchLocale('km')">ខ្មែរ</button>
       <button type="button" :class="['lang-switcher__btn', locale === 'en' ? 'is-active' : '']"
         @click="switchLocale('en')">EN</button>
     </div>
 
     <!-- Landing Section -->
     <section v-if="!opened" class="landing">
-      <div class="min-h-screen w-full flex flex-col bg-[#344125] justify-start px-4">
+      <div class="min-h-screen w-full flex flex-col bg-[#fbf7f0] justify-start px-4">
         <div class="fixed inset-0 z-0">
-          <img src="/image/cover.jpg" class="w-full h-full object-contain" alt="Background" />
+          <img src="/image/frame-cover.jpg" class="w-full h-full object-contain" alt="Background" />
           <!-- Floral overlays -->
           <!-- <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
@@ -334,18 +352,18 @@ onMounted(() => {
           <div class="absolute inset-0  pointer-events-none"></div>
           <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
           <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul m p-3 sm:p-4 rounded-lg"
-          :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif'}">
-             {{ isEnglish ? 'The Wedding Day' : 'សិរីមង្គលអាពាហ៍ពិពាហ៍' }}
+            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+            {{ isEnglish ? 'The Wedding Day' : 'សិរីមង្គលអាពាហ៍ពិពាហ៍' }}
           </h1>
           <img src="/image/logo.png" alt="Ornament" class="w-50 mb-8" />
           <h3 class="text-lg md:text-xl mt-10 font-moul leading-relaxed lg:text-xl mb-4 brown-text text-center"
-          :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
             {{ isEnglish ? 'Respectfully Invited' : 'សូមគោរពអញ្ជើញ' }}
           </h3>
           <div class="guest-name-tag mb-8">
             <img src="/image/name-tag.png" alt="" aria-hidden="true" class="guest-name-tag__bg" />
             <p class="guest-name-tag__text font-moul brown-text text-base"
-            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif'}">
+              :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
               {{ questName }}
             </p>
           </div>
@@ -353,14 +371,38 @@ onMounted(() => {
               flex items-center justify-center
               brown-text text-lg
               hover:scale-105 transition-all duration-500 active:scale-95
-              animate-pulse-blob"
-            style="background-image: url('/icon/button-outline.png')" @click="openInvitation"
-            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif'}">
+              animate-pulse-blob" style="background-image: url('/icon/button-outline.png')" @click="openInvitation"
+            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
             {{ isEnglish ? 'Open Invitation' : 'បើកធៀប' }}
           </button>
 
         </div>
       </div>
+    </section>
+
+    <!-- Intro Video -->
+    <section v-if="opened && step === 1" class="intro-video">
+      <video
+        ref="introVideoRef"
+        class="intro-video__player"
+        src="/image/zoomvid.mp4"
+        playsinline
+        preload="auto"
+        @timeupdate="handleIntroTimeUpdate"
+        @ended="handleIntroEnded"
+        @error="handleIntroEnded"
+      ></video>
+      <div v-if="showIntroText" class="intro-video__text  intro-video__text--show">
+        <img src="/image/logo.png" alt="Logo" class="intro-video__logo w-50" />
+        <span class="intro-video__text-line font-cinzel green-text text-2xl">Save the Date</span>
+        <span class="intro-video__text-line intro-video__text-title green-text font-cinzel">The wedding of</span>
+        <span class="intro-video__text-line intro-video__text-title green-text font-cinzel">Tyty and Roza</span>
+        <span class="intro-video__text-line font-cinzel green-text">Sunday, 15 March</span>
+      </div>
+      <button type="button" class="intro-video__skip" @click="handleIntroEnded"
+        :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'nokora, serif' }">
+        {{ isEnglish ? 'Skip' : 'រំលង' }}
+      </button>
     </section>
 
     <!-- Main Invitation -->
@@ -408,26 +450,30 @@ onMounted(() => {
               <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
               <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-5 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
                 visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif'}">
+                :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                 {{ isEnglish ? 'The Wedding Day' : 'សិរីមង្គលអាពាហ៍ពិពាហ៍' }}
               </h1>
 
               <div v-if="isEnglish" data-ref="parentsNames" :class="['brown-text text-sm whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                <div class="grid grid-rows-2 gap-2 text-left">
+                <div class="grid grid-rows-2 gap-2 text-center">
                   <div>
-                    <span class="font-metal ">Mrs. SREY Sina </span>
-                    <!-- <span>ស្រី ស៊ីណា</span> -->
-                  </div>
-
-                </div>
-                <div class="grid grid-rows-2">
-                  <div>
-                    <span class="font-metal">Mr. CHEA Singhvuth </span>
+                    <span class="font-metal">Mr. NGET Theang </span>
                     <!-- <span>ជា សឹង្ហវុធ</span> -->
                   </div>
                   <div>
-                    <span class="font-metal">Mrs. LONG Sothamala </span>
+                    <span class="font-metal">Mrs. KE Kim </span>
+                    <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
+                  </div>
+
+                </div>
+                <div class="grid grid-rows-2 text-center">
+                  <div>
+                    <span class="font-metal">Mr. OM Bunchanrath </span>
+                    <!-- <span>ជា សឹង្ហវុធ</span> -->
+                  </div>
+                  <div>
+                    <span class="font-metal">Mrs. KEO Kesor </span>
                     <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
                   </div>
                 </div>
@@ -435,21 +481,24 @@ onMounted(() => {
 
               <div v-else data-ref="parentsNames" :class="['brown-text text-sm whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                <div class="grid grid-rows-2 gap-2 text-left">
-                  <div>
-                    <span class="font-metal ">លោកស្រី </span>
-                    <span>ស្រី ស៊ីណា</span>
-                  </div>
-
-                </div>
-                <div class="grid grid-rows-2">
+                <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>ជា សឹង្ហវុធ</span>
+                    <span>ង៉ែត ធាង</span>
                   </div>
                   <div>
-                    <span class="font-metal">លោកស្រី </span>
-                    <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span>
+                    <span class="font-metal">អ្នកស្រី </span>
+                    <span class="text-sm">កេ គីម</span>
+                  </div>
+                </div>
+                <div class="grid grid-rows-2 gap-2">
+                  <div>
+                    <span class="font-metal">លោក </span>
+                    <span>ឱម ប៊ុនចាន់រដ្ឋ</span>
+                  </div>
+                  <div>
+                    <span class="font-metal">អ្នកស្រី </span>
+                    <span class="text-sm">កែវ កេសរ</span>
                   </div>
                 </div>
               </div>
@@ -483,23 +532,23 @@ onMounted(() => {
                   <p class="brown-text font-moulpali">{{ isEnglish ? 'Bride' : 'កូនស្រីនាម' }}</p>
                 </div>
 
-                <h2 data-ref="coupleNames" :class="['brown-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-4 transition-all duration-1000 delay-700',
+                <h2 data-ref="coupleNames" :class="['brown-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-6 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                  {{ isEnglish ? 'MEAN Chanpharath' : 'មាន ចាន់ផារ៉ាត់' }}
-                  <img src="/icon/brown-jeaku.png" alt="Logo" class="w-12" />
-                  {{ isEnglish ? 'CHEA Sothachanthymar' : 'ជា សុត្ថាចន្ធីម៉ា' }}
+                  {{ isEnglish ? 'TEAV Houy Tyty' : 'ទាវ ហួយ ទីទី' }}
+                  <img src="/icon/brown-jeaku.png" alt="Logo" class="w-16" />
+                  {{ isEnglish ? 'OM Roza' : 'ឱម រ៉ូហ្សា' }}
                 </h2>
 
                 <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
                   visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                   <p class="brown-text text-xl md:text-2xl mb-3">
-                    {{ isEnglish ? 'Thursday' : 'ថ្ងៃព្រហស្បតិ៍ ៩រោច ខែផល្គុន' }}
+                    {{ isEnglish ? 'Sunday' : 'ថ្ងៃអាទិត្យ ១២រោច ខែផល្គុន' }}
                   </p>
                   <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-5xl md:text-6xl">
-                    {{ isEnglish ? '12' : '១២' }}
+                    {{ isEnglish ? '15' : '១៥' }}
                   </p>
                   <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-2xl md:text-3xl mb-10">
@@ -524,19 +573,24 @@ onMounted(() => {
 
                 <p v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-nokora leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  Thursday, March 12, 2026 at 5:00 PM
-                  AT CHROY CHANGVA INTERNATIONAL CONVENTION AND EXHIBITION CENTER (OCIC BUILDING G)
+                  Sunday, March 15, 2026 at 5:00 PM
+                  AT THE OUR’S HOUSE.#L17.
+                  ST BETONG. SANGKAT KANTOUK,
+                  KHAN KOMBOL, PHNOM PENH.
+                  (PLEASE SEE MAP) THANK YOU!
                 </p>
 
                 <p v-else data-ref="locationInfo" :class="['text-base tracking-wider green-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <span class="font-metal">នៅថ្ងៃព្រហស្បតិ៍ ៩រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១២
-                  ខែមីនា
-                  ឆ្នាំ ២០២៦</span>
+                  <span class="font-metal">នៅថ្ងៃអាទិត្យ ១២រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩
+                    ត្រូវនឹងថ្ងៃទី ១៥
+                    ខែមីនា
+                    ឆ្នាំ ២០២៦</span>
                   <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
-                  <span class="">មជ្ឈមណ្ឌលសន្និបាត និងពិព័រណ៍អន្តរជាតិជ្រោយចង្វារ</span>
-                  <span class="font-metal"> OCIC</span>
-                  <span class="font-metal"> អគារ G </span>
+                  <span class="">បុរីរំចេក អូឌឹម</span>
+                  <span class="font-metal"> ផ្ទះលេខ L17 ផ្លូវបេតុង ភូមិកន្ទាកជើង សង្គាត់កន្ទោក ខណ្ឌកំបូល
+                    រាជធានីភ្នំពេញ។</span>
+                  <span class="font-metal"> ដោយមេត្រីភាព! </span>
                 </p>
                 <!-- <div
                     class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg transition-all duration-1000 delay-1100"
@@ -562,15 +616,18 @@ onMounted(() => {
                     </div>
                     <div class="min-w-20 sm:min-w-20 text-center ">
                       <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.hours }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Hours' : 'ម៉ោង' }}</div>
+                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Hours' :
+                        'ម៉ោង' }}</div>
                     </div>
                     <div class="min-w-20 sm:min-w-20 text-center ">
                       <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.minutes }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Minutes' : 'នាទី' }}</div>
+                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Minutes'
+                        : 'នាទី' }}</div>
                     </div>
                     <div class="min-w-20 sm:min-w-20 text-center ">
                       <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.seconds }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Seconds' : 'វិនាទី' }}</div>
+                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Seconds'
+                        : 'វិនាទី' }}</div>
                     </div>
                   </div>
                 </div>
@@ -640,7 +697,7 @@ onMounted(() => {
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Thursday, March 12, 2026' : 'កម្មវិធី ថ្ងៃព្រហស្បតិ៍ ទី១២ ខែមីនា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធី ថ្ងៃអាទិត្យ ទី១៥ ខែមីនា ឆ្នាំ២០២៦' }}
                   </h2>
 
                   <div class="relative">
@@ -677,7 +734,7 @@ onMounted(() => {
                   <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Gallery   ' : 'វិចិត្រសាល' }}
+                    {{ isEnglish ? 'Gallery ' : 'វិចិត្រសាល' }}
                   </h2>
 
                   <div class="grid grid-cols-12 gap-4">
@@ -741,7 +798,7 @@ onMounted(() => {
                 <div class="mt-8 p-5 bg-white/10 rounded-2xl border border-white/20 text-left">
                   <h3 class="brown-text text-lg font-sans font-extrabold text-center mb-3"
                     :style="isEnglish ? '' : 'font-family: Khmer OS Battambang, sans-serif'">{{ isEnglish ? 'RSVP' :
-                    'បញ្ជាក់ការចូលរួម'
+                      'បញ្ជាក់ការចូលរួម'
                     }}</h3>
                   <p class="brown-text font-metal leading-loose text-sm text-center mb-4">
                     {{ isEnglish
@@ -1420,10 +1477,14 @@ onMounted(() => {
     transform: translate3d(4px, -3px, 0) rotate(2deg);
   }
 }
+
 @keyframes pulseBlob {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.08);
   }
@@ -1467,10 +1528,116 @@ onMounted(() => {
   overflow-x: hidden;
 }
 
+.intro-video {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #000;
+  display: grid;
+  place-items: center;
+}
+
+.intro-video__player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro-video__text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f8e8b2;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+  letter-spacing: 0.04em;
+  padding: 1rem;
+  gap: 0.35rem;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0) 60%);
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+}
+
+.intro-video__text--show {
+  animation: introTextFade 900ms ease-out forwards;
+}
+
+.intro-video__logo {
+  width: clamp(110px, 22vw, 180px);
+  height: auto;
+  margin-bottom: 0.25rem;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  animation: introItemFade 900ms ease-out forwards;
+  animation-delay: 120ms;
+}
+
+.intro-video__text-line {
+  display: block;
+  font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: introItemFade 900ms ease-out forwards;
+}
+
+.intro-video__text-title {
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 700;
+  text-transform: none;
+  margin: 0.35rem 0 0.5rem;
+  animation-delay: 220ms;
+}
+
+.intro-video__text-line:not(.intro-video__text-title) {
+  animation-delay: 320ms;
+}
+
+.intro-video__text-line:last-of-type {
+  animation-delay: 420ms;
+}
+
+@keyframes introTextFade {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes introItemFade {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.intro-video__skip {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.intro-video__skip:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+
 @media (max-width: 640px) {
   .pattern-bg-image {
     object-fit: cover;
-    transform: scale(1.06);
+    transform: scale(1);
     transform-origin: center;
   }
 
