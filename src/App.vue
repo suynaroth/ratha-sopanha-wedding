@@ -55,18 +55,39 @@ const formatCountdownNumber = (value) => {
   return isEnglish.value ? String(value) : toKhmerDigits(value)
 }
 
-const telegramRsvpUrl = computed(() => {
-  const base = 'https://t.me/RozaOfficially'
+const telegramMessage = computed(() => {
   const statusText = rsvpStatus.value === 'yes'
     ? (isEnglish.value ? 'Can join' : 'អាចចូលរួម')
     : (isEnglish.value ? 'Cannot join' : 'មិនអាចចូលរួម')
   const name = questName.value?.trim() ? questName.value.trim() : (isEnglish.value ? 'Guest' : 'ភ្ញៀវ')
   const message = rsvpMessage.value.trim()
-  const fullText = message
+  return message
     ? `RSVP - ${name}: ${statusText}. Message: ${message}`
     : `RSVP - ${name}: ${statusText}.`
-  return `${base}?text=${encodeURIComponent(fullText)}`
 })
+
+const telegramUsername = 'RozaOfficially'
+const telegramDeepLink = computed(() => {
+  return `tg://resolve?domain=${telegramUsername}&text=${encodeURIComponent(telegramMessage.value)}`
+})
+const telegramWebLink = computed(() => {
+  return `https://t.me/${telegramUsername}?text=${encodeURIComponent(telegramMessage.value)}`
+})
+const telegramShareLink = computed(() => {
+  return `https://t.me/share/url?text=${encodeURIComponent(telegramMessage.value)}`
+})
+
+const sendRsvp = () => {
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+  if (isMobile) {
+    window.location.href = telegramDeepLink.value
+    setTimeout(() => {
+      window.location.href = telegramShareLink.value
+    }, 700)
+    return
+  }
+  window.open(telegramWebLink.value, '_blank', 'noopener')
+}
 
 // Refs for scroll animations
 const timelineRefs = ref([])
@@ -830,14 +851,14 @@ onMounted(() => {
                   <textarea v-model="rsvpMessage" rows="3"
                     :placeholder="isEnglish ? 'Message (optional)' : 'ផ្ញើរសារ (optional)'"
                     class="w-full rounded-lg p-3 text-sm font-metal bg-white/80 text-[#6b4a2f] placeholder-[#6b4a2f]/70 outline-none"></textarea>
-                  <a :href="telegramRsvpUrl" target="_blank" rel="noreferrer"
+                  <button type="button" @click="sendRsvp"
                     class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 bg-[#2AABEE] text-white font-nokora font-semibold transition hover:scale-105 active:scale-95">
                     {{ isEnglish ? 'Send via Telegram' : 'ផ្ញើរតាមតេលេក្រាម' }}<span><svg viewBox="0 0 24 24"
                         aria-hidden="true" class="theab-footer__icon">
                         <path fill="#fff"
                           d="M20.4 5.2 3.7 11.7c-1 .4-.9 1.8.1 2.1l3.7 1.2 1.4 4.3c.2.7 1.1.9 1.6.3l2.2-2.5 4.1 3c.5.4 1.3.1 1.5-.6l2.8-12.3c.2-.9-.6-1.6-1.7-1Z" />
                       </svg></span>
-                  </a>
+                  </button>
                 </div>
 
                 <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
@@ -1648,3 +1669,5 @@ onMounted(() => {
   }
 }
 </style>
+
+
