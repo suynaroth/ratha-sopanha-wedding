@@ -96,17 +96,22 @@ const images = [
   { id: 15, url: '/image/p15.jpg', alt: 'Image 15' },
 ]
 
+const timelineEventsFD = [
+  { icon: "/icon/ev1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០៣ : ០០ រសៀល" },
+  { icon: "/icon/ev1.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៤ : ០០ រសៀល" },
+  { icon: "/icon/ev3.png", title: "ជុំពេលា និងជាវខាន់ស្លា", time: "ម៉ោង ០៥ : ០០ ល្ងាច" },
+  { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច", time: "ម៉ោង ០៦ : ៣០ ល្ងាច" },
+]
+
 
 const timelineEventsKm = [
-  { icon: "/icon/ev1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០៦ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៤០ នាទីព្រឹក" },
-  { icon: "/icon/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ១០ នាទីព្រឹក" },
-  { icon: "/icon/ev3.png", title: "ពិធីពិសារស្លាកំណត់ និងព្រេនផ្លែឈើ ", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev3.png", title: "ពិធីចៅមហានិយាយជើងការ រៀបរាប់ និងព្រេនផ្លែឈើ ", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន និងអញ្ជើញភ្ញៀវកិត្តិយសពិសារអាហារពេលព្រឹក", time: "ម៉ោង ៨ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev1.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៨ : ៤០ នាទីព្រឹក" },
-  { icon: "/icon/ev5.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/ev6.png", title: "ពិធីសំពះពេលា បង្វិលពពិល សំពះផ្ទឹម និងពិធីសែនចងដៃ", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១១ : ៣០ ថ្ងៃត្រង់" },
+  { icon: "/icon/ev5.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev6.png", title: "ពិធីបង្វិលពពិល សំពះផ្ទឹមចងដៃ", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១២ : ០០ ថ្ងៃត្រង់" },
   { icon: "/icon/ev8.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ០០​ ល្ងាច" }
 ]
 
@@ -122,6 +127,7 @@ const timelineEventsEn = [
 ]
 
 const timelineEvents = computed(() => (isEnglish.value ? timelineEventsEn : timelineEventsKm))
+const timelineEventsfday = computed(() =>  timelineEventsFD)
 
 // Computed
 const getGalleryItemClass = (index) => {
@@ -695,6 +701,37 @@ onMounted(() => {
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Wedding Ceremony' : 'កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍' }}
                   </h2>
+                  <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
+                    timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                    {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធី ថ្ងៃសៅរ៍ ទី១៤ ខែមីនា ឆ្នាំ២០២៦' }}
+                  </h2>
+                  <div class="relative">
+                    <div
+                      class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-secondary dark:bg-primary/30 h-full">
+                    </div>
+
+                    <div class="grid grid-cols-[auto_1fr] gap-x-4 -gap-y-2 text-left">
+                      <template v-for="(event, index) in timelineEventsfday" :key="index">
+                        <div :ref="el => setTimelineRef(el, index, 'icon')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
+                          visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                          <div class="text-primary text-3xl">
+                            <img :src="event.icon" alt="event icon"
+                              class="w-18 sm:w-12 md:w-16 rounded-xl bg-transparent mix-blend-multiply" />
+                          </div>
+                          <div class="w-0.5 bg-secondary dark:bg-primary/30 h-2"></div>
+                        </div>
+                        <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700',
+                          visibleItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                          <p class="text-text-light font-nokora brown-text text-base font-semibold leading-normal">
+                            {{ event.title }}
+                          </p>
+                          <p class="text-base green-text font-moul leading-normal"
+                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">{{ event.time }}</p>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
