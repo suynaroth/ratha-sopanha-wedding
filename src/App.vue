@@ -698,7 +698,7 @@ onMounted(() => {
                 </div> -->
 
                 <!-- Timeline Section -->
-                <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1300',
+                <!-- <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1300',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <h2 data-ref="timelineHeader" :class="['brown-text text-md text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -767,10 +767,31 @@ onMounted(() => {
                       </template>
                     </div>
                   </div>
+                </div> -->
+
+                <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
+                    galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                    {{ isEnglish ? 'Dress Code ' : 'ពណ៌សម្លៀកបំពាក់' }}
+                  </h2>
+
+                <div class="flex items-start justify-around pb-4" aria-label="Dress code colors">
+                  <div class="flex flex-col items-center gap-1">
+                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm" style="background-color: #b76e79;"></span>
+                    <span class="brown-text text-xs sm:text-sm" :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Rose Gold</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1">
+                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm" style="background-color: #f4a7b9;"></span>
+                    <span class="brown-text text-xs sm:text-sm" :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Pink</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1">
+                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm" style="background-color: #9ca3af;"></span>
+                    <span class="brown-text text-xs sm:text-sm" :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Gray</span>
+                  </div>
                 </div>
 
                 <!-- Gallery Section -->
-                <div data-ref="gallerySection" :class="['relative transition-all duration-1000 delay-1600',
+                <div data-ref="gallerySection" :class="['relative mt-8 transition-all duration-1000 delay-1600',
                   visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
