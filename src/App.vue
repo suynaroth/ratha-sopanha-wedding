@@ -199,6 +199,7 @@ const startMainInvitation = () => {
 const openInvitation = () => {
   opened.value = true
   step.value = 1
+  playBackgroundMusic()
 
   nextTick(() => {
     introVideoRef.value?.play().catch(err => console.log('Video play failed:', err))
@@ -344,9 +345,7 @@ const playBackgroundMusic = () => {
 
 const setupLandingAudioAutoplay = () => {
   const tryPlay = () => {
-    if (!opened.value) {
-      playBackgroundMusic()
-    }
+    playBackgroundMusic()
   }
 
   const unlockOnInteraction = () => {
@@ -1776,7 +1775,7 @@ onMounted(() => {
   justify-content: center;
   text-align: center;
   color: #f8e8b2;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.6);
   letter-spacing: 0.04em;
   padding: 1rem;
   gap: 0.35rem;
@@ -1871,5 +1870,3 @@ onMounted(() => {
   }
 }
 </style>
-
-
