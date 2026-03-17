@@ -107,37 +107,46 @@ const images = [
 ]
 
 const timelineEventsFD = [
-  { icon: "/icon/ev1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០៣ : ០០ រសៀល" },
-  { icon: "/icon/ev1.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៤ : ០០ រសៀល" },
-  { icon: "/icon/ev3.png", title: "ជុំពេលា និងជាវខាន់ស្លា", time: "ម៉ោង ០៥ : ០០ ល្ងាច" },
-  { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច", time: "ម៉ោង ០៦ : ៣០ ល្ងាច" },
+  { icon: "/icon/ev1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០២ : ០០ រសៀល" },
+  { icon: "/icon/ev1.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៣ : ០០ រសៀល" },
+  { icon: "/icon/ev3.png", title: "ពិធីកាត់ខាន់ស្លា", time: "ម៉ោង ០៤ : ០០ រសៀល" },
+  { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច", time: "ម៉ោង ០៥ : ០០ ល្ងាច" },
 ]
 
+const timelineEventsFDEn = [
+  { icon: "/icon/ev1.png", title: "Krong Peali offering ceremony", time: "02:00 PM" },
+  { icon: "/icon/ev1.png", title: "Paritta chanting ceremony", time: "03:00 PM" },
+  { icon: "/icon/ev3.png", title: "Khan Sla cutting ceremony", time: "04:00 PM" },
+  { icon: "/icon/ev7.png", title: "Honored guests invited to dinner", time: "05:00 PM" },
+]
 
 const timelineEventsKm = [
   { icon: "/icon/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev3.png", title: "ពិធីចៅមហានិយាយជើងការ រៀបរាប់ និងព្រេនផ្លែឈើ ", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន និងអញ្ជើញភ្ញៀវកិត្តិយសពិសារអាហារពេលព្រឹក", time: "ម៉ោង ៨ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev3.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឺក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/ev3.png", title: "ពិធីអ្នកមហានិយាយជើងការ និងរៀបរាប់ផ្លែឈើ ", time: "ម៉ោង ០៨ : ៣០ នាទីព្រឹក" },
+  // { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន និងអញ្ជើញភ្ញៀវកិត្តិយសពិសារអាហារពេលព្រឹក", time: "ម៉ោង ៨ : ០០ នាទីព្រឹក" },
   { icon: "/icon/ev5.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev6.png", title: "ពិធីបង្វិលពពិល សំពះផ្ទឹមចងដៃ", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev6.png", title: "ពិធីបើកវាំងនន", time: "ម៉ោង ១០ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/ev6.png", title: "ពិធីសំពះផ្ទឹម គួចចងដៃ និងបាចផ្កាស្លា", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
   { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១២ : ០០ ថ្ងៃត្រង់" },
-  { icon: "/icon/ev8.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ០០​ ល្ងាច" }
+  { icon: "/icon/ev8.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ៣០​ ល្ងាច" }
 ]
 
 const timelineEventsEn = [
-  { icon: "/icon/ev2.png", title: "Guest arrival and welcome", time: "06:40 AM" },
-  { icon: "/icon/ev9.png", title: "Ceremony opening", time: "07:10 AM" },
-  { icon: "/icon/ev3.png", title: "Blessing and breakfast", time: "07:30 AM" },
-  { icon: "/icon/ev4.png", title: "Ring exchange", time: "08:00 AM" },
-  { icon: "/icon/ev5.png", title: "Hair cutting ritual", time: "09:30 AM" },
-  { icon: "/icon/ev6.png", title: "Traditional blessing ritual", time: "11:00 AM" },
-  { icon: "/icon/ev7.png", title: "Lunch reception", time: "11:30 AM" },
-  { icon: "/icon/ev8.png", title: "Evening reception", time: "05:00 PM" }
+  { icon: "/icon/ev2.png", title: "Guests gather for the gift procession", time: "06:30 AM" },
+  { icon: "/icon/ev9.png", title: "Gift procession enters the ceremonial hall", time: "07:00 AM" },
+  { icon: "/icon/ev3.png", title: "Guests invited to breakfast", time: "07:30 AM" },
+  { icon: "/icon/ev3.png", title: "Master of ceremonies and fruit presentation", time: "08:30 AM" },
+  { icon: "/icon/ev5.png", title: "Hair cutting ceremony", time: "09:00 AM" },
+  { icon: "/icon/ev6.png", title: "Curtain opening ceremony", time: "10:00 AM" },
+  { icon: "/icon/ev6.png", title: "Blessing, wrist-tying, and flower tossing", time: "11:00 AM" },
+  { icon: "/icon/ev7.png", title: "Guests invited to lunch", time: "12:00 PM" },
+  { icon: "/icon/ev8.png", title: "Evening reception and dinner", time: "05:30 PM" }
 ]
 
 const timelineEvents = computed(() => (isEnglish.value ? timelineEventsEn : timelineEventsKm))
-const timelineEventsfday = computed(() =>  timelineEventsFD)
+const timelineEventsfday = computed(() => (isEnglish.value ? timelineEventsFDEn : timelineEventsFD))
 
 const butterflies = ref([])
 
@@ -412,55 +421,35 @@ onMounted(() => {
     </div>
 
     <nav v-if="opened && step === 2" class="tab-nav" aria-label="Section navigation">
-      <button
-        type="button"
-        class="tab-nav__btn"
-        :class="{ 'is-active': activeTab === 'date' }"
-        @click="scrollToSection('date-tab', 'date')"
-        aria-label="Date"
-        title="Date"
-      >
+      <button type="button" class="tab-nav__btn" :class="{ 'is-active': activeTab === 'date' }"
+        @click="scrollToSection('date-tab', 'date')" aria-label="Date" title="Date">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="tab-nav__icon">
-          <path fill="currentColor" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm12 8H5v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9Zm-9 3h4a1 1 0 1 1 0 2h-4a1 1 0 1 1 0-2Z"/>
+          <path fill="currentColor"
+            d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm12 8H5v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9Zm-9 3h4a1 1 0 1 1 0 2h-4a1 1 0 1 1 0-2Z" />
         </svg>
         <span class="sr-only">{{ isEnglish ? 'Date' : 'កាលបរិច្ឆេទ' }}</span>
       </button>
-      <button
-        type="button"
-        class="tab-nav__btn"
-        :class="{ 'is-active': activeTab === 'location' }"
-        @click="scrollToSection('location-tab', 'location')"
-        aria-label="Location"
-        title="Location"
-      >
+      <button type="button" class="tab-nav__btn" :class="{ 'is-active': activeTab === 'location' }"
+        @click="scrollToSection('location-tab', 'location')" aria-label="Location" title="Location">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="tab-nav__icon">
-          <path fill="currentColor" d="M12 2a7 7 0 0 1 7 7c0 5.2-7 13-7 13S5 14.2 5 9a7 7 0 0 1 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+          <path fill="currentColor"
+            d="M12 2a7 7 0 0 1 7 7c0 5.2-7 13-7 13S5 14.2 5 9a7 7 0 0 1 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
         </svg>
         <span class="sr-only">{{ isEnglish ? 'Location' : 'ទីតាំង' }}</span>
       </button>
-      <button
-        type="button"
-        class="tab-nav__btn"
-        :class="{ 'is-active': activeTab === 'gallery' }"
-        @click="scrollToSection('gallery-tab', 'gallery')"
-        aria-label="Gallery"
-        title="Gallery"
-      >
+      <button type="button" class="tab-nav__btn" :class="{ 'is-active': activeTab === 'gallery' }"
+        @click="scrollToSection('gallery-tab', 'gallery')" aria-label="Gallery" title="Gallery">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="tab-nav__icon">
-          <path fill="currentColor" d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5Zm3-1a1 1 0 0 0-1 1v9.8l3.3-3.3a1 1 0 0 1 1.4 0l3.3 3.3 2.3-2.3a1 1 0 0 1 1.4 0L18 15V5a1 1 0 0 0-1-1H7Zm2.2 5.2a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Z"/>
+          <path fill="currentColor"
+            d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5Zm3-1a1 1 0 0 0-1 1v9.8l3.3-3.3a1 1 0 0 1 1.4 0l3.3 3.3 2.3-2.3a1 1 0 0 1 1.4 0L18 15V5a1 1 0 0 0-1-1H7Zm2.2 5.2a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Z" />
         </svg>
         <span class="sr-only">{{ isEnglish ? 'Gallery' : 'វិចិត្រសាល' }}</span>
       </button>
-      <button
-        type="button"
-        class="tab-nav__btn"
-        :class="{ 'is-active': activeTab === 'message' }"
-        @click="scrollToSection('message-tab', 'message')"
-        aria-label="Message"
-        title="Message"
-      >
+      <button type="button" class="tab-nav__btn" :class="{ 'is-active': activeTab === 'message' }"
+        @click="scrollToSection('message-tab', 'message')" aria-label="Message" title="Message">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="tab-nav__icon">
-          <path fill="currentColor" d="M5 4h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H9l-4 3v-3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm0 2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2v2.1L9.6 16H19a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5Z"/>
+          <path fill="currentColor"
+            d="M5 4h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H9l-4 3v-3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm0 2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2v2.1L9.6 16H19a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5Z" />
         </svg>
         <span class="sr-only">{{ isEnglish ? 'Message' : 'សារ' }}</span>
       </button>
@@ -522,16 +511,8 @@ onMounted(() => {
 
     <!-- Intro Video -->
     <section v-if="opened && step === 1" class="intro-video">
-      <video
-        ref="introVideoRef"
-        class="intro-video__player"
-        src="/image/zoomvid.mp4"
-        playsinline
-        preload="auto"
-        @timeupdate="handleIntroTimeUpdate"
-        @ended="handleIntroEnded"
-        @error="handleIntroEnded"
-      ></video>
+      <video ref="introVideoRef" class="intro-video__player" src="/image/zoomvid.mp4" playsinline preload="auto"
+        @timeupdate="handleIntroTimeUpdate" @ended="handleIntroEnded" @error="handleIntroEnded"></video>
       <div v-if="showIntroText" class="intro-video__text  intro-video__text--show">
         <img src="/image/logo.png" alt="Logo" class="intro-video__logo w-50" />
         <span class="intro-video__text-line font-cinzel green-text text-2xl">Save the Date</span>
@@ -592,22 +573,22 @@ onMounted(() => {
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2 text-center">
                   <div>
-                    <span class="font-metal">Mr. NGET Theang </span>
+                    <span class="font-metal">Mr. TEP SAMANG </span>
                     <!-- <span>ជា សឹង្ហវុធ</span> -->
                   </div>
                   <div>
-                    <span class="font-metal">Mrs. KE Kim </span>
+                    <span class="font-metal">Mrs. NY VOUCHSENG </span>
                     <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
                   </div>
 
                 </div>
                 <div class="grid grid-rows-2 text-center">
                   <div>
-                    <span class="font-metal">Mr. OM Bunchanrath </span>
+                    <span class="font-metal">Mr. CHAN PROKOB </span>
                     <!-- <span>ជា សឹង្ហវុធ</span> -->
                   </div>
                   <div>
-                    <span class="font-metal">Mrs. KEO Kesor </span>
+                    <span class="font-metal">Mrs. SIN VANTHA </span>
                     <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
                   </div>
                 </div>
@@ -706,19 +687,24 @@ onMounted(() => {
                     ត្រូវនឹងថ្ងៃទី ២៥
                     ខែមេសា
                     ឆ្នាំ ២០២៦</span>
-                  <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
+                  <span class="font-metal">វេលាម៉ោង ៥ : ៣០ ល្ងាច នៅ </span>
                   <span class="">គេហដ្ឋានខាងស្រី</span>
                   <span class="font-metal"> ភូមិ១ សង្កាត់កំពង់លាវ ក្រុងព្រៃវែង ខេត្តព្រៃវែង។</span>
                   <span class="font-metal"> ដោយមេត្រីភាព! </span>
                 </p>
                 <div
-                    class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg transition-all duration-1000 delay-1100"
-                    :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3906.697880214546!2d104.88279527584474!3d11.599669143468102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109522e1adbf683%3A0x3f4395cd35ec9617!2sAEON%20Mall%20Sen%20Sok%20City!5e0!3m2!1sen!2skh!4v1770492834601!5m2!1sen!2skh"
-                      class="w-full h-60 md:h-72" style="border:0;" allowfullscreen="" loading="lazy"
-                      referrerpolicy="no-referrer-when-downgrade"></iframe>
-                  </div>
+                  class="map-frame w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-1000 delay-1100"
+                  :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4373.298726777382!2d105.32165367505225!3d11.479629388715137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDI4JzQ2LjciTiAxMDXCsDE5JzI3LjIiRQ!5e1!3m2!1sen!2skh!4v1773738075741!5m2!1sen!2skh"
+                    width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg leading-relaxed lg:text-lg mt-4 mb-12 text-center transition-all duration-1000 delay-400',
+                  visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  {{ isEnglish ? 'Location' : 'ទីតាំងពីធី' }}
+                </h3>
                 <!-- <div class="countdown-section">
                   <h2 data-ref="timelineHeader" :class="['text-base leading-loose brown-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1200',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -786,22 +772,38 @@ onMounted(() => {
                         <div
                           class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.days }}</div>
-                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">ថ្ងៃ</div>
+                          <div
+                            class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
+                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                            {{ isEnglish ? 'Days' : 'ថ្ងៃ' }}
+                          </div>
                         </div>
                         <div
                           class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.hours }}</div>
-                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">ម៉ោង</div>
+                          <div
+                            class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
+                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                            {{ isEnglish ? 'Hours' : 'ម៉ោង' }}
+                          </div>
                         </div>
                         <div
                           class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.minutes }}</div>
-                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">នាទី</div>
+                          <div
+                            class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
+                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                            {{ isEnglish ? 'Minutes' : 'នាទី' }}
+                          </div>
                         </div>
                         <div
                           class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.seconds }}</div>
-                          <div class="text-[12px] sm:text-xs font-nokora dust-white-text/90 tracking-wide">វិនាទី</div>
+                          <div
+                            class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
+                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                            {{ isEnglish ? 'Seconds' : 'វិនាទី' }}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -811,14 +813,16 @@ onMounted(() => {
                 <!-- Timeline Section -->
                 <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1300',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <h2 data-ref="timelineHeader" :class="['brown-text text-md text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
+                  <h2 data-ref="timelineHeader" :class="['green-text text-lg text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Wedding Ceremony' : 'កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍' }}
                   </h2>
-                  <h2 class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all]"
+                  <h2
+                    :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
+                      timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធី ថ្ងៃសៅរ៍ ទី១៤ ខែមីនា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសុក្រ ទី២៤ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
                   <div class="relative">
                     <div
@@ -849,7 +853,7 @@ onMounted(() => {
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធី ថ្ងៃអាទិត្យ ទី១៥ ខែមីនា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធីថ្ងៃទី២៖ ថ្ងៃសៅរ៍ ទី២៥ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
 
                   <div class="relative">
@@ -881,23 +885,29 @@ onMounted(() => {
                 </div>
 
                 <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
-                    galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Dress Code ' : 'ពណ៌សម្លៀកបំពាក់' }}
-                  </h2>
+                  galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  {{ isEnglish ? 'Dress Code ' : 'ពណ៌សម្លៀកបំពាក់' }}
+                </h2>
 
                 <div class="flex items-start justify-around pb-4" aria-label="Dress code colors">
                   <div class="flex flex-col items-center gap-1">
-                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm" style="background-color: #b76e79;"></span>
-                    <span class="brown-text text-xs sm:text-sm" :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Rose Gold</span>
+                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
+                      style="background-color: #b76e79;"></span>
+                    <span class="brown-text text-xs sm:text-sm"
+                      :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Rose Gold</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
-                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm" style="background-color: #f4a7b9;"></span>
-                    <span class="brown-text text-xs sm:text-sm" :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Pink</span>
+                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
+                      style="background-color: #f4a7b9;"></span>
+                    <span class="brown-text text-xs sm:text-sm"
+                      :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Pink</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
-                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm" style="background-color: #9ca3af;"></span>
-                    <span class="brown-text text-xs sm:text-sm" :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Gray</span>
+                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
+                      style="background-color: #9ca3af;"></span>
+                    <span class="brown-text text-xs sm:text-sm"
+                      :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Gray</span>
                   </div>
                 </div>
 
@@ -955,13 +965,13 @@ onMounted(() => {
                   </h2> -->
 
 
-                <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
+                <!-- <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Scan to view location' : 'ស្កេនមើលទីតាំងពិធី' }}
                 </h2>
                 <img src="/icon/qr-code.svg" alt="QR Code"
-                  class="mx-auto my-2 w-48 h-48 object-cover rounded-3xl shadow-lg border border-white/30" />
+                  class="mx-auto my-2 w-48 h-48 object-cover rounded-3xl shadow-lg border border-white/30" /> -->
 
                 <!-- <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-2 mb-8 sm:text-xl text-center whitespace-nowrap font-sans font-bold bg-white/10 p-1 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -1391,14 +1401,14 @@ onMounted(() => {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #7B1F2A;
+  color: #845ca4;
   background: transparent;
   cursor: pointer;
   transition: background 180ms ease, color 180ms ease;
 }
 
 .lang-switcher__btn.is-active {
-  background: #7B1F2A;
+  background: #845ca4;
   color: #fff;
 }
 
@@ -1430,7 +1440,7 @@ onMounted(() => {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #7B1F2A;
+  color: #845ca4;
   background: transparent;
   cursor: pointer;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
@@ -1439,7 +1449,7 @@ onMounted(() => {
 }
 
 .tab-nav__btn.is-active {
-  background: #7B1F2A;
+  background: #845ca4;
   color: #fff;
   transform: translateY(-1px);
 }
@@ -1474,6 +1484,11 @@ onMounted(() => {
 
 .custom-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.map-frame {
+  border: 1px solid #845ca4;
+  box-shadow: 0 0 0 5px rgba(132, 92, 164, 0.55);
 }
 
 .butterfly-layer {
