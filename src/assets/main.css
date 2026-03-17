@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Metal&family=Moul&family=Moulpali&family=Nokora:wght@400;700&family=Cinzel+Decorative:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Metal&family=Moul&family=Moulpali&family=Nokora:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500&display=swap');
 @import "tailwindcss";
+
 @theme {
     --font-moul: 'Moul', sans-serif;
     --font-nokora: 'Nokora', sans-serif;
     --font-metal: 'Metal', system-ui;
     --font-moulpali: 'Moulpali', sans-serif;
     --font-cinzel: 'Cinzel Decorative', serif;
-  }
+    /* Added Montserrat here */
+    --font-montserrat: 'Montserrat', sans-serif;
+}

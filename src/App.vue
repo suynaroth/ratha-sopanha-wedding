@@ -107,42 +107,42 @@ const images = [
 ]
 
 const timelineEventsFD = [
-  { icon: "/icon/ev1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០២ : ០០ រសៀល" },
-  { icon: "/icon/ev1.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៣ : ០០ រសៀល" },
-  { icon: "/icon/ev3.png", title: "ពិធីកាត់ខាន់ស្លា", time: "ម៉ោង ០៤ : ០០ រសៀល" },
-  { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច", time: "ម៉ោង ០៥ : ០០ ល្ងាច" },
+  { icon: "/icon/a1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០២ : ០០ រសៀល" },
+  { icon: "/icon/a2.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៣ : ០០ រសៀល" },
+  { icon: "/icon/a3.png", title: "ពិធីកាត់ខាន់ស្លា", time: "ម៉ោង ០៤ : ០០ រសៀល" },
+  { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច", time: "ម៉ោង ០៥ : ០០ ល្ងាច" },
 ]
 
 const timelineEventsFDEn = [
-  { icon: "/icon/ev1.png", title: "Krong Peali offering ceremony", time: "02:00 PM" },
-  { icon: "/icon/ev1.png", title: "Paritta chanting ceremony", time: "03:00 PM" },
-  { icon: "/icon/ev3.png", title: "Khan Sla cutting ceremony", time: "04:00 PM" },
-  { icon: "/icon/ev7.png", title: "Honored guests invited to dinner", time: "05:00 PM" },
+  { icon: "/icon/a1.png", title: "Krong Peali offering ceremony", time: "02:00 PM" },
+  { icon: "/icon/a2.png", title: "Paritta chanting ceremony", time: "03:00 PM" },
+  { icon: "/icon/a3.png", title: "Khan Sla cutting ceremony", time: "04:00 PM" },
+  { icon: "/icon/a4.png", title: "Honored guests invited to dinner", time: "05:00 PM" },
 ]
 
 const timelineEventsKm = [
-  { icon: "/icon/ev2.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/ev9.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev3.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឺក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/ev3.png", title: "ពិធីអ្នកមហានិយាយជើងការ និងរៀបរាប់ផ្លែឈើ ", time: "ម៉ោង ០៨ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/a5.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/a6.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឺក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/a7.png", title: "ពិធីអ្នកមហានិយាយជើងការ និងរៀបរាប់ផ្លែឈើ ", time: "ម៉ោង ០៨ : ៣០ នាទីព្រឹក" },
   // { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន និងអញ្ជើញភ្ញៀវកិត្តិយសពិសារអាហារពេលព្រឹក", time: "ម៉ោង ៨ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev5.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev6.png", title: "ពិធីបើកវាំងនន", time: "ម៉ោង ១០ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev6.png", title: "ពិធីសំពះផ្ទឹម គួចចងដៃ និងបាចផ្កាស្លា", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/ev7.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១២ : ០០ ថ្ងៃត្រង់" },
-  { icon: "/icon/ev8.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ៣០​ ល្ងាច" }
+  { icon: "/icon/a8.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/a9.png", title: "ពិធីបើកវាំងនន", time: "ម៉ោង ១០ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/a10.png", title: "ពិធីសំពះផ្ទឹម គួចចងដៃ និងបាចផ្កាស្លា", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១២ : ០០ ថ្ងៃត្រង់" },
+  { icon: "/icon/a11.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ៣០​ ល្ងាច" }
 ]
 
 const timelineEventsEn = [
-  { icon: "/icon/ev2.png", title: "Guests gather for the gift procession", time: "06:30 AM" },
-  { icon: "/icon/ev9.png", title: "Gift procession enters the ceremonial hall", time: "07:00 AM" },
-  { icon: "/icon/ev3.png", title: "Guests invited to breakfast", time: "07:30 AM" },
-  { icon: "/icon/ev3.png", title: "Master of ceremonies and fruit presentation", time: "08:30 AM" },
-  { icon: "/icon/ev5.png", title: "Hair cutting ceremony", time: "09:00 AM" },
-  { icon: "/icon/ev6.png", title: "Curtain opening ceremony", time: "10:00 AM" },
-  { icon: "/icon/ev6.png", title: "Blessing, wrist-tying, and flower tossing", time: "11:00 AM" },
-  { icon: "/icon/ev7.png", title: "Guests invited to lunch", time: "12:00 PM" },
-  { icon: "/icon/ev8.png", title: "Evening reception and dinner", time: "05:30 PM" }
+  { icon: "/icon/a5.png", title: "Guests gather for the gift procession", time: "06:30 AM" },
+  { icon: "/icon/a6.png", title: "Gift procession enters the ceremonial hall", time: "07:00 AM" },
+  { icon: "/icon/a4.png", title: "Guests invited to breakfast", time: "07:30 AM" },
+  { icon: "/icon/a7.png", title: "Master of ceremonies and fruit presentation", time: "08:30 AM" },
+  { icon: "/icon/a8.png", title: "Hair cutting ceremony", time: "09:00 AM" },
+  { icon: "/icon/a9.png", title: "Curtain opening ceremony", time: "10:00 AM" },
+  { icon: "/icon/a10.png", title: "Blessing, wrist-tying, and flower tossing", time: "11:00 AM" },
+  { icon: "/icon/a4.png", title: "Guests invited to lunch", time: "12:00 PM" },
+  { icon: "/icon/a11.png", title: "Evening reception and dinner", time: "05:30 PM" }
 ]
 
 const timelineEvents = computed(() => (isEnglish.value ? timelineEventsEn : timelineEventsKm))
@@ -480,19 +480,19 @@ onMounted(() => {
         <div class="relative z-10 flex flex-col justify-center pt-20 items-center text-center">
           <div class="absolute inset-0  pointer-events-none"></div>
           <!-- <h1 class="text-2xl md:text-2xl font-moul leading-relaxed lg:text-4xl text-[#7B1F2A] text-center py-2"> -->
-          <h1 class="text-lg brown-text mt-10 sm:text-xl whitespace-nowrap font-moul m p-3 sm:p-4 rounded-lg"
-            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+          <h1 class="text-2xl brown-text mt-10 sm:text-xl whitespace-nowrap font-moul m p-3 sm:p-4 rounded-lg"
+            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
             {{ isEnglish ? 'The Wedding Day' : 'សិរីមង្គលអាពាហ៍ពិពាហ៍' }}
           </h1>
           <img src="/image/logo.png" alt="Ornament" class="w-50 mb-8" />
           <h3 class="text-lg md:text-xl mt-10 font-moul leading-relaxed lg:text-xl mb-4 brown-text text-center"
-            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
             {{ isEnglish ? 'Respectfully Invited' : 'សូមគោរពអញ្ជើញ' }}
           </h3>
           <div class="guest-name-tag mb-8">
             <img src="/image/name-tag.png" alt="" aria-hidden="true" class="guest-name-tag__bg" />
             <p class="guest-name-tag__text font-moul brown-text text-base"
-              :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+              :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
               {{ questName }}
             </p>
           </div>
@@ -501,7 +501,7 @@ onMounted(() => {
               brown-text text-lg
               hover:scale-105 transition-all duration-500 active:scale-95
               animate-pulse-blob" style="background-image: url('/icon/button-outline.png')" @click="openInvitation"
-            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
             {{ isEnglish ? 'Open Invitation' : 'បើកធៀប' }}
           </button>
 
@@ -511,17 +511,17 @@ onMounted(() => {
 
     <!-- Intro Video -->
     <section v-if="opened && step === 1" class="intro-video">
-      <video ref="introVideoRef" class="intro-video__player" src="/image/zoomvid.mp4" playsinline preload="auto"
+      <video ref="introVideoRef" class="intro-video__player" src="/image/intro.mp4" playsinline preload="auto"
         @timeupdate="handleIntroTimeUpdate" @ended="handleIntroEnded" @error="handleIntroEnded"></video>
       <div v-if="showIntroText" class="intro-video__text  intro-video__text--show">
         <img src="/image/logo.png" alt="Logo" class="intro-video__logo w-50" />
-        <span class="intro-video__text-line font-cinzel green-text text-2xl">Save the Date</span>
-        <span class="intro-video__text-line intro-video__text-title green-text font-cinzel">The wedding of</span>
-        <span class="intro-video__text-line intro-video__text-title green-text font-cinzel">Tyty and Roza</span>
-        <span class="intro-video__text-line font-cinzel green-text">Sunday, 15 March</span>
+        <span class="intro-video__text-line font-montserrat brown-text text-2xl">Save the Date</span>
+        <span class="intro-video__text-line intro-video__text-title brown-text font-montserrat">The wedding of</span>
+        <span class="intro-video__text-line intro-video__text-title brown-text font-montserrat">PECH and BOROMEY</span>
+        <span class="intro-video__text-line font-montserrat brown-text">SATURDAY, 25 APRIL</span>
       </div>
       <button type="button" class="intro-video__skip" @click="handleIntroEnded"
-        :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'nokora, serif' }">
+        :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'nokora, serif' }">
         {{ isEnglish ? 'Skip' : 'រំលង' }}
       </button>
     </section>
@@ -534,8 +534,8 @@ onMounted(() => {
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left-angle" aria-hidden="true" />
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right-angle" aria-hidden="true" />
-        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-left" aria-hidden="true" />
-        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" />
+        <!-- <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-left" aria-hidden="true" />
+        <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" /> -->
 
         <!-- Background -->
         <div class="fixed inset-0 z-0 bg-[#344125]">
@@ -565,7 +565,7 @@ onMounted(() => {
               <!-- <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none"></div> -->
               <h1 data-ref="mainTitle" :class="['brown-text text-lg md:text-xl mt-5 mb-8 font-moul leading-relaxed lg:text-xl text-center py-2 transition-all duration-1000 delay-100',
                 visibleElements.mainTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                 {{ isEnglish ? 'The Wedding Day' : 'សិរីមង្គលអាពាហ៍ពិពាហ៍' }}
               </h1>
 
@@ -623,11 +623,11 @@ onMounted(() => {
 
                 <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg leading-relaxed lg:text-lg mt-12 mb-4 text-center transition-all duration-1000 delay-400',
                   visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Respectfully Invited' : 'មានកិត្តិយសសូមគោរពអញ្ជើញ' }}
                 </h3>
 
-                <p v-if="isEnglish" data-ref="invitationText" :class="['brown-text font-nokora leading-loose mb-4 transition-all duration-1000 delay-500',
+                <p v-if="isEnglish" data-ref="invitationText" :class="['brown-text font-montserrat leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   We are honored to invite you to join us as respected guests and share your blessings on our wedding
                   ceremony.
@@ -642,14 +642,14 @@ onMounted(() => {
 
                 <div data-ref="coupleNames" :class="['grid grid-cols-2 gap-2 mb-5 font-moul leading-relaxed mt-10 text-center max-w-md transition-all duration-1000 delay-600',
                   visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   <p class="green-text font-moulpali">{{ isEnglish ? 'Groom' : 'កូនប្រុសនាម' }}</p>
                   <p class="green-text font-moulpali">{{ isEnglish ? 'Bride' : 'កូនស្រីនាម' }}</p>
                 </div>
 
                 <h2 data-ref="coupleNames" :class="['green-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-6 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Pech' : 'អាង ពេជ្រ' }}
                   <img src="/icon/brown-jeaku.png" alt="Logo" class="w-16" />
                   {{ isEnglish ? 'Boromey' : 'ប្រាជ្ញប្រកប សុទ្ធពេជ្របរមី' }}
@@ -657,7 +657,7 @@ onMounted(() => {
 
                 <div id="date-tab" data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
                   visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   <p class="brown-text text-xl md:text-2xl mb-3">
                     {{ isEnglish ? 'Saturday' : 'ថ្ងៃសៅរ៍ ៩កើត ខែពិសាខ' }}
                   </p>
@@ -673,7 +673,7 @@ onMounted(() => {
 
                 </div>
 
-                <p id="location-tab" v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-nokora leading-loose mb-4 transition-all duration-1000 delay-500',
+                <p id="location-tab" v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-montserrat leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   ON SATURDAY, APRIL 25, 2026
                   AT THE BRIDE’S HOUSE.
@@ -702,13 +702,13 @@ onMounted(() => {
                 </div>
                 <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg leading-relaxed lg:text-lg mt-4 mb-12 text-center transition-all duration-1000 delay-400',
                   visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Location' : 'ទីតាំងពីធី' }}
                 </h3>
                 <!-- <div class="countdown-section">
                   <h2 data-ref="timelineHeader" :class="['text-base leading-loose brown-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1200',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                    :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Countdown' : 'រាប់ថយក្រោយដល់ថ្ងៃពិធី' }}
                   </h2>
 
@@ -763,7 +763,7 @@ onMounted(() => {
                   <div class="absolute inset-0 flex flex-col justify-between items-center p-4 sm:p-6">
                     <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
                       timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                      :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                       {{ isEnglish ? 'Countdown to the Wedding Day' : 'រាប់ថយក្រោយដល់ថ្ងៃពិធី' }}
                     </h2>
 
@@ -774,7 +774,7 @@ onMounted(() => {
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.days }}</div>
                           <div
                             class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
-                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                             {{ isEnglish ? 'Days' : 'ថ្ងៃ' }}
                           </div>
                         </div>
@@ -783,7 +783,7 @@ onMounted(() => {
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.hours }}</div>
                           <div
                             class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
-                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                             {{ isEnglish ? 'Hours' : 'ម៉ោង' }}
                           </div>
                         </div>
@@ -792,7 +792,7 @@ onMounted(() => {
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.minutes }}</div>
                           <div
                             class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
-                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                             {{ isEnglish ? 'Minutes' : 'នាទី' }}
                           </div>
                         </div>
@@ -801,7 +801,7 @@ onMounted(() => {
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.seconds }}</div>
                           <div
                             class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
-                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                             {{ isEnglish ? 'Seconds' : 'វិនាទី' }}
                           </div>
                         </div>
@@ -815,13 +815,13 @@ onMounted(() => {
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <h2 data-ref="timelineHeader" :class="['green-text text-lg text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                    :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Wedding Ceremony' : 'កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍' }}
                   </h2>
                   <h2
                     :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                       timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                    :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសុក្រ ទី២៤ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
                   <div class="relative">
@@ -845,14 +845,14 @@ onMounted(() => {
                             {{ event.title }}
                           </p>
                           <p class="text-base green-text font-moul leading-normal"
-                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">{{ event.time }}</p>
+                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">{{ event.time }}</p>
                         </div>
                       </template>
                     </div>
                   </div>
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                    :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធីថ្ងៃទី២៖ ថ្ងៃសៅរ៍ ទី២៥ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
 
@@ -877,16 +877,16 @@ onMounted(() => {
                             {{ event.title }}
                           </p>
                           <p class="text-base green-text font-moul leading-normal"
-                            :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">{{ event.time }}</p>
+                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">{{ event.time }}</p>
                         </div>
                       </template>
                     </div>
                   </div>
                 </div>
 
-                <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
+                <!-- <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Dress Code ' : 'ពណ៌សម្លៀកបំពាក់' }}
                 </h2>
 
@@ -895,28 +895,28 @@ onMounted(() => {
                     <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
                       style="background-color: #b76e79;"></span>
                     <span class="brown-text text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Rose Gold</span>
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">Rose Gold</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
                     <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
                       style="background-color: #f4a7b9;"></span>
                     <span class="brown-text text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Pink</span>
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">Pink</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
                     <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
                       style="background-color: #9ca3af;"></span>
                     <span class="brown-text text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">Gray</span>
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">Gray</span>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- Gallery Section -->
                 <div id="gallery-tab" data-ref="gallerySection" :class="['relative mt-8 transition-all duration-1000 delay-1600',
                   visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                    :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Gallery ' : 'វិចិត្រសាល' }}
                   </h2>
 
@@ -954,7 +954,7 @@ onMounted(() => {
                 </div>
                 <!-- <h2 data-ref="galleryTitle" :class="['brown-text mt-5 text-lg sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'ABA KHQR' : 'ទទួលចំណងដៃ' }}
                 </h2>
                 <img src="/image/qr-aba-usd.jpg" alt="QR Code"
@@ -967,7 +967,7 @@ onMounted(() => {
 
                 <!-- <h2 data-ref="galleryTitle" :class="['brown-text text-lg mt-5 sm:text-xl text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1800',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Scan to view location' : 'ស្កេនមើលទីតាំងពិធី' }}
                 </h2>
                 <img src="/icon/qr-code.svg" alt="QR Code"
@@ -1024,11 +1024,11 @@ onMounted(() => {
 
                 <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg font-moul leading-relaxed lg:text-lg mb-4 text-center transition-all duration-1000 delay-400',
                   visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Thanks and Apology' : 'សេចក្ដីថ្លែងអំណរគុណ និងសូមអភ័យទោស' }}
                 </h3>
 
-                <p v-if="isEnglish" data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                <p v-if="isEnglish" data-ref="invitationText" :class="['brown-text font-montserrat leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   We deeply thank you for joining our ceremony. If there is any mistake in our invitation wording or
                   guest listing, we
@@ -1321,7 +1321,7 @@ onMounted(() => {
   color: #c49850;
   background: #c49850;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
-  font-family: "Cinzel Decorative", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .theab-footer__logo-img {
@@ -1348,7 +1348,7 @@ onMounted(() => {
   font-weight: 700;
   color: #c49850;
   letter-spacing: 0.04em;
-  font-family: "Cinzel", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .theab-footer__social {
@@ -1424,8 +1424,8 @@ onMounted(() => {
   transform: translateX(-50%);
   z-index: 45;
   display: flex;
-  gap: 0.4rem;
-  padding: 0.35rem;
+  gap: 1.2rem;
+  padding: 0.45rem 0.6rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.45);
   background: rgba(255, 255, 255, 0.2);
@@ -1435,10 +1435,10 @@ onMounted(() => {
 
 .tab-nav__btn {
   border: none;
-  width: 44px;
-  height: 34px;
+  width: 58px;
+  height: 42px;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #845ca4;
   background: transparent;
@@ -1473,7 +1473,7 @@ onMounted(() => {
 
 @media (max-width: 520px) {
   .tab-nav__btn {
-    width: 40px;
+    width: 48px;
   }
 }
 
@@ -1871,3 +1871,5 @@ onMounted(() => {
   }
 }
 </style>
+
+

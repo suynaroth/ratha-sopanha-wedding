@@ -2,8 +2,7 @@ export const config = {
   runtime: 'edge',
 }
 
-const BOT_UA_PATTERN =
-  /facebookexternalhit|facebot|twitterbot|slackbot|discordbot|telegrambot|linkedinbot|whatsapp|skypeuripreview|googlebot|bingbot|pinterest|vkshare/i
+const BOT_UA_PATTERN = /facebookexternalhit|facebot|meta-externalagent|meta-externalfetcher|twitterbot|slackbot|discordbot|telegrambot|linkedinbot|whatsapp|skypeuripreview|googlebot|bingbot/i
 
 const escapeHtml = (value = '') =>
   value
@@ -15,21 +14,18 @@ const escapeHtml = (value = '') =>
 
 export default function handler(req) {
   const currentUrl = new URL(req.url)
-  const guestName = currentUrl.searchParams.get('name') || 'Guest'
-  const userAgent = req.headers.get('user-agent') || ''
-  const isBot = BOT_UA_PATTERN.test(userAgent)
+  const guestName = (currentUrl.searchParams.get('name') || '').trim()
 
-  const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍'
-  const description = `ទីទី និង រ៉ូហ្សា  | ១៥ មីនា ២០២៦`
-  const image = `${currentUrl.origin}/image/meta.jpg`
-  const appUrl = `${currentUrl.origin}/?name=${encodeURIComponent(guestName)}`
+  const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍ | ពេជ្រ និង បរមី'
+  const description = '២៥ មេសា ២០២៦'
+  // Use a horizontal image (1200x630) for best results on Messenger
+  const image = `${currentUrl.origin}/icon/prewview.jpg`
+  const appUrl = guestName
+    ? `${currentUrl.origin}/?name=${encodeURIComponent(guestName)}`
+    : `${currentUrl.origin}/`
 
-  // Real users should open the app directly.
-  if (!isBot) {
-    return Response.redirect(appUrl, 302)
-  }
-
-  // Crawlers should receive stable OG metadata HTML.
+  // Always serve OG HTML so any crawler can read preview metadata.
+  // Real users are redirected client-side.
   return new Response(
     `<!DOCTYPE html>
 <html lang="en">
@@ -38,25 +34,39 @@ export default function handler(req) {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(title)}</title>
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Theab Studio" />
-  <meta property="og:url" content="${escapeHtml(currentUrl.href)}" />
-  <meta property="og:title" content="${escapeHtml(title)}" />
-  <meta property="og:description" content="${escapeHtml(description)}" />
-  <meta property="og:image" content="${escapeHtml(image)}" />
-  <meta property="og:image:type" content="image/png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${escapeHtml(title)}" />
-  <meta name="twitter:description" content="${escapeHtml(description)}" />
-  <meta name="twitter:image" content="${escapeHtml(image)}" />
+<meta property="og:site_name" content="Theab Studio" />
+<meta property="og:url" content="${escapeHtml(currentUrl.href)}" />
+<meta property="og:title" content="${escapeHtml(title)}" />
+<meta property="og:description" content="${escapeHtml(description)}" />
+<meta property="og:image" content="${escapeHtml(image)}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="fb:app_id" content="2349312748908424" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${escapeHtml(title)}" />
+<meta name="twitter:description" content="${escapeHtml(description)}" />
+<meta name="twitter:image" content="${escapeHtml(image)}" />
+<script>
+  (function () {
+    var ua = navigator.userAgent || '';
+    if (!${BOT_UA_PATTERN}.test(ua)) {
+      window.location.replace(${JSON.stringify(appUrl)});
+    }
+  })();
+</script>
 </head>
 <body>
-  <a href="${escapeHtml(appUrl)}">Open invitation</a>
+  <main style="font-family:Arial,sans-serif;padding:24px;text-align:center">
+    <p>Opening invitation...</p>
+    <p><a href="${escapeHtml(appUrl)}">Open invitation</a></p>
+  </main>
 </body>
 </html>`,
     {
       headers: {
         'content-type': 'text/html; charset=UTF-8',
-        'cache-control': 'public, max-age=0, s-maxage=600',
+        'cache-control': 'no-store, max-age=0',
       },
     }
   )
