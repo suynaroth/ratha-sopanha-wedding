@@ -42,8 +42,18 @@ const rsvpMessage = ref('')
 const locale = ref('km')
 const isEnglish = computed(() => locale.value === 'en')
 
+const activeTab = ref('date')
+
 const switchLocale = (nextLocale) => {
   locale.value = nextLocale
+}
+
+const scrollToSection = (id, tabKey) => {
+  activeTab.value = tabKey
+  const target = document.getElementById(id)
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 }
 
 const toKhmerDigits = (value) => {
@@ -56,7 +66,7 @@ const formatCountdownNumber = (value) => {
 }
 
 const telegramRsvpUrl = computed(() => {
-  const base = 'https://t.me/RozaOfficially'
+  const base = 'https://t.me/'
   const statusText = rsvpStatus.value === 'yes'
     ? (isEnglish.value ? 'Can join' : 'អាចចូលរួម')
     : (isEnglish.value ? 'Cannot join' : 'មិនអាចចូលរួម')
@@ -129,6 +139,37 @@ const timelineEventsEn = [
 const timelineEvents = computed(() => (isEnglish.value ? timelineEventsEn : timelineEventsKm))
 const timelineEventsfday = computed(() =>  timelineEventsFD)
 
+const butterflies = ref([])
+
+const randomBetween = (min, max) => Math.random() * (max - min) + min
+
+const createButterfly = (id) => {
+  const duration = randomBetween(11.5, 18.5)
+  return {
+    id,
+    style: {
+      '--start-x': `${randomBetween(0, 100).toFixed(2)}vw`,
+      '--start-y': `${randomBetween(0, 100).toFixed(2)}vh`,
+      '--dx-mid': `${randomBetween(-30, 30).toFixed(2)}vw`,
+      '--dy-mid': `${randomBetween(-30, 30).toFixed(2)}vh`,
+      '--dx-end': `${randomBetween(-38, 38).toFixed(2)}vw`,
+      '--dy-end': `${randomBetween(-38, 38).toFixed(2)}vh`,
+      '--fly-duration': `${duration.toFixed(2)}s`,
+      '--fly-delay': `${(-randomBetween(0, duration)).toFixed(2)}s`,
+      '--rot-a': `${randomBetween(-22, 22).toFixed(1)}deg`,
+      '--rot-b': `${randomBetween(-22, 22).toFixed(1)}deg`,
+      '--rot-c': `${randomBetween(-22, 22).toFixed(1)}deg`,
+      '--size': `${randomBetween(24, 44).toFixed(0)}px`,
+      '--flap-duration': `${randomBetween(0.9, 1.55).toFixed(2)}s`,
+      opacity: randomBetween(0.55, 0.9).toFixed(2)
+    }
+  }
+}
+
+const generateButterflies = () => {
+  butterflies.value = Array.from({ length: 24 }, (_, index) => createButterfly(index + 1))
+}
+
 // Computed
 const getGalleryItemClass = (index) => {
   // 2-1-2-1 pattern: two half-width cards, then one full-width card.
@@ -138,8 +179,7 @@ const getGalleryItemClass = (index) => {
 // Methods
 const startMainInvitation = () => {
   step.value = 2
-  audio.value = new Audio('/songs/song.mp3')
-  audio.value.play().catch(err => console.log('Audio play failed:', err))
+  playBackgroundMusic()
 
   // Ensure DOM is ready before setting up observers
   setTimeout(() => {
@@ -278,15 +318,55 @@ const setupScrollObservers = () => {
   }, 100)
 }
 
+const ensureAudioReady = () => {
+  if (audio.value) return
+  const player = new Audio('/songs/song.mp3')
+  player.loop = true
+  player.preload = 'auto'
+  audio.value = player
+}
+
+const playBackgroundMusic = () => {
+  ensureAudioReady()
+  audio.value
+    ?.play()
+    .catch(err => console.log('Audio play failed:', err))
+}
+
+const setupLandingAudioAutoplay = () => {
+  const tryPlay = () => {
+    if (!opened.value) {
+      playBackgroundMusic()
+    }
+  }
+
+  const unlockOnInteraction = () => {
+    tryPlay()
+    if (audio.value && !audio.value.paused) {
+      window.removeEventListener('pointerdown', unlockOnInteraction)
+      window.removeEventListener('keydown', unlockOnInteraction)
+      window.removeEventListener('touchstart', unlockOnInteraction)
+    }
+  }
+
+  tryPlay()
+  window.addEventListener('pointerdown', unlockOnInteraction, { passive: true })
+  window.addEventListener('keydown', unlockOnInteraction)
+  window.addEventListener('touchstart', unlockOnInteraction, { passive: true })
+}
+
 // Lifecycle
 onMounted(() => {
+  generateButterflies()
+  setupLandingAudioAutoplay()
+
   const urlParams = new URLSearchParams(window.location.search)
   const nameParam = urlParams.get('name')
   if (nameParam) {
     questName.value = decodeURIComponent(nameParam)
   }
 
-  const targetDate = new Date('2026-03-15T06:00:00')
+  const targetDate = new Date('2026-04-25T06:00:00')
 
   const updateCountdown = () => {
     const now = new Date()
@@ -331,11 +411,66 @@ onMounted(() => {
         @click="switchLocale('en')">EN</button>
     </div>
 
+    <nav v-if="opened && step === 2" class="tab-nav" aria-label="Section navigation">
+      <button
+        type="button"
+        class="tab-nav__btn"
+        :class="{ 'is-active': activeTab === 'date' }"
+        @click="scrollToSection('date-tab', 'date')"
+        aria-label="Date"
+        title="Date"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="tab-nav__icon">
+          <path fill="currentColor" d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm12 8H5v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9Zm-9 3h4a1 1 0 1 1 0 2h-4a1 1 0 1 1 0-2Z"/>
+        </svg>
+        <span class="sr-only">{{ isEnglish ? 'Date' : 'កាលបរិច្ឆេទ' }}</span>
+      </button>
+      <button
+        type="button"
+        class="tab-nav__btn"
+        :class="{ 'is-active': activeTab === 'location' }"
+        @click="scrollToSection('location-tab', 'location')"
+        aria-label="Location"
+        title="Location"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="tab-nav__icon">
+          <path fill="currentColor" d="M12 2a7 7 0 0 1 7 7c0 5.2-7 13-7 13S5 14.2 5 9a7 7 0 0 1 7-7Zm0 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+        </svg>
+        <span class="sr-only">{{ isEnglish ? 'Location' : 'ទីតាំង' }}</span>
+      </button>
+      <button
+        type="button"
+        class="tab-nav__btn"
+        :class="{ 'is-active': activeTab === 'gallery' }"
+        @click="scrollToSection('gallery-tab', 'gallery')"
+        aria-label="Gallery"
+        title="Gallery"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="tab-nav__icon">
+          <path fill="currentColor" d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5Zm3-1a1 1 0 0 0-1 1v9.8l3.3-3.3a1 1 0 0 1 1.4 0l3.3 3.3 2.3-2.3a1 1 0 0 1 1.4 0L18 15V5a1 1 0 0 0-1-1H7Zm2.2 5.2a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2Z"/>
+        </svg>
+        <span class="sr-only">{{ isEnglish ? 'Gallery' : 'វិចិត្រសាល' }}</span>
+      </button>
+      <button
+        type="button"
+        class="tab-nav__btn"
+        :class="{ 'is-active': activeTab === 'message' }"
+        @click="scrollToSection('message-tab', 'message')"
+        aria-label="Message"
+        title="Message"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="tab-nav__icon">
+          <path fill="currentColor" d="M5 4h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H9l-4 3v-3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm0 2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2v2.1L9.6 16H19a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5Z"/>
+        </svg>
+        <span class="sr-only">{{ isEnglish ? 'Message' : 'សារ' }}</span>
+      </button>
+    </nav>
+
     <!-- Landing Section -->
     <section v-if="!opened" class="landing">
       <div class="min-h-screen w-full flex flex-col bg-[#fbf7f0] justify-start px-4">
         <div class="fixed inset-0 z-0">
-          <img src="/image/frame-cover.jpg" class="w-full h-full object-contain" alt="Background" />
+          <img src="/image/pattern.jpg" class="w-full h-full object-contain" alt="Background" />
           <!-- Floral overlays -->
           <!-- <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
@@ -349,14 +484,8 @@ onMounted(() => {
         </div>
         <!-- Butterflies (behind content) -->
         <div class="butterfly-layer" aria-hidden="true">
-          <span class="butterfly butterfly--1"></span>
-          <span class="butterfly butterfly--2"></span>
-          <span class="butterfly butterfly--3"></span>
-          <span class="butterfly butterfly--4"></span>
-          <span class="butterfly butterfly--5"></span>
-          <span class="butterfly butterfly--6"></span>
-          <span class="butterfly butterfly--7"></span>
-          <span class="butterfly butterfly--8"></span>
+          <span v-for="butterfly in butterflies" :key="`landing-${butterfly.id}`" class="butterfly"
+            :style="butterfly.style"></span>
         </div>
 
         <div class="relative z-10 flex flex-col justify-center pt-20 items-center text-center">
@@ -437,14 +566,8 @@ onMounted(() => {
 
         <!-- Butterflies (behind content) -->
         <div class="butterfly-layer" aria-hidden="true">
-          <span class="butterfly butterfly--1"></span>
-          <span class="butterfly butterfly--2"></span>
-          <span class="butterfly butterfly--3"></span>
-          <span class="butterfly butterfly--4"></span>
-          <span class="butterfly butterfly--5"></span>
-          <span class="butterfly butterfly--6"></span>
-          <span class="butterfly butterfly--7"></span>
-          <span class="butterfly butterfly--8"></span>
+          <span v-for="butterfly in butterflies" :key="`landing-${butterfly.id}`" class="butterfly"
+            :style="butterfly.style"></span>
         </div>
 
         <!-- Content -->
@@ -490,26 +613,26 @@ onMounted(() => {
                 </div>
               </div>
 
-              <div v-else data-ref="parentsNames" :class="['brown-text text-sm whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
+              <div v-else data-ref="parentsNames" :class="['green-text text-sm whitespace-nowrap grid grid-cols-2 gap-2 font-moul leading-relaxed mb-4 text-center max-w-md transition-all duration-1000 delay-200',
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>ង៉ែត ធាង</span>
+                    <span>ទេព សំអាង</span>
                   </div>
                   <div>
-                    <span class="font-metal">អ្នកស្រី </span>
-                    <span class="text-sm">កេ គីម</span>
+                    <span class="font-metal">លោកស្រី </span>
+                    <span class="text-sm">នី វួចសេង</span>
                   </div>
                 </div>
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>ឱម ប៊ុនចាន់រដ្ឋ</span>
+                    <span>ចាន់ ប្រកប</span>
                   </div>
                   <div>
-                    <span class="font-metal">អ្នកស្រី </span>
-                    <span class="text-sm">កែវ កេសរ</span>
+                    <span class="font-metal">លោកស្រី </span>
+                    <span class="text-sm">ស៉ិន វ៉ាន់ថា</span>
                   </div>
                 </div>
               </div>
@@ -529,7 +652,7 @@ onMounted(() => {
                   ceremony.
                 </p>
 
-                <p v-else data-ref="invitationText" :class="['green-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
+                <p v-else data-ref="invitationText" :class="['brown-text font-metal leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.invitationText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   សម្តេច ឯកឧត្តម លោកជំទាវ លោកអ្នកឧកញ៉ា អ្នកឧកញ៉ា ឧកញ៉ា លោក លោកស្រី អ្នកនាង កញ្ញា អញ្ជើញចូលរួមជាអធិបតី
                   និងជាភ្ញៀវកិត្តិយសដើម្បីប្រសិទ្ធិពរជ័យ សិរីសួស្តីជ័យមង្គលក្នុងកម្មវិធីរៀបមង្គលអាពាហ៍ពិពាហ៍
@@ -539,110 +662,97 @@ onMounted(() => {
                 <div data-ref="coupleNames" :class="['grid grid-cols-2 gap-2 mb-5 font-moul leading-relaxed mt-10 text-center max-w-md transition-all duration-1000 delay-600',
                   visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                  <p class="brown-text font-moulpali">{{ isEnglish ? 'Groom' : 'កូនប្រុសនាម' }}</p>
-                  <p class="brown-text font-moulpali">{{ isEnglish ? 'Bride' : 'កូនស្រីនាម' }}</p>
+                  <p class="green-text font-moulpali">{{ isEnglish ? 'Groom' : 'កូនប្រុសនាម' }}</p>
+                  <p class="green-text font-moulpali">{{ isEnglish ? 'Bride' : 'កូនស្រីនាម' }}</p>
                 </div>
 
-                <h2 data-ref="coupleNames" :class="['brown-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-6 transition-all duration-1000 delay-700',
+                <h2 data-ref="coupleNames" :class="['green-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-6 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                  {{ isEnglish ? 'TEAV Houy Tyty' : 'ទាវ ហួយ ទីទី' }}
+                  {{ isEnglish ? 'Pech' : 'អាង ពេជ្រ' }}
                   <img src="/icon/brown-jeaku.png" alt="Logo" class="w-16" />
-                  {{ isEnglish ? 'OM Roza' : 'ឱម រ៉ូហ្សា' }}
+                  {{ isEnglish ? 'Boromey' : 'ប្រាជ្ញប្រកប សុទ្ធពេជ្របរមី' }}
                 </h2>
 
-                <div data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
+                <div id="date-tab" data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
                   visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
                   <p class="brown-text text-xl md:text-2xl mb-3">
-                    {{ isEnglish ? 'Sunday' : 'ថ្ងៃអាទិត្យ ១២រោច ខែផល្គុន' }}
+                    {{ isEnglish ? 'Saturday' : 'ថ្ងៃសៅរ៍ ៩កើត ខែពិសាខ' }}
                   </p>
-                  <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
-                  <p class="brown-text text-5xl md:text-6xl">
-                    {{ isEnglish ? '15' : '១៥' }}
+                  <div class="w-32 h-1 bg-[#737577]/60 mx-auto mt-5 mb-5"></div>
+                  <p class="green-text text-5xl md:text-6xl">
+                    {{ isEnglish ? '25' : '២៥' }}
                   </p>
-                  <div class="w-32 h-1 bg-[#c49850]/60 mx-auto mt-5 mb-5"></div>
+                  <div class="w-32 h-1 bg-[#737577]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-2xl md:text-3xl mb-10">
-                    {{ isEnglish ? 'March 2026' : 'មីនា ២០២៦' }}
+                    {{ isEnglish ? 'APRIL 2026' : 'មេសា ២០២៦' }}
                   </p>
 
 
                 </div>
 
-                <!-- <div class="relative w-full max-w-md p-6
-                 bg-[#c49850]
-                 rounded-3xl md:rounded-[2.5rem]
-                 border-4 border-white shadow-2xl
-                 flex flex-col overflow-hidden"> -->
-                <!-- <p data-ref="dateInfo" :class="['green-text font-metal leading-loose transition-all duration-1000 delay-900',
-                  visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  នៅថ្ងៃព្រហស្បតិ៍ ៩រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩ ត្រូវនឹងថ្ងៃទី ១២
-                  ខែមីនា
-                  ឆ្នាំ ២០២៦
-                </p> -->
-
-
-                <p v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-nokora leading-loose mb-4 transition-all duration-1000 delay-500',
+                <p id="location-tab" v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-nokora leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  Sunday, March 15, 2026 at 5:00 PM
-                  AT THE OUR’S HOUSE.#L17.
-                  ST BETONG. SANGKAT KANTOUK,
-                  KHAN KOMBOL, PHNOM PENH.
+                  ON SATURDAY, APRIL 25, 2026
+                  AT THE BRIDE’S HOUSE.
+                  PHUMI MOUY, SANGKAT KAMPONG LEAV, KRONG PREY VENG, PREY VENG PROVINCE.
                   (PLEASE SEE MAP) THANK YOU!
                 </p>
 
-                <p v-else data-ref="locationInfo" :class="['text-base tracking-wider green-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
+                <p id="location-tab" v-else data-ref="locationInfo" :class="['text-base tracking-wider brown-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <span class="font-metal">នៅថ្ងៃអាទិត្យ ១២រោច ខែផល្គុន ឆ្នាំម្សាញ់ សប្តស័ក ពុទ្ធសករាជ ២៥៦៩
-                    ត្រូវនឹងថ្ងៃទី ១៥
-                    ខែមីនា
+                  <span class="font-metal">នៅថ្ងៃសៅរ៍ ៩កើត ខែពិសាខ ឆ្នាំមមី អដ្ឋស័ក ពុទ្ធសករាជ ២៥៦៩
+                    ត្រូវនឹងថ្ងៃទី ២៥
+                    ខែមេសា
                     ឆ្នាំ ២០២៦</span>
                   <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
-                  <span class="">បុរីរំចេក អូឌឹម</span>
-                  <span class="font-metal"> ផ្ទះលេខ L17 ផ្លូវបេតុង ភូមិកន្ទាកជើង សង្គាត់កន្ទោក ខណ្ឌកំបូល
-                    រាជធានីភ្នំពេញ។</span>
+                  <span class="">គេហដ្ឋានខាងស្រី</span>
+                  <span class="font-metal"> ភូមិ១ សង្កាត់កំពង់លាវ ក្រុងព្រៃវែង ខេត្តព្រៃវែង។</span>
                   <span class="font-metal"> ដោយមេត្រីភាព! </span>
                 </p>
-                <!-- <div
+                <div
                     class="w-full overflow-hidden rounded-2xl border border-white/40 shadow-lg transition-all duration-1000 delay-1100"
                     :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3906.697880214546!2d104.88279527584474!3d11.599669143468102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109522e1adbf683%3A0x3f4395cd35ec9617!2sAEON%20Mall%20Sen%20Sok%20City!5e0!3m2!1sen!2skh!4v1770492834601!5m2!1sen!2skh"
                       class="w-full h-60 md:h-72" style="border:0;" allowfullscreen="" loading="lazy"
                       referrerpolicy="no-referrer-when-downgrade"></iframe>
-                  </div> -->
-                <h2 data-ref="timelineHeader" :class="['text-base leading-loose brown-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1200',
-                  timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                  :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
-                  {{ isEnglish ? 'Countdown' : 'រាប់ថយក្រោយដល់ថ្ងៃពិធី' }}
-                </h2>
+                  </div>
+                <!-- <div class="countdown-section">
+                  <h2 data-ref="timelineHeader" :class="['text-base leading-loose brown-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1200',
+                    timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                    :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                    {{ isEnglish ? 'Countdown' : 'រាប់ថយក្រោយដល់ថ្ងៃពិធី' }}
+                  </h2>
 
-                <div class="w-full flex justify-center">
-                  <div class="grid grid-cols-4 gap-2 sm:gap-3">
-                    <div class="min-w-20 sm:min-w-20 text-center ">
-                      <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.days }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">
-                        {{ isEnglish ? 'Days' : 'ថ្ងៃ' }}
+                  <div class="countdown-section__grid w-full flex justify-center">
+                    <div class="grid grid-cols-4 gap-2 sm:gap-3">
+                      <div class="min-w-20 sm:min-w-20 text-center ">
+                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.days }}</div>
+                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">
+                          {{ isEnglish ? 'Days' : 'ថ្ងៃ' }}
+                        </div>
+                      </div>
+                      <div class="min-w-20 sm:min-w-20 text-center ">
+                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.hours }}</div>
+                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Hours' :
+                          'ម៉ោង' }}</div>
+                      </div>
+                      <div class="min-w-20 sm:min-w-20 text-center ">
+                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.minutes }}</div>
+                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Minutes'
+                          : 'នាទី' }}</div>
+                      </div>
+                      <div class="min-w-20 sm:min-w-20 text-center ">
+                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.seconds }}</div>
+                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Seconds'
+                          : 'វិនាទី' }}</div>
                       </div>
                     </div>
-                    <div class="min-w-20 sm:min-w-20 text-center ">
-                      <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.hours }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Hours' :
-                        'ម៉ោង' }}</div>
-                    </div>
-                    <div class="min-w-20 sm:min-w-20 text-center ">
-                      <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.minutes }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Minutes'
-                        : 'នាទី' }}</div>
-                    </div>
-                    <div class="min-w-20 sm:min-w-20 text-center ">
-                      <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.seconds }}</div>
-                      <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Seconds'
-                        : 'វិនាទី' }}</div>
-                    </div>
                   </div>
-                </div>
 
+                </div> -->
                 <!-- </div> -->
 
 
@@ -659,15 +769,16 @@ onMounted(() => {
                   </button>
                 </div> -->
 
-                <!-- <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
+                <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <img src="/image/e1.JPG" alt="Ornament"
+                  <img src="/image/p10.jpg" alt="Ornament"
                     class="w-full h-full object-cover -mt-5 bg-transparent rounded-2xl" />
 
                   <div class="absolute inset-0 flex flex-col justify-between items-center p-4 sm:p-6">
                     <h2 data-ref="timelineHeader" :class="['text-base leading-loose dust-white-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000',
-                      timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                      រាប់ថយក្រោយដល់ពិធីមង្គលអាពាហ៍ពិពាហ៍
+                      timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                      :style="{ fontFamily: isEnglish ? 'Cinzel, serif' : 'Moul, serif' }">
+                      {{ isEnglish ? 'Countdown to the Wedding Day' : 'រាប់ថយក្រោយដល់ថ្ងៃពិធី' }}
                     </h2>
 
                     <div class="w-full flex justify-center">
@@ -695,10 +806,10 @@ onMounted(() => {
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
 
                 <!-- Timeline Section -->
-                <!-- <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1300',
+                <div data-ref="timelineSection" :class="['p-6 sm:p-8 md:p-12 bg-transparent transition-all duration-1000 delay-1300',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <h2 data-ref="timelineHeader" :class="['brown-text text-md text-center whitespace-nowrap font-moul bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1400',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -767,7 +878,7 @@ onMounted(() => {
                       </template>
                     </div>
                   </div>
-                </div> -->
+                </div>
 
                 <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -791,7 +902,7 @@ onMounted(() => {
                 </div>
 
                 <!-- Gallery Section -->
-                <div data-ref="gallerySection" :class="['relative mt-8 transition-all duration-1000 delay-1600',
+                <div id="gallery-tab" data-ref="gallerySection" :class="['relative mt-8 transition-all duration-1000 delay-1600',
                   visibleElements.gallerySection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                     galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -857,7 +968,7 @@ onMounted(() => {
                   SOKHENG AND KIMSRY
                 </h2> -->
                 <!-- RSVP Section -->
-                <div class="mt-8 p-5 bg-white/10 rounded-2xl border border-white/20 text-left">
+                <div id="message-tab" class="mt-8 p-5 bg-white/10 rounded-2xl border border-white/20 text-left">
                   <h3 class="brown-text text-lg font-sans font-extrabold text-center mb-3"
                     :style="isEnglish ? '' : 'font-family: Nokora, sans-serif'">{{ isEnglish ? 'RSVP' :
                       'បញ្ជាក់ការចូលរួម'
@@ -987,11 +1098,11 @@ onMounted(() => {
 }
 
 .brown-text {
-  color: #b88c4f;
+  color: #845ca4;
 }
 
 .green-text {
-  color: #344125;
+  color: #737577;
 }
 
 .guest-name-tag {
@@ -1029,6 +1140,28 @@ onMounted(() => {
   */
   filter:
     drop-shadow(0 2px 2px rgba(0, 0, 0, 0.8))
+}
+
+.countdown-section {
+  margin-top: 1.25rem;
+  padding: 1.5rem 1rem;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background-image: url("/image/p10.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+  min-height: clamp(240px, 38vw, 360px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.countdown-section__grid {
+  margin-top: auto;
+  padding-bottom: 0.75rem;
 }
 
 .fade-enter-active,
@@ -1269,6 +1402,71 @@ onMounted(() => {
   color: #fff;
 }
 
+:global(html),
+:global(body) {
+  scroll-behavior: smooth;
+}
+
+.tab-nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 45;
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.tab-nav__btn {
+  border: none;
+  width: 44px;
+  height: 34px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #7B1F2A;
+  background: transparent;
+  cursor: pointer;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  display: grid;
+  place-items: center;
+}
+
+.tab-nav__btn.is-active {
+  background: #7B1F2A;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.tab-nav__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 520px) {
+  .tab-nav__btn {
+    width: 40px;
+  }
+}
+
 .custom-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -1288,21 +1486,24 @@ onMounted(() => {
 
 .butterfly {
   position: absolute;
-  width: 36px;
-  height: 28px;
-  opacity: 0.7;
-  animation: butterfly-fly 18s linear infinite;
+  width: var(--size, 34px);
+  height: calc(var(--size, 34px) * 0.78);
+  top: var(--start-y, 50vh);
+  left: var(--start-x, 50vw);
+  opacity: 0.72;
+  animation: butterfly-fly var(--fly-duration, 11s) ease-in-out var(--fly-delay, 0s) infinite alternate;
+  will-change: transform;
 }
 
 .butterfly::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Cpath fill='%23ffd37a' d='M32 24c-3-6-10-14-20-14C5 10 1 17 4 23c3 7 12 8 19 7-2 7-1 15 9 15s11-8 9-15c7 1 16 0 19-7 3-6-1-13-8-13-10 0-17 8-20 14z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 90'%3E%3Cdefs%3E%3ClinearGradient id='wingMain' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='52%25' stop-color='%23ffd9e9'/%3E%3Cstop offset='100%25' stop-color='%23f3a4c6'/%3E%3C/linearGradient%3E%3ClinearGradient id='wingSoft' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%23ffffff' stop-opacity='0.95'/%3E%3Cstop offset='100%25' stop-color='%23ffc6dd' stop-opacity='0.9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M60 40 C53 26 37 15 18 19 C10 21 7 30 12 37 C17 44 30 47 44 44 C35 50 31 63 39 70 C45 75 53 73 58 63 Z' fill='url(%23wingMain)' stroke='%23d981ab' stroke-width='1.3'/%3E%3Cpath d='M60 40 C67 26 83 15 102 19 C110 21 113 30 108 37 C103 44 90 47 76 44 C85 50 89 63 81 70 C75 75 67 73 62 63 Z' fill='url(%23wingMain)' stroke='%23d981ab' stroke-width='1.3'/%3E%3Cpath d='M58 41 C48 34 34 30 22 34 C17 36 16 42 20 46 C25 50 36 50 46 45 Z' fill='url(%23wingSoft)' opacity='0.72'/%3E%3Cpath d='M62 41 C72 34 86 30 98 34 C103 36 104 42 100 46 C95 50 84 50 74 45 Z' fill='url(%23wingSoft)' opacity='0.72'/%3E%3Cpath d='M60 33 C56 24 49 17 42 16' stroke='%238a4a6e' stroke-width='2.2'/%3E%3Cpath d='M60 33 C64 24 71 17 78 16' stroke='%238a4a6e' stroke-width='2.2'/%3E%3Cpath d='M60 32 C57 41 57 53 60 68 C63 53 63 41 60 32 Z' fill='%238a4a6e'/%3E%3Ccircle cx='60' cy='30' r='2.7' fill='%238a4a6e'/%3E%3Cpath d='M58 30 C53 22 47 19 42 20' stroke='%238a4a6e' stroke-width='1.9'/%3E%3Cpath d='M62 30 C67 22 73 19 78 20' stroke='%238a4a6e' stroke-width='1.9'/%3E%3Ccircle cx='33' cy='28' r='1.2' fill='%23fff' opacity='0.78'/%3E%3Ccircle cx='87' cy='28' r='1.2' fill='%23fff' opacity='0.78'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-size: contain;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
-  animation: butterfly-flap 1.3s ease-in-out infinite;
+  animation: butterfly-flap var(--flap-duration, 1.3s) ease-in-out infinite;
 }
 
 @keyframes butterfly-flap {
@@ -1319,71 +1520,16 @@ onMounted(() => {
 
 @keyframes butterfly-fly {
   0% {
-    transform: translate(-10vw, 10vh) rotate(5deg);
+    transform: translate3d(0, 0, 0) rotate(var(--rot-a, -8deg));
   }
 
   50% {
-    transform: translate(55vw, -10vh) rotate(-8deg);
+    transform: translate3d(var(--dx-mid, 8vw), var(--dy-mid, -10vh), 0) rotate(var(--rot-b, 5deg));
   }
 
   100% {
-    transform: translate(110vw, 15vh) rotate(10deg);
+    transform: translate3d(var(--dx-end, -10vw), var(--dy-end, 14vh), 0) rotate(var(--rot-c, -10deg));
   }
-}
-
-.butterfly--1 {
-  top: 15vh;
-  left: -10vw;
-  animation-duration: 16s;
-}
-
-.butterfly--2 {
-  top: 35vh;
-  left: -25vw;
-  animation-duration: 20s;
-  animation-delay: -4s;
-}
-
-.butterfly--3 {
-  top: 60vh;
-  left: -20vw;
-  animation-duration: 22s;
-  animation-delay: -8s;
-}
-
-.butterfly--4 {
-  top: 75vh;
-  left: -35vw;
-  animation-duration: 18s;
-  animation-delay: -2s;
-}
-
-.butterfly--5 {
-  top: 10vh;
-  left: -40vw;
-  animation-duration: 24s;
-  animation-delay: -10s;
-}
-
-.butterfly--6 {
-  top: 45vh;
-  left: -30vw;
-  animation-duration: 19s;
-  animation-delay: -6s;
-}
-
-.butterfly--7 {
-  top: 70vh;
-  left: -15vw;
-  animation-duration: 21s;
-  animation-delay: -12s;
-}
-
-.butterfly--8 {
-  top: 25vh;
-  left: -50vw;
-  animation-duration: 23s;
-  animation-delay: -14s;
 }
 
 .floral-overlay {
@@ -1588,6 +1734,7 @@ onMounted(() => {
 .invitation {
   min-height: 100vh;
   overflow-x: hidden;
+  padding-bottom: 96px;
 }
 
 .intro-video {
