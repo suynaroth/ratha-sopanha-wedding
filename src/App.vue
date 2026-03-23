@@ -88,6 +88,8 @@ const openMap = () => {
   window.open('https://maps.app.goo.gl/dG6MqsvsTbBiemTZ9?g_st=ic', '_blank')
 }
 
+const videoId = 'QP1gv5R5PLg'
+
 const images = [
   { id: 1, url: '/image/p1.jpg', alt: 'Image 1' },
   { id: 2, url: '/image/p2.jpg', alt: 'Image 2' },
@@ -765,8 +767,7 @@ onMounted(() => {
                         <div
                           class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.days }}</div>
-                          <div
-                            class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
+                          <div class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
                             :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                             {{ isEnglish ? 'Days' : 'ថ្ងៃ' }}
                           </div>
@@ -774,8 +775,7 @@ onMounted(() => {
                         <div
                           class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.hours }}</div>
-                          <div
-                            class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
+                          <div class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
                             :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                             {{ isEnglish ? 'Hours' : 'ម៉ោង' }}
                           </div>
@@ -783,8 +783,7 @@ onMounted(() => {
                         <div
                           class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.minutes }}</div>
-                          <div
-                            class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
+                          <div class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
                             :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                             {{ isEnglish ? 'Minutes' : 'នាទី' }}
                           </div>
@@ -792,8 +791,7 @@ onMounted(() => {
                         <div
                           class="min-w-14 sm:min-w-16 text-center rounded-xl bg-white/15 border border-white/30 px-3 py-2 backdrop-blur-sm">
                           <div class="text-lg sm:text-xl font-moul dust-white-text">{{ countdown.seconds }}</div>
-                          <div
-                            class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
+                          <div class="text-[12px] sm:text-xs font-nokora brown-text tracking-wide"
                             :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                             {{ isEnglish ? 'Seconds' : 'វិនាទី' }}
                           </div>
@@ -811,9 +809,8 @@ onMounted(() => {
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Wedding Ceremony' : 'កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍' }}
                   </h2>
-                  <h2
-                    :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
-                      timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                  <h2 :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
+                    timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសុក្រ ទី២៤ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
@@ -838,7 +835,8 @@ onMounted(() => {
                             {{ event.title }}
                           </p>
                           <p class="text-base green-text font-moul leading-normal"
-                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">{{ event.time }}</p>
+                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">{{ event.time
+                            }}</p>
                         </div>
                       </template>
                     </div>
@@ -870,7 +868,8 @@ onMounted(() => {
                             {{ event.title }}
                           </p>
                           <p class="text-base green-text font-moul leading-normal"
-                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">{{ event.time }}</p>
+                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">{{ event.time
+                            }}</p>
                         </div>
                       </template>
                     </div>
@@ -892,12 +891,14 @@ onMounted(() => {
                   <div class="flex flex-col items-center gap-1">
                     <i class="fa-solid fa-shirt dress-icon" style="color: #2C106A;" aria-hidden="true"></i>
                     <span class="text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat , serif', color: '#2C106A' }">Purple Indigo</span>
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat , serif', color: '#2C106A' }">Purple
+                      Indigo</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
                     <i class="fa-solid fa-shirt dress-icon" style="color: #BBA14F;" aria-hidden="true"></i>
                     <span class="text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif', color: '#BBA14F' }">Dull Gold</span>
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif', color: '#BBA14F' }">Dull
+                      Gold</span>
                   </div>
                 </div>
 
@@ -910,16 +911,14 @@ onMounted(() => {
                     {{ isEnglish ? 'Gallery ' : 'វិចិត្រសាល' }}
                   </h2>
 
-                  <!-- <video
-                    class="w-full rounded-lg shadow-lg mb-4"
-                    src="/image/Kunhuy.mp4"
-                    autoplay
-                    muted
-                    loop
-                    controls
-                    playsinline
-                    preload="metadata">
-                  </video> -->
+                  <div class="video-container">
+                    <video controls playsinline class="rounded-xl shadow-lg w-full mb-4">
+                      <source
+                        src="https://f9qugzz2ft2bmcbe.public.blob.vercel-storage.com/wedvdo.mp4"
+                        type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
 
                   <div class="grid grid-cols-1 gap-4">
                     <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
@@ -1099,6 +1098,15 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.video-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+video {
+  width: 100%;
+  display: block;
+}
+
 .gold-text {
   background: linear-gradient(to bottom, #FFED4E 0%, #FFD700 40%, #FFA500 100%);
   -webkit-background-clip: text;
