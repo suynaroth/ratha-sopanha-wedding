@@ -914,7 +914,7 @@ onMounted(() => {
                   <div class="video-container">
                     <video controls playsinline class="rounded-xl shadow-lg w-full mb-4">
                       <source
-                        src="https://f9qugzz2ft2bmcbe.public.blob.vercel-storage.com/wedvdo.mp4"
+                        src="https://f9qugzz2ft2bmcbe.public.blob.vercel-storage.com/higlight.mp4"
                         type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
