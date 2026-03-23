@@ -331,11 +331,10 @@ const setupScrollObservers = () => {
 const ensureAudioReady = () => {
   if (audio.value) return
   const player = new Audio('/songs/song2.mp3')
-  player.autoplay = true
+  player.autoplay = false
   player.loop = true
   player.preload = 'auto'
-  // Start muted to maximize autoplay success; unmute on user interaction.
-  player.muted = true
+  player.muted = false
   audio.value = player
 }
 
@@ -348,40 +347,19 @@ const playBackgroundMusic = () => {
     .catch(err => console.log('Audio play failed:', err))
 }
 
-const setupLandingAudioAutoplay = () => {
-  const tryPlay = () => {
-    // Attempt audible autoplay first; if blocked, fall back to muted autoplay.
+const unlockAudioOnFirstInteraction = () => {
+  const handle = () => {
     playBackgroundMusic()
-    if (audio.value && audio.value.paused) {
-      audio.value.muted = true
-      audio.value.play().catch(() => {})
-    }
   }
-
-  const unlockOnInteraction = () => {
-    if (audio.value) audio.value.muted = false
-    tryPlay()
-    if (audio.value && !audio.value.paused) {
-      window.removeEventListener('pointerdown', unlockOnInteraction)
-      window.removeEventListener('keydown', unlockOnInteraction)
-      window.removeEventListener('touchstart', unlockOnInteraction)
-    }
-  }
-
-  tryPlay()
-  window.addEventListener('pointerdown', unlockOnInteraction, { passive: true })
-  window.addEventListener('keydown', unlockOnInteraction)
-  window.addEventListener('touchstart', unlockOnInteraction, { passive: true })
-  window.addEventListener('focus', tryPlay)
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) tryPlay()
-  })
+  window.addEventListener('pointerdown', handle, { passive: true, once: true })
+  window.addEventListener('keydown', handle, { once: true })
+  window.addEventListener('touchstart', handle, { passive: true, once: true })
 }
 
 // Lifecycle
 onMounted(() => {
   generateButterflies()
-  setupLandingAudioAutoplay()
+  unlockAudioOnFirstInteraction()
 
   const urlParams = new URLSearchParams(window.location.search)
   const nameParam = urlParams.get('name')
