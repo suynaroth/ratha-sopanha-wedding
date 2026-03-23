@@ -202,6 +202,7 @@ const openInvitation = () => {
   playBackgroundMusic()
 
   nextTick(() => {
+    if (introVideoRef.value) introVideoRef.value.muted = true
     introVideoRef.value?.play().catch(err => console.log('Video play failed:', err))
   })
 }
@@ -503,7 +504,7 @@ onMounted(() => {
 
     <!-- Intro Video -->
     <section v-if="opened && step === 1" class="intro-video">
-      <video ref="introVideoRef" class="intro-video__player" src="/image/intro.mp4" playsinline preload="auto"
+      <video ref="introVideoRef" class="intro-video__player" src="/image/intro.mp4" playsinline muted preload="auto"
         @timeupdate="handleIntroTimeUpdate" @ended="handleIntroEnded" @error="handleIntroEnded"></video>
       <div v-if="showIntroText" class="intro-video__text  intro-video__text--show">
         <img src="/image/logo.png" alt="Logo" class="intro-video__logo w-50" />
