@@ -66,7 +66,7 @@ const formatCountdownNumber = (value) => {
 }
 
 const telegramRsvpUrl = computed(() => {
-  const base = 'https://t.me/'
+  const base = 'https://t.me/+85516355563'
   const statusText = rsvpStatus.value === 'yes'
     ? (isEnglish.value ? 'Can join' : 'អាចចូលរួម')
     : (isEnglish.value ? 'Cannot join' : 'មិនអាចចូលរួម')
@@ -104,6 +104,7 @@ const images = [
   { id: 13, url: '/image/p13.jpg', alt: 'Image 13' },
   { id: 14, url: '/image/p14.jpg', alt: 'Image 14' },
   { id: 15, url: '/image/p15.jpg', alt: 'Image 15' },
+  { id: 16, url: '/image/p16.jpg', alt: 'Image 16' },
 ]
 
 const timelineEventsFD = [
@@ -181,8 +182,7 @@ const generateButterflies = () => {
 
 // Computed
 const getGalleryItemClass = (index) => {
-  // 2-1-2-1 pattern: two half-width cards, then one full-width card.
-  return index % 3 === 2 ? 'col-span-12' : 'col-span-6'
+  return 'col-span-12'
 }
 
 // Methods
@@ -330,14 +330,19 @@ const setupScrollObservers = () => {
 
 const ensureAudioReady = () => {
   if (audio.value) return
-  const player = new Audio('/songs/song.mp3')
+  const player = new Audio('/songs/song2.mp3')
+  player.autoplay = true
   player.loop = true
   player.preload = 'auto'
+  // Start muted to maximize autoplay success; unmute on user interaction.
+  player.muted = true
   audio.value = player
 }
 
 const playBackgroundMusic = () => {
   ensureAudioReady()
+  audio.value.muted = false
+  audio.value.volume = 1
   audio.value
     ?.play()
     .catch(err => console.log('Audio play failed:', err))
@@ -345,10 +350,16 @@ const playBackgroundMusic = () => {
 
 const setupLandingAudioAutoplay = () => {
   const tryPlay = () => {
+    // Attempt audible autoplay first; if blocked, fall back to muted autoplay.
     playBackgroundMusic()
+    if (audio.value && audio.value.paused) {
+      audio.value.muted = true
+      audio.value.play().catch(() => {})
+    }
   }
 
   const unlockOnInteraction = () => {
+    if (audio.value) audio.value.muted = false
     tryPlay()
     if (audio.value && !audio.value.paused) {
       window.removeEventListener('pointerdown', unlockOnInteraction)
@@ -361,6 +372,10 @@ const setupLandingAudioAutoplay = () => {
   window.addEventListener('pointerdown', unlockOnInteraction, { passive: true })
   window.addEventListener('keydown', unlockOnInteraction)
   window.addEventListener('touchstart', unlockOnInteraction, { passive: true })
+  window.addEventListener('focus', tryPlay)
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) tryPlay()
+  })
 }
 
 // Lifecycle
@@ -756,7 +771,7 @@ onMounted(() => {
 
                 <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <img src="/image/p10.jpg" alt="Ornament"
+                  <img src="/image/p16.jpg" alt="Ornament"
                     class="w-full h-full object-cover -mt-5 bg-transparent rounded-2xl" />
 
                   <div class="absolute inset-0 flex flex-col justify-between items-center p-4 sm:p-6">
@@ -883,7 +898,7 @@ onMounted(() => {
                   </div>
                 </div>
 
-                <!-- <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
+                <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   {{ isEnglish ? 'Dress Code ' : 'ពណ៌សម្លៀកបំពាក់' }}
@@ -891,24 +906,21 @@ onMounted(() => {
 
                 <div class="flex items-start justify-around pb-4" aria-label="Dress code colors">
                   <div class="flex flex-col items-center gap-1">
-                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
-                      style="background-color: #b76e79;"></span>
-                    <span class="brown-text text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">Rose Gold</span>
+                    <i class="fa-solid fa-shirt dress-icon" style="color: #560591;" aria-hidden="true"></i>
+                    <span class="text-xs sm:text-sm"
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif', color: '#560591' }">Indigo</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
-                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
-                      style="background-color: #f4a7b9;"></span>
-                    <span class="brown-text text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">Pink</span>
+                    <i class="fa-solid fa-shirt dress-icon" style="color: #2C106A;" aria-hidden="true"></i>
+                    <span class="text-xs sm:text-sm"
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat , serif', color: '#2C106A' }">Purple Indigo</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
-                    <span class="w-7 h-7 rounded-full border border-white/50 shadow-sm"
-                      style="background-color: #9ca3af;"></span>
-                    <span class="brown-text text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">Gray</span>
+                    <i class="fa-solid fa-shirt dress-icon" style="color: #BBA14F;" aria-hidden="true"></i>
+                    <span class="text-xs sm:text-sm"
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif', color: '#BBA14F' }">Dull Gold</span>
                   </div>
-                </div> -->
+                </div>
 
                 <!-- Gallery Section -->
                 <div id="gallery-tab" data-ref="gallerySection" :class="['relative mt-8 transition-all duration-1000 delay-1600',
@@ -919,7 +931,18 @@ onMounted(() => {
                     {{ isEnglish ? 'Gallery ' : 'វិចិត្រសាល' }}
                   </h2>
 
-                  <div class="grid grid-cols-12 gap-4">
+                  <!-- <video
+                    class="w-full rounded-lg shadow-lg mb-4"
+                    src="/image/Kunhuy.mp4"
+                    autoplay
+                    muted
+                    loop
+                    controls
+                    playsinline
+                    preload="metadata">
+                  </video> -->
+
+                  <div class="grid grid-cols-1 gap-4">
                     <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
                       getGalleryItemClass(index),
                       visibleGalleryItems[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -1137,6 +1160,13 @@ onMounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.dress-icon {
+  font-size: 28px;
+  line-height: 1;
+  display: inline-flex;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
 }
 
 .dust-white-text {
