@@ -106,7 +106,7 @@ const images = [
   { id: 13, url: '/image/p13.jpg', alt: 'Image 13' },
   { id: 14, url: '/image/p14.jpg', alt: 'Image 14' },
   { id: 15, url: '/image/p15.jpg', alt: 'Image 15' },
-  { id: 16, url: '/image/p16.jpg', alt: 'Image 16' },
+  // { id: 16, url: '/image/p16.jpg', alt: 'Image 16' },
 ]
 
 const timelineEventsFD = [
@@ -752,7 +752,7 @@ onMounted(() => {
 
                 <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <img src="/image/p16.jpg" alt="Ornament"
+                  <img src="/image/p11.jpg" alt="Ornament"
                     class="w-full h-full object-cover -mt-5 bg-transparent rounded-2xl" />
 
                   <div class="absolute inset-0 flex flex-col justify-between items-center p-4 sm:p-6">
@@ -876,6 +876,13 @@ onMounted(() => {
                   </div>
                 </div>
 
+                <div class="video-container mb-6">
+                  <video autoplay muted loop playsinline preload="auto" class="rounded-xl shadow-lg w-full">
+                    <source src="/image/higlight.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
                 <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
@@ -911,14 +918,14 @@ onMounted(() => {
                     {{ isEnglish ? 'Gallery ' : 'វិចិត្រសាល' }}
                   </h2>
 
-                  <div class="video-container">
+                  <!-- <div class="video-container">
                     <video controls playsinline class="rounded-xl shadow-lg w-full mb-4">
                       <source
                         src="https://f9qugzz2ft2bmcbe.public.blob.vercel-storage.com/higlight.mp4"
                         type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
-                  </div>
+                  </div> -->
 
                   <div class="grid grid-cols-1 gap-4">
                     <div v-for="(img, index) in images" :key="img.id" :ref="el => setGalleryRef(el, index)" :class="['relative overflow-hidden rounded-lg cursor-pointer group transition-all duration-700',
