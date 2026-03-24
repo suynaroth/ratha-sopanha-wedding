@@ -533,7 +533,7 @@ onMounted(() => {
         <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--bottom-right" aria-hidden="true" /> -->
 
         <!-- Background -->
-        <div class="fixed inset-0 z-0 bg-[#344125]">
+        <div class="fixed inset-0 z-0 bg-[#fbf7f0]">
           <img src="/image/pattern.jpg" class="w-full h-full object-contain pattern-bg-image" alt="Background" />
           <!-- <video autoplay muted loop playsinline class="w-full h-full object-cover">
             <source src="/icon/vdo.mp4" type="video/mp4" />
