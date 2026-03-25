@@ -812,7 +812,7 @@ onMounted(() => {
                   <h2 :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសុក្រ ទី២៤ ខែមេសា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Friday, April 24, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសុក្រ ទី២៤ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
                   <div class="relative">
                     <div
@@ -844,7 +844,7 @@ onMounted(() => {
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Sundday, March 15, 2026' : 'កម្មវិធីថ្ងៃទី២៖ ថ្ងៃសៅរ៍ ទី២៥ ខែមេសា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Saturday, April 25, 2026' : 'កម្មវិធីថ្ងៃទី២៖ ថ្ងៃសៅរ៍ ទី២៥ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
 
                   <div class="relative">
