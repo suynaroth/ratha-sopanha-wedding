@@ -506,14 +506,14 @@ onMounted(() => {
 
     <!-- Intro Video -->
     <section v-if="opened && step === 1" class="intro-video">
-      <video ref="introVideoRef" class="intro-video__player" src="/image/intro.mp4" playsinline muted preload="auto"
+      <video ref="introVideoRef" class="intro-video__player" src="/image/newintro.mp4" playsinline muted preload="auto"
         @timeupdate="handleIntroTimeUpdate" @ended="handleIntroEnded" @error="handleIntroEnded"></video>
       <div v-if="showIntroText" class="intro-video__text  intro-video__text--show">
-        <img src="/image/logo.png" alt="Logo" class="intro-video__logo w-50" />
-        <span class="intro-video__text-line font-montserrat brown-text text-2xl">Save the Date</span>
-        <span class="intro-video__text-line intro-video__text-title brown-text font-montserrat">The wedding of</span>
-        <span class="intro-video__text-line intro-video__text-title brown-text font-montserrat">PECH and BOROMEY</span>
-        <span class="intro-video__text-line font-montserrat brown-text">SATURDAY, 25 APRIL</span>
+        <!-- <img src="/image/logo.png" alt="Logo" class="intro-video__logo w-50" /> -->
+        <span class="intro-video__text-line font-montserrat text-white text-2xl">Save the Date</span>
+        <span class="intro-video__text-line intro-video__text-title text-white font-montserrat">The wedding of</span>
+        <span class="intro-video__text-line intro-video__text-title text-white font-montserrat">PECH and BOROMEY</span>
+        <span class="intro-video__text-line font-montserrat text-white">SATURDAY, 25 APRIL</span>
       </div>
       <button type="button" class="intro-video__skip" @click="handleIntroEnded"
         :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'nokora, serif' }">
