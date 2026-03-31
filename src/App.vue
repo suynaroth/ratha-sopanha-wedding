@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed, watch, nextTick } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 
 // State management
 const opened = ref(false)
@@ -7,8 +7,6 @@ const questName = ref('')
 const step = ref(1)
 const audio = ref(null)
 const selectedImg = ref(null)
-const introVideoRef = ref(null)
-const showIntroText = ref(false)
 // eslint-disable-next-line no-unused-vars
 const showSaveDate = ref(true)
 // eslint-disable-next-line no-unused-vars
@@ -66,7 +64,7 @@ const formatCountdownNumber = (value) => {
 }
 
 const telegramRsvpUrl = computed(() => {
-  const base = 'https://t.me/+85516355563'
+  const base = 'https://t.me/Vvanlyda'
   const statusText = rsvpStatus.value === 'yes'
     ? (isEnglish.value ? 'Can join' : 'អាចចូលរួម')
     : (isEnglish.value ? 'Cannot join' : 'មិនអាចចូលរួម')
@@ -200,24 +198,7 @@ const startMainInvitation = () => {
 
 const openInvitation = () => {
   opened.value = true
-  step.value = 1
-  playBackgroundMusic()
-
-  nextTick(() => {
-    if (introVideoRef.value) introVideoRef.value.muted = true
-    introVideoRef.value?.play().catch(err => console.log('Video play failed:', err))
-  })
-}
-
-const handleIntroEnded = () => {
-  if (step.value !== 2) {
-    startMainInvitation()
-  }
-}
-
-const handleIntroTimeUpdate = (event) => {
-  const current = event?.target?.currentTime ?? 0
-  showIntroText.value = current >= 4
+  startMainInvitation()
 }
 
 const closeLightbox = () => {
@@ -370,7 +351,7 @@ onMounted(() => {
     questName.value = decodeURIComponent(nameParam)
   }
 
-  const targetDate = new Date('2026-04-25T06:00:00')
+  const targetDate = new Date('2026-04-26T06:00:00')
 
   const updateCountdown = () => {
     const now = new Date()
@@ -504,22 +485,6 @@ onMounted(() => {
       </div>
     </section>
 
-    <!-- Intro Video -->
-    <section v-if="opened && step === 1" class="intro-video">
-      <video ref="introVideoRef" class="intro-video__player" src="/image/newintro.mp4" playsinline muted preload="auto"
-        @timeupdate="handleIntroTimeUpdate" @ended="handleIntroEnded" @error="handleIntroEnded"></video>
-      <div v-if="showIntroText" class="intro-video__text  intro-video__text--show">
-        <!-- <img src="/image/logo.png" alt="Logo" class="intro-video__logo w-50" /> -->
-        <span class="intro-video__text-line font-montserrat text-white text-2xl">Save the Date</span>
-        <span class="intro-video__text-line intro-video__text-title text-white font-montserrat">The wedding of</span>
-        <span class="intro-video__text-line intro-video__text-title text-white font-montserrat">PECH and BOROMEY</span>
-        <span class="intro-video__text-line font-montserrat text-white">SATURDAY, 25 APRIL</span>
-      </div>
-      <button type="button" class="intro-video__skip" @click="handleIntroEnded"
-        :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'nokora, serif' }">
-        {{ isEnglish ? 'Skip' : 'រំលង' }}
-      </button>
-    </section>
 
     <!-- Main Invitation -->
     <section v-if="opened && step === 2" class="invitation">
@@ -568,22 +533,22 @@ onMounted(() => {
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2 text-center">
                   <div>
-                    <span class="font-metal">Mr. TEP SAMANG </span>
+                    <span class="font-metal">Mr. SOM SORM </span>
                     <!-- <span>ជា សឹង្ហវុធ</span> -->
                   </div>
                   <div>
-                    <span class="font-metal">Mrs. NY VOUCHSENG </span>
+                    <span class="font-metal">Mrs. CHEAB NY </span>
                     <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
                   </div>
 
                 </div>
                 <div class="grid grid-rows-2 text-center">
                   <div>
-                    <span class="font-metal">Mr. CHAN PROKOB </span>
+                    <span class="font-metal">Mr. LOR VATH </span>
                     <!-- <span>ជា សឹង្ហវុធ</span> -->
                   </div>
                   <div>
-                    <span class="font-metal">Mrs. SIN VANTHA </span>
+                    <span class="font-metal">Mrs. SOUN PHEARY </span>
                     <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
                   </div>
                 </div>
@@ -594,21 +559,21 @@ onMounted(() => {
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>ទេព សំអាង</span>
+                    <span>សំ សោម</span>
                   </div>
                   <div>
-                    <span class="font-metal">លោកស្រី </span>
-                    <span class="text-sm">នី វួចសេង</span>
+                    <span class="font-metal">អ្នកស្រី </span>
+                    <span class="text-sm">ជៀប នី</span>
                   </div>
                 </div>
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>ចាន់ ប្រកប</span>
+                    <span>ឡោ វ៉ាត</span>
                   </div>
                   <div>
-                    <span class="font-metal">លោកស្រី </span>
-                    <span class="text-sm">ស៉ិន វ៉ាន់ថា</span>
+                    <span class="font-metal">អ្នកស្រី </span>
+                    <span class="text-sm">សួន ភារី</span>
                   </div>
                 </div>
               </div>
@@ -645,20 +610,20 @@ onMounted(() => {
                 <h2 data-ref="coupleNames" :class="['green-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-6 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                  {{ isEnglish ? 'Pech' : 'អាង ពេជ្រ' }}
+                  {{ isEnglish ? 'SEANGHHAI' : 'ទេព សៀងហៃ' }}
                   <img src="/icon/brown-jeaku.png" alt="Logo" class="w-16" />
-                  {{ isEnglish ? 'Boromey' : 'ប្រាជ្ញប្រកប សុទ្ធពេជ្របរមី' }}
+                  {{ isEnglish ? 'VANLYDDA' : 'វ៉ាត វណ្ណលីដា' }}
                 </h2>
 
                 <div id="date-tab" data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
                   visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   <p class="brown-text text-xl md:text-2xl mb-3">
-                    {{ isEnglish ? 'Saturday' : 'ថ្ងៃសៅរ៍ ៩កើត ខែពិសាខ' }}
+                    {{ isEnglish ? 'SUNDAY' : 'ថ្ងៃអាទិត្យ ១០កើត ខែពិសាខ' }}
                   </p>
                   <div class="w-32 h-1 bg-[#737577]/60 mx-auto mt-5 mb-5"></div>
                   <p class="green-text text-5xl md:text-6xl">
-                    {{ isEnglish ? '25' : '២៥' }}
+                    {{ isEnglish ? '26' : '២៦' }}
                   </p>
                   <div class="w-32 h-1 bg-[#737577]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-2xl md:text-3xl mb-10">
@@ -670,21 +635,21 @@ onMounted(() => {
 
                 <p id="location-tab" v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-montserrat leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  ON SATURDAY, APRIL 25, 2026
-                  AT THE BRIDE’S HOUSE.
-                  PHUMI MOUY, SANGKAT KAMPONG LEAV, KRONG PREY VENG, PREY VENG PROVINCE.
+                  ON SUNDAY, APRIL 26, 2026
+                  AT VIMEAN PIPHUB THMEY KOMBOL WEDDING CENTER.
+                  (KOMBOL, PHNOM PENH) BUILDING C.
                   (PLEASE SEE MAP) THANK YOU!
                 </p>
 
                 <p id="location-tab" v-else data-ref="locationInfo" :class="['text-base tracking-wider brown-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <span class="font-metal">នៅថ្ងៃសៅរ៍ ៩កើត ខែពិសាខ ឆ្នាំមមី អដ្ឋស័ក ពុទ្ធសករាជ ២៥៦៩
+                  <span class="font-metal">នៅថ្ងៃអាទិត្យ ១០កើត ខែពិសាខ ឆ្នាំមមី អដ្ឋស័ក ពុទ្ធសករាជ ២៥៦៩
                     ត្រូវនឹងថ្ងៃទី ២៥
                     ខែមេសា
                     ឆ្នាំ ២០២៦</span>
-                  <span class="font-metal">វេលាម៉ោង ៥ : ៣០ ល្ងាច នៅ </span>
-                  <span class="">គេហដ្ឋានខាងស្រី</span>
-                  <span class="font-metal"> ភូមិ១ សង្កាត់កំពង់លាវ ក្រុងព្រៃវែង ខេត្តព្រៃវែង។</span>
+                  <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
+                  <span class="">វិមានពិភពថ្មីអាពាហ៍ពិពាហ៍កំបូល អគារ C</span>
+                  <span class="font-metal"> (កំបូល រាជធានីភ្នំពេញ)។</span>
                   <span class="font-metal"> ដោយមេត្រីភាព! </span>
                 </p>
                 <div
@@ -812,7 +777,7 @@ onMounted(() => {
                   <h2 :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Friday, April 24, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសុក្រ ទី២៤ ខែមេសា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Saturday, April 25, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសៅរ៍ ទី២៥ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
                   <div class="relative">
                     <div
@@ -844,7 +809,7 @@ onMounted(() => {
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Saturday, April 25, 2026' : 'កម្មវិធីថ្ងៃទី២៖ ថ្ងៃសៅរ៍ ទី២៥ ខែមេសា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Sunday, April 26, 2026' : 'កម្មវិធីថ្ងៃទី២៖ ថ្ងៃអាទិត្យ ទី២៦ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
 
                   <div class="relative">
@@ -876,12 +841,12 @@ onMounted(() => {
                   </div>
                 </div>
 
-                <div class="video-container mb-6">
+                <!-- <div class="video-container mb-6">
                   <video autoplay muted loop playsinline preload="auto" class="rounded-xl shadow-lg w-full">
                     <source src="/image/higlight.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                </div>
+                </div> -->
 
                 <h2 data-ref="galleryTitle" :class="['text-lg sm:text-xl text-center whitespace-nowrap mb-5 mt-8 font-moul brown-text bg-white/10 p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1700',
                   galleryTitleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -1124,7 +1089,7 @@ video {
 }
 
 .brown-text {
-  color: #845ca4;
+  color: #ca88eb;
 }
 
 .green-text {
@@ -1424,14 +1389,14 @@ video {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #845ca4;
+  color: #ca88eb;
   background: transparent;
   cursor: pointer;
   transition: background 180ms ease, color 180ms ease;
 }
 
 .lang-switcher__btn.is-active {
-  background: #845ca4;
+  background: #ca88eb;
   color: #fff;
 }
 
@@ -1463,7 +1428,7 @@ video {
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #845ca4;
+  color: #ca88eb;
   background: transparent;
   cursor: pointer;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
@@ -1472,7 +1437,7 @@ video {
 }
 
 .tab-nav__btn.is-active {
-  background: #845ca4;
+  background: #ca88eb;
   color: #fff;
   transform: translateY(-1px);
 }
@@ -1775,111 +1740,6 @@ video {
   padding-bottom: 96px;
 }
 
-.intro-video {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  background: #000;
-  display: grid;
-  place-items: center;
-}
-
-.intro-video__player {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.intro-video__text {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #f8e8b2;
-  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.04em;
-  padding: 1rem;
-  gap: 0.35rem;
-  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0) 60%);
-  opacity: 0;
-  transform: translateY(12px) scale(0.98);
-}
-
-.intro-video__text--show {
-  animation: introTextFade 900ms ease-out forwards;
-}
-
-.intro-video__logo {
-  width: clamp(110px, 22vw, 180px);
-  height: auto;
-  margin-bottom: 0.25rem;
-  opacity: 0;
-  transform: translateY(8px) scale(0.96);
-  animation: introItemFade 900ms ease-out forwards;
-  animation-delay: 120ms;
-}
-
-.intro-video__text-line {
-  display: block;
-  font-size: clamp(1.1rem, 3.5vw, 1.6rem);
-  font-weight: 600;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: introItemFade 900ms ease-out forwards;
-}
-
-.intro-video__text-title {
-  font-size: clamp(1.5rem, 5vw, 2.4rem);
-  font-weight: 700;
-  text-transform: none;
-  margin: 0.35rem 0 0.5rem;
-  animation-delay: 220ms;
-}
-
-.intro-video__text-line:not(.intro-video__text-title) {
-  animation-delay: 320ms;
-}
-
-.intro-video__text-line:last-of-type {
-  animation-delay: 420ms;
-}
-
-@keyframes introTextFade {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes introItemFade {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.intro-video__skip {
-  position: absolute;
-  right: 16px;
-  top: 16px;
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-}
-
-.intro-video__skip:hover {
-  background: rgba(0, 0, 0, 0.65);
-}
 
 @media (max-width: 640px) {
   .pattern-bg-image {
