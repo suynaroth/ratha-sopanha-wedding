@@ -656,7 +656,7 @@ onMounted(() => {
                   class="map-frame w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-1000 delay-1100"
                   :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4373.298726777382!2d105.32165367505225!3d11.479629388715137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDI4JzQ2LjciTiAxMDXCsDE5JzI3LjIiRQ!5e1!3m2!1sen!2skh!4v1773738075741!5m2!1sen!2skh"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15638.640265594318!2d104.76499736309047!3d11.50442704269618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109451b7ee3c2d7%3A0x39e27048b739012c!2z4Z6c4Z634Z6Y4Z624Z6T4Z6W4Z634Z6X4Z6W4Z6Q4Z-S4Z6Y4Z64IOGeouGetuGeluGetuGeoOGfjeGeluGet-GeluGetuGeoOGfjSDhnoDhn4bhnpThnrzhnps!5e0!3m2!1sen!2skh!4v1774948664325!5m2!1sen!2skh"
                     width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
@@ -717,7 +717,7 @@ onMounted(() => {
 
                 <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <img src="/image/p11.jpg" alt="Ornament"
+                  <img src="/image/p15.jpg" alt="Ornament"
                     class="w-full h-full object-cover -mt-5 bg-transparent rounded-2xl" />
 
                   <div class="absolute inset-0 flex flex-col justify-between items-center p-4 sm:p-6">
@@ -1074,6 +1074,7 @@ onMounted(() => {
   max-width: 800px;
   margin: 0 auto;
 }
+
 video {
   width: 100%;
   display: block;
@@ -1475,7 +1476,7 @@ video {
 }
 
 .map-frame {
-  border: 1px solid #845ca4;
+  border: 1px solid #dab1ee;
   box-shadow: 0 0 0 5px rgba(132, 92, 164, 0.55);
 }
 
