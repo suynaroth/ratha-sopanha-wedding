@@ -318,7 +318,7 @@ const setupScrollObservers = () => {
 const ensureAudioReady = () => {
   if (audio.value) return
   const player = new Audio('/songs/song.mp3')
-  player.autoplay = false
+  player.autoplay = true
   player.loop = true
   player.preload = 'auto'
   player.muted = false
@@ -334,9 +334,25 @@ const playBackgroundMusic = () => {
     .catch(err => console.log('Audio play failed:', err))
 }
 
+const tryAutoPlay = () => {
+  ensureAudioReady()
+  // Try audible autoplay first; if blocked, start muted and unmute on interaction.
+  audio.value.muted = false
+  audio.value.play().catch(() => {
+    audio.value.muted = true
+    audio.value.play().catch(err => console.log('Audio autoplay failed:', err))
+  })
+}
+
 const unlockAudioOnFirstInteraction = () => {
   const handle = () => {
-    playBackgroundMusic()
+    if (!audio.value) {
+      playBackgroundMusic()
+      return
+    }
+    audio.value.muted = false
+    audio.value.volume = 1
+    audio.value.play().catch(err => console.log('Audio play failed:', err))
   }
   window.addEventListener('pointerdown', handle, { passive: true, once: true })
   window.addEventListener('keydown', handle, { once: true })
@@ -346,6 +362,7 @@ const unlockAudioOnFirstInteraction = () => {
 // Lifecycle
 onMounted(() => {
   generateButterflies()
+  tryAutoPlay()
   unlockAudioOnFirstInteraction()
 
   const urlParams = new URLSearchParams(window.location.search)
