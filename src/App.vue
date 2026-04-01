@@ -11,6 +11,7 @@ const selectedImg = ref(null)
 const showSaveDate = ref(true)
 // eslint-disable-next-line no-unused-vars
 const showEventDate = ref(false)
+const showTimelineFirstDay = ref(false)
 
 // Visibility tracking
 const visibleElements = ref({
@@ -125,25 +126,27 @@ const timelineEventsKm = [
   { icon: "/icon/a5.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/a6.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
   { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឺក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/a7.png", title: "ពិធីអ្នកមហានិយាយជើងការ និងរៀបរាប់ផ្លែឈើ ", time: "ម៉ោង ០៨ : ៣០ នាទីព្រឹក" },
-  // { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន និងអញ្ជើញភ្ញៀវកិត្តិយសពិសារអាហារពេលព្រឹក", time: "ម៉ោង ៨ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/a8.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/a9.png", title: "ពិធីបើកវាំងនន", time: "ម៉ោង ១០ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/a10.png", title: "ពិធីសំពះផ្ទឹម គួចចងដៃ និងបាចផ្កាស្លា", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/a7.png", title: "ពិធីអ្នកមហានិយាយជើងការ និងរៀបរាប់ផ្លែឈើ ", time: "ម៉ោង ០៧ : ៤៥ នាទីព្រឹក" },
+  { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន", time: "ម៉ោង ៨ : ០០ នាទីព្រឹក" },
+  { icon: "/icon/a2.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ៨ : ៤៥ នាទីព្រឹក" },
+  { icon: "/icon/a8.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ៣០ នាទីព្រឹក" },
+  // { icon: "/icon/a9.png", title: "ពិធីបើកវាំងនន", time: "ម៉ោង ១០ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/a10.png", title: "ពិធីសំពះផ្ទឹម គួចចងដៃ និងបាចផ្កាស្លា", time: "ម៉ោង ១០ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១២ : ០០ ថ្ងៃត្រង់" },
-  { icon: "/icon/a11.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ៣០​ ល្ងាច" }
+  { icon: "/icon/a11.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ០០​ ល្ងាច" }
 ]
 
 const timelineEventsEn = [
   { icon: "/icon/a5.png", title: "Guests gather for the gift procession", time: "06:30 AM" },
   { icon: "/icon/a6.png", title: "Gift procession enters the ceremonial hall", time: "07:00 AM" },
   { icon: "/icon/a4.png", title: "Guests invited to breakfast", time: "07:30 AM" },
-  { icon: "/icon/a7.png", title: "Master of ceremonies and fruit presentation", time: "08:30 AM" },
-  { icon: "/icon/a8.png", title: "Hair cutting ceremony", time: "09:00 AM" },
-  { icon: "/icon/a9.png", title: "Curtain opening ceremony", time: "10:00 AM" },
-  { icon: "/icon/a10.png", title: "Blessing, wrist-tying, and flower tossing", time: "11:00 AM" },
+  { icon: "/icon/a7.png", title: "Master of ceremonies and fruit presentation", time: "07:45 AM" },
+  { icon: "/icon/ev4.png", title: "Ring exchange ceremony", time: "08:00 AM" },
+  { icon: "/icon/a2.png", title: "Paritta chanting ceremony", time: "08:45 AM" },
+  { icon: "/icon/a8.png", title: "Hair cutting ceremony", time: "09:30 AM" },
+  { icon: "/icon/a10.png", title: "Blessing, wrist-tying, and flower tossing", time: "10:30 AM" },
   { icon: "/icon/a4.png", title: "Guests invited to lunch", time: "12:00 PM" },
-  { icon: "/icon/a11.png", title: "Evening reception and dinner", time: "05:30 PM" }
+  { icon: "/icon/a11.png", title: "Evening reception and dinner", time: "05:00 PM" }
 ]
 
 const timelineEvents = computed(() => (isEnglish.value ? timelineEventsEn : timelineEventsKm))
@@ -314,7 +317,7 @@ const setupScrollObservers = () => {
 
 const ensureAudioReady = () => {
   if (audio.value) return
-  const player = new Audio('/songs/song2.mp3')
+  const player = new Audio('/songs/song.mp3')
   player.autoplay = false
   player.loop = true
   player.preload = 'auto'
@@ -774,6 +777,7 @@ onMounted(() => {
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                     {{ isEnglish ? 'Wedding Ceremony' : 'កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍' }}
                   </h2>
+                  <template v-if="showTimelineFirstDay">
                   <h2 :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
@@ -806,10 +810,11 @@ onMounted(() => {
                       </template>
                     </div>
                   </div>
+                  </template>
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Sunday, April 26, 2026' : 'កម្មវិធីថ្ងៃទី២៖ ថ្ងៃអាទិត្យ ទី២៦ ខែមេសា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Sunday, April 26, 2026' : 'ថ្ងៃអាទិត្យ ទី២៦ ខែមេសា ឆ្នាំ២០២៦' }}
                   </h2>
 
                   <div class="relative">
@@ -867,10 +872,10 @@ onMounted(() => {
                       Indigo</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
-                    <i class="fa-solid fa-shirt dress-icon" style="color: #BBA14F;" aria-hidden="true"></i>
-                    <span class="text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif', color: '#BBA14F' }">Dull
-                      Gold</span>
+                    <i class="fa-solid fa-shirt dress-icon" style="color: #f28cb5;" aria-hidden="true"></i>
+                    <span class="text-xs sm:text-sm text-pink-400"
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif' }">Pink
+                    </span>
                   </div>
                 </div>
 
@@ -1127,6 +1132,13 @@ video {
   line-height: 1;
   display: inline-flex;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25));
+}
+
+.pink-gradient-text {
+  background: linear-gradient(90deg, #f7b5d0, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .dust-white-text {
