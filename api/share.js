@@ -16,8 +16,8 @@ export default function handler(req) {
   const currentUrl = new URL(req.url)
   const guestName = (currentUrl.searchParams.get('name') || '').trim()
 
-  const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍ | សៀងហៃ និង វណ្ណលីដា'
-  const description = '២៦ មេសា ២០២៦'
+  const title = 'សិរីមង្គលអាពាហ៍ពិពាហ៍ | សុរដ្ឋា និង សុបញ្ញា'
+  const description = '២ ឧសភា ២០២៦'
   // Use a horizontal image (1200x630) for best results on Messenger
   const image = `${currentUrl.origin}/icon/prewview.jpg`
   const appUrl = guestName
