@@ -684,9 +684,8 @@ onMounted(() => {
 
                 <p id="location-tab" v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-montserrat leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  ON SATURDAY, MAY 02, 2026
-                  AT VIMEAN PIPHUB THMEY KOMBOL WEDDING CENTER.
-                  (KOMBOL, PHNOM PENH) BUILDING #D.
+                  FIRTS DAY AND SECOND DAY MORNING CEREMONY WILL BE HELD AT
+                  THE BRIDE'S FAMILY HOUSE IN SAMGKEI 5 VILLAGE, TRAPEANG KRASANG COMMUNE, POR SEN CHEY DISTRICT, PHNOM PENH.
                   (PLEASE SEE MAP) THANK YOU!
                 </p>
 
