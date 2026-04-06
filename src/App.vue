@@ -65,7 +65,7 @@ const formatCountdownNumber = (value) => {
 }
 
 const telegramRsvpUrl = computed(() => {
-  const base = 'https://t.me/Vvanlyda'
+  const base = 'https://t.me/+85577864956'
   const statusText = rsvpStatus.value === 'yes'
     ? (isEnglish.value ? 'Can join' : 'អាចចូលរួម')
     : (isEnglish.value ? 'Cannot join' : 'មិនអាចចូលរួម')
@@ -100,11 +100,11 @@ const images = [
   { id: 8, url: '/image/p8.jpg', alt: 'Image 8' },
   { id: 9, url: '/image/p9.jpg', alt: 'Image 9' },
   { id: 10, url: '/image/p10.jpg', alt: 'Image 10' },
-  { id: 11, url: '/image/p11.jpg', alt: 'Image 11' },
-  { id: 12, url: '/image/p12.jpg', alt: 'Image 12' },
-  { id: 13, url: '/image/p13.jpg', alt: 'Image 13' },
-  { id: 14, url: '/image/p14.jpg', alt: 'Image 14' },
-  { id: 15, url: '/image/p15.jpg', alt: 'Image 15' },
+  // { id: 11, url: '/image/p11.jpg', alt: 'Image 11' },
+  // { id: 12, url: '/image/p12.jpg', alt: 'Image 12' },
+  // { id: 13, url: '/image/p13.jpg', alt: 'Image 13' },
+  // { id: 14, url: '/image/p14.jpg', alt: 'Image 14' },
+  // { id: 15, url: '/image/p15.jpg', alt: 'Image 15' },
   // { id: 16, url: '/image/p16.jpg', alt: 'Image 16' },
 ]
 
@@ -371,7 +371,7 @@ onMounted(() => {
     questName.value = decodeURIComponent(nameParam)
   }
 
-  const targetDate = new Date('2026-04-26T06:00:00')
+  const targetDate = new Date('2026-05-02T06:00:00')
 
   const updateCountdown = () => {
     const now = new Date()
@@ -455,7 +455,7 @@ onMounted(() => {
     <section v-if="!opened" class="landing">
       <div class="min-h-screen w-full flex flex-col bg-[#fbf7f0] justify-start px-4">
         <div class="fixed inset-0 z-0">
-          <img src="/image/pattern.jpg" class="w-full h-full object-contain" alt="Background" />
+          <img src="/image/pattern3.jpg" class="w-full h-full object-contain" alt="Background" />
           <!-- Floral overlays -->
           <!-- <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-left" aria-hidden="true" />
           <img src="/icon/flower.png" alt="" class="floral-overlay floral-overlay--top-right" aria-hidden="true" />
@@ -553,22 +553,22 @@ onMounted(() => {
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2 text-center">
                   <div>
-                    <span class="font-metal">Mr. SOM SORM </span>
+                    <!-- <span class="font-metal">Mr. SOM SORM </span> -->
                     <!-- <span>ជា សឹង្ហវុធ</span> -->
                   </div>
                   <div>
-                    <span class="font-metal">Mrs. CHEAB NY </span>
+                    <span class="font-metal">Mrs. SEM PONNIKA </span>
                     <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
                   </div>
 
                 </div>
                 <div class="grid grid-rows-2 text-center">
                   <div>
-                    <span class="font-metal">Mr. LOR VATH </span>
+                    <span class="font-metal">Mr. LAO SOKHORN </span>
                     <!-- <span>ជា សឹង្ហវុធ</span> -->
                   </div>
                   <div>
-                    <span class="font-metal">Mrs. SOUN PHEARY </span>
+                    <span class="font-metal">Mrs. NHIL SOKNA </span>
                     <!-- <span class="text-sm">ឡុង សុត្ថាម៉ាឡា</span> -->
                   </div>
                 </div>
@@ -578,22 +578,22 @@ onMounted(() => {
                 visibleElements.parentsNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                 <div class="grid grid-rows-2 gap-2">
                   <div>
-                    <span class="font-metal">លោក </span>
-                    <span>សំ សោម</span>
+                    <!-- <span class="font-metal">លោក </span>
+                    <span>សំ សោម</span> -->
                   </div>
                   <div>
                     <span class="font-metal">អ្នកស្រី </span>
-                    <span class="text-sm">ជៀប នី</span>
+                    <span class="text-sm">សែម ប៉ុណ្ណិកា</span>
                   </div>
                 </div>
                 <div class="grid grid-rows-2 gap-2">
                   <div>
                     <span class="font-metal">លោក </span>
-                    <span>ឡោ វ៉ាត</span>
+                    <span>ឡៅ សុខន</span>
                   </div>
                   <div>
                     <span class="font-metal">អ្នកស្រី </span>
-                    <span class="text-sm">សួន ភារី</span>
+                    <span class="text-sm">ញ៉ិល សុខណា</span>
                   </div>
                 </div>
               </div>
@@ -630,34 +630,32 @@ onMounted(() => {
                 <h2 data-ref="coupleNames" :class="['green-text font-moul text-sm leading-relaxed lg:text-xl mb-10 text-center flex items-center justify-center gap-6 transition-all duration-1000 delay-700',
                   visibleElements.coupleNames ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                  {{ isEnglish ? 'SEANGHHAI' : 'ទេព សៀងហៃ' }}
+                  {{ isEnglish ? 'SORATHA' : 'អ៊ួន សុរដ្ឋា' }}
                   <img src="/icon/brown-jeaku.png" alt="Logo" class="w-16" />
-                  {{ isEnglish ? 'VANLYDDA' : 'វ៉ាត វណ្ណលីដា' }}
+                  {{ isEnglish ? 'SOPANHA' : 'ខុន សុបញ្ញា' }}
                 </h2>
 
                 <div id="date-tab" data-ref="dateInfo" :class="['transition-all duration-1000 delay-800',
                   visibleElements.dateInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
                   <p class="brown-text text-xl md:text-2xl mb-3">
-                    {{ isEnglish ? 'SUNDAY' : 'ថ្ងៃអាទិត្យ ១០កើត ខែពិសាខ' }}
+                    {{ isEnglish ? 'SATURDAY' : 'ថ្ងៃសៅរ៍ ១រោច ខែពិសាខ' }}
                   </p>
-                  <div class="w-32 h-1 bg-[#737577]/60 mx-auto mt-5 mb-5"></div>
+                  <div class="w-32 h-1 bg-[#ac4642]/60 mx-auto mt-5 mb-5"></div>
                   <p class="green-text text-5xl md:text-6xl">
-                    {{ isEnglish ? '26' : '២៦' }}
+                    {{ isEnglish ? '02' : '០២' }}
                   </p>
-                  <div class="w-32 h-1 bg-[#737577]/60 mx-auto mt-5 mb-5"></div>
+                  <div class="w-32 h-1 bg-[#ac4642]/60 mx-auto mt-5 mb-5"></div>
                   <p class="brown-text text-2xl md:text-3xl mb-10">
-                    {{ isEnglish ? 'APRIL 2026' : 'មេសា ២០២៦' }}
+                    {{ isEnglish ? 'MAY 2026' : 'ឧសភា ២០២៦' }}
                   </p>
-
-
                 </div>
 
                 <p id="location-tab" v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-montserrat leading-loose mb-4 transition-all duration-1000 delay-500',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  ON SUNDAY, APRIL 26, 2026
+                  ON SATURDAY, MAY 02, 2026
                   AT VIMEAN PIPHUB THMEY KOMBOL WEDDING CENTER.
-                  (KOMBOL, PHNOM PENH) BUILDING C.
+                  (KOMBOL, PHNOM PENH) BUILDING #D.
                   (PLEASE SEE MAP) THANK YOU!
                 </p>
 
@@ -668,12 +666,12 @@ onMounted(() => {
                     ខែមេសា
                     ឆ្នាំ ២០២៦</span>
                   <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
-                  <span class="">វិមានពិភពថ្មីអាពាហ៍ពិពាហ៍កំបូល អគារ C</span>
+                  <span class="">វិមានពិភពថ្មីអាពាហ៍ពិពាហ៍កំបូល អគារ D</span>
                   <span class="font-metal"> (កំបូល រាជធានីភ្នំពេញ)។</span>
                   <span class="font-metal"> ដោយមេត្រីភាព! </span>
                 </p>
                 <div
-                  class="map-frame w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-1000 delay-1100"
+                  class="w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-1000 delay-1100"
                   :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15638.640265594318!2d104.76499736309047!3d11.50442704269618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109451b7ee3c2d7%3A0x39e27048b739012c!2z4Z6c4Z634Z6Y4Z624Z6T4Z6W4Z634Z6X4Z6W4Z6Q4Z-S4Z6Y4Z64IOGeouGetuGeluGetuGeoOGfjeGeluGet-GeluGetuGeoOGfjSDhnoDhn4bhnpThnrzhnps!5e0!3m2!1sen!2skh!4v1774948664325!5m2!1sen!2skh"
@@ -737,7 +735,7 @@ onMounted(() => {
 
                 <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <img src="/image/p15.jpg" alt="Ornament"
+                  <img src="/image/p7.jpg" alt="Ornament"
                     class="w-full h-full object-cover -mt-5 bg-transparent rounded-2xl" />
 
                   <div class="absolute inset-0 flex flex-col justify-between items-center p-4 sm:p-6">
@@ -831,7 +829,7 @@ onMounted(() => {
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                     :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Sunday, April 26, 2026' : 'ថ្ងៃអាទិត្យ ទី២៦ ខែមេសា ឆ្នាំ២០២៦' }}
+                    {{ isEnglish ? 'Saturday, May 02, 2026' : 'ថ្ងៃសៅរ៍ ទី២ ខែឧសភា ឆ្នាំ២០២៦' }}
                   </h2>
 
                   <div class="relative">
@@ -1112,11 +1110,11 @@ video {
 }
 
 .brown-text {
-  color: #ca88eb;
+  color: #e4a442;
 }
 
 .green-text {
-  color: #737577;
+  color: #ac4642;
 }
 
 .guest-name-tag {
@@ -1419,14 +1417,14 @@ video {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #ca88eb;
+  color: #ac4642;
   background: transparent;
   cursor: pointer;
   transition: background 180ms ease, color 180ms ease;
 }
 
 .lang-switcher__btn.is-active {
-  background: #ca88eb;
+  background: #ac4642;
   color: #fff;
 }
 
@@ -1458,7 +1456,7 @@ video {
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #ca88eb;
+  color: #ac4642;
   background: transparent;
   cursor: pointer;
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
@@ -1467,7 +1465,7 @@ video {
 }
 
 .tab-nav__btn.is-active {
-  background: #ca88eb;
+  background: #ac4642;
   color: #fff;
   transform: translateY(-1px);
 }
