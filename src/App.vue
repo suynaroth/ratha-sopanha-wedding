@@ -692,7 +692,7 @@ onMounted(() => {
                 <p id="location-tab" v-else data-ref="locationInfo" :class="['text-base tracking-wider brown-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
                   <span class="font-metal">កម្មវិធីតាមប្រពៃណីថ្ងៃទី១ និងថ្ងៃទី២ពេលព្រឹក នឹងប្រារព្ធឡើងនៅ</span>
-                  <span class="">គេហដ្ឋានខាងស្រី ភូមិសាម្គី៥ សង្កាត់ត្រពាំងក្រសាំង ខណ្ឌពោធិ៍សែនជ័យ រាជធានីភ្នំពេញ។</span>
+                  <span class="">គេហដ្ឋានខាងស្រី ភូមិសាមគ្គី៥ សង្កាត់ត្រពាំងក្រសាំង ខណ្ឌពោធិ៍សែនជ័យ រាជធានីភ្នំពេញ។</span>
                   <span class="font-metal"> សូមមើលផែនទីខាងក្រោម។ </span>
                 </p>
 
