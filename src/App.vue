@@ -92,13 +92,13 @@ const videoId = 'QP1gv5R5PLg'
 const images = [
   { id: 1, url: '/image/p1.jpg', alt: 'Image 1' },
   { id: 2, url: '/image/p2.jpg', alt: 'Image 2' },
-  { id: 3, url: '/image/p3.jpg', alt: 'Image 3' },
+  // { id: 3, url: '/image/p3.jpg', alt: 'Image 3' },
   { id: 4, url: '/image/p4.jpg', alt: 'Image 4' },
   { id: 5, url: '/image/p5.jpg', alt: 'Image 5' },
   { id: 6, url: '/image/p6.jpg', alt: 'Image 6' },
   { id: 7, url: '/image/p7.jpg', alt: 'Image 7' },
   { id: 8, url: '/image/p8.jpg', alt: 'Image 8' },
-  { id: 9, url: '/image/p9.jpg', alt: 'Image 9' },
+  // { id: 9, url: '/image/p9.jpg', alt: 'Image 9' },
   { id: 10, url: '/image/p10.jpg', alt: 'Image 10' },
   // { id: 11, url: '/image/p11.jpg', alt: 'Image 11' },
   // { id: 12, url: '/image/p12.jpg', alt: 'Image 12' },
@@ -109,29 +109,29 @@ const images = [
 ]
 
 const timelineEventsFD = [
-  { icon: "/icon/a1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០២ : ០០ រសៀល" },
-  { icon: "/icon/a2.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៣ : ០០ រសៀល" },
-  { icon: "/icon/a3.png", title: "ពិធីកាត់ខាន់ស្លា", time: "ម៉ោង ០៤ : ០០ រសៀល" },
-  { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច", time: "ម៉ោង ០៥ : ០០ ល្ងាច" },
+  { icon: "/icon/a1.png", title: "ពិធីសែនក្រុងពាលី", time: "ម៉ោង ០៣ : ០០ រសៀល" },
+  { icon: "/icon/a2.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ០៤ : ០០ រសៀល" },
+  { icon: "/icon/a3.png", title: "ពិធីកាត់ខាន់ស្លា", time: "ម៉ោង ០៥ : ០០ ល្ងាច" },
+  { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលល្ងាច", time: "ម៉ោង ០៦ : ៣០ ល្ងាច" },
 ]
 
 const timelineEventsFDEn = [
-  { icon: "/icon/a1.png", title: "Krong Peali offering ceremony", time: "02:00 PM" },
-  { icon: "/icon/a2.png", title: "Paritta chanting ceremony", time: "03:00 PM" },
-  { icon: "/icon/a3.png", title: "Khan Sla cutting ceremony", time: "04:00 PM" },
-  { icon: "/icon/a4.png", title: "Honored guests invited to dinner", time: "05:00 PM" },
+  { icon: "/icon/a1.png", title: "Krong Peali offering ceremony", time: "03:00 PM" },
+  { icon: "/icon/a2.png", title: "Paritta chanting ceremony", time: "04:00 PM" },
+  { icon: "/icon/a3.png", title: "Khan Sla cutting ceremony", time: "05:00 PM" },
+  { icon: "/icon/a4.png", title: "Honored guests invited to dinner", time: "06:30 PM" },
 ]
 
 const timelineEventsKm = [
   { icon: "/icon/a5.png", title: "ជួបជុំភ្ញៀវកិត្តិយសរៀបចំពិធីហែជំនូន", time: "ម៉ោង ០៦ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/a6.png", title: "ពិធីហែជំនូន(កំណត់)ចូលរោងជ័យ", time: "ម៉ោង ០៧ : ០០ នាទីព្រឹក" },
   { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារពេលព្រឺក", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/a7.png", title: "ពិធីអ្នកមហានិយាយជើងការ និងរៀបរាប់ផ្លែឈើ ", time: "ម៉ោង ០៧ : ៤៥ នាទីព្រឹក" },
+  { icon: "/icon/a7.png", title: "ពិធីអ្នកមហានិយាយជើងការ និងរៀបរាប់ផ្លែឈើ ", time: "ម៉ោង ០៧ : ៣០ នាទីព្រឹក" },
   { icon: "/icon/ev4.png", title: "ពិធីបំពាក់ចិញ្ចៀន", time: "ម៉ោង ៨ : ០០ នាទីព្រឹក" },
-  { icon: "/icon/a2.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ៨ : ៤៥ នាទីព្រឹក" },
+  // { icon: "/icon/a2.png", title: "ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត", time: "ម៉ោង ៨ : ៤៥ នាទីព្រឹក" },
   { icon: "/icon/a8.png", title: "ពិធីកាត់សក់បង្កក់សិរី", time: "ម៉ោង ៩ : ៣០ នាទីព្រឹក" },
   // { icon: "/icon/a9.png", title: "ពិធីបើកវាំងនន", time: "ម៉ោង ១០ : ៣០ នាទីព្រឹក" },
-  { icon: "/icon/a10.png", title: "ពិធីសំពះផ្ទឹម គួចចងដៃ និងបាចផ្កាស្លា", time: "ម៉ោង ១០ : ៣០ នាទីព្រឹក" },
+  { icon: "/icon/a10.png", title: "ពិធីសំពះផ្ទឹម គួចចងដៃ និងបាចផ្កាស្លា", time: "ម៉ោង ១១ : ០០ នាទីព្រឹក" },
   { icon: "/icon/a4.png", title: "អញ្ញើញភ្ញៀវកិត្តិយសពិសាអាហារថ្ងៃត្រង់", time: "ម៉ោង ១២ : ០០ ថ្ងៃត្រង់" },
   { icon: "/icon/a11.png", title: "ទទួលបដិសណ្ឋារកិច្ចភ្ញៀវកិត្តិយសពិសារ ភោជនាអាហារដោយមេត្រីភាព", time: "ម៉ោង ០៥ : ០០​ ល្ងាច" }
 ]
@@ -140,7 +140,7 @@ const timelineEventsEn = [
   { icon: "/icon/a5.png", title: "Guests gather for the gift procession", time: "06:30 AM" },
   { icon: "/icon/a6.png", title: "Gift procession enters the ceremonial hall", time: "07:00 AM" },
   { icon: "/icon/a4.png", title: "Guests invited to breakfast", time: "07:30 AM" },
-  { icon: "/icon/a7.png", title: "Master of ceremonies and fruit presentation", time: "07:45 AM" },
+  { icon: "/icon/a7.png", title: "Master of ceremonies and fruit presentation", time: "07:30 AM" },
   { icon: "/icon/ev4.png", title: "Ring exchange ceremony", time: "08:00 AM" },
   { icon: "/icon/a2.png", title: "Paritta chanting ceremony", time: "08:45 AM" },
   { icon: "/icon/a8.png", title: "Hair cutting ceremony", time: "09:30 AM" },
@@ -494,13 +494,12 @@ onMounted(() => {
           </div>
           <button class="relative w-50 h-20 bg-contain bg-no-repeat bg-center
               flex items-center justify-center
-              brown-text text-lg
+              brown-text text-2xl
               hover:scale-105 transition-all duration-500 active:scale-95
               animate-pulse-blob" style="background-image: url('/icon/button-outline.png')" @click="openInvitation"
             :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
             {{ isEnglish ? 'Open Invitation' : 'បើកធៀប' }}
           </button>
-
         </div>
       </div>
     </section>
@@ -661,17 +660,16 @@ onMounted(() => {
 
                 <p id="location-tab" v-else data-ref="locationInfo" :class="['text-base tracking-wider brown-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
                   visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <span class="font-metal">នៅថ្ងៃអាទិត្យ ១០កើត ខែពិសាខ ឆ្នាំមមី អដ្ឋស័ក ពុទ្ធសករាជ ២៥៦៩
-                    ត្រូវនឹងថ្ងៃទី ២៥
-                    ខែមេសា
+                  <span class="font-metal">នៅថ្ងៃសៅរ៍ ១រោច ខែពិសាខ ឆ្នាំមមី អដ្ឋស័ក ពុទ្ធសករាជ ២៥៦៩
+                    ត្រូវនឹងថ្ងៃទី ២
+                    ខែឧសភា
                     ឆ្នាំ ២០២៦</span>
                   <span class="font-metal">វេលាម៉ោង ៥ : ០០ ល្ងាច នៅ </span>
                   <span class="">វិមានពិភពថ្មីអាពាហ៍ពិពាហ៍កំបូល អគារ D</span>
                   <span class="font-metal"> (កំបូល រាជធានីភ្នំពេញ)។</span>
                   <span class="font-metal"> ដោយមេត្រីភាព! </span>
                 </p>
-                <div
-                  class="w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-1000 delay-1100"
+                <div class="w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-1000 delay-1100"
                   :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15638.640265594318!2d104.76499736309047!3d11.50442704269618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109451b7ee3c2d7%3A0x39e27048b739012c!2z4Z6c4Z634Z6Y4Z624Z6T4Z6W4Z634Z6X4Z6W4Z6Q4Z-S4Z6Y4Z64IOGeouGetuGeluGetuGeoOGfjeGeluGet-GeluGetuGeoOGfjSDhnoDhn4bhnpThnrzhnps!5e0!3m2!1sen!2skh!4v1774948664325!5m2!1sen!2skh"
@@ -681,57 +679,36 @@ onMounted(() => {
                 <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg leading-relaxed lg:text-lg mt-4 mb-12 text-center transition-all duration-1000 delay-400',
                   visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
                   :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                  {{ isEnglish ? 'Location' : 'ទីតាំងពីធី' }}
+                  {{ isEnglish ? 'Location Wedding Party' : 'ទីតាំងពិសារអាហារពេលល្ងាច' }}
                 </h3>
-                <!-- <div class="countdown-section">
-                  <h2 data-ref="timelineHeader" :class="['text-base leading-loose brown-text text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1200',
-                    timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Countdown' : 'រាប់ថយក្រោយដល់ថ្ងៃពិធី' }}
-                  </h2>
 
-                  <div class="countdown-section__grid w-full flex justify-center">
-                    <div class="grid grid-cols-4 gap-2 sm:gap-3">
-                      <div class="min-w-20 sm:min-w-20 text-center ">
-                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.days }}</div>
-                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">
-                          {{ isEnglish ? 'Days' : 'ថ្ងៃ' }}
-                        </div>
-                      </div>
-                      <div class="min-w-20 sm:min-w-20 text-center ">
-                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.hours }}</div>
-                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Hours' :
-                          'ម៉ោង' }}</div>
-                      </div>
-                      <div class="min-w-20 sm:min-w-20 text-center ">
-                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.minutes }}</div>
-                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Minutes'
-                          : 'នាទី' }}</div>
-                      </div>
-                      <div class="min-w-20 sm:min-w-20 text-center ">
-                        <div class="text-2xl sm:text-2xl font-moul green-text">{{ countdown.seconds }}</div>
-                        <div class="text-[12px] sm:text-xs font-nokora green-text tracking-wide">{{ isEnglish ? 'Seconds'
-                          : 'វិនាទី' }}</div>
-                      </div>
-                    </div>
-                  </div>
+                <p id="location-tab" v-if="isEnglish" data-ref="locationInfo" :class="['brown-text font-montserrat leading-loose mb-4 transition-all duration-1000 delay-500',
+                  visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  ON SATURDAY, MAY 02, 2026
+                  AT VIMEAN PIPHUB THMEY KOMBOL WEDDING CENTER.
+                  (KOMBOL, PHNOM PENH) BUILDING #D.
+                  (PLEASE SEE MAP) THANK YOU!
+                </p>
 
-                </div> -->
-                <!-- </div> -->
+                <p id="location-tab" v-else data-ref="locationInfo" :class="['text-base tracking-wider brown-text font-moul p-1 leading-loose mb-4 transition-all duration-1000 delay-1000',
+                  visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                  <span class="font-metal">កម្មវិធីតាមប្រពៃណីថ្ងៃទី១ និងថ្ងៃទី២ពេលព្រឹក នឹងប្រារព្ធឡើងនៅ</span>
+                  <span class="">គេហដ្ឋានខាងស្រី ភូមិសាម្គី៥ សង្កាត់ត្រពាំងក្រសាំង ខណ្ឌពោធិ៍សែនជ័យ រាជធានីភ្នំពេញ។</span>
+                  <span class="font-metal"> សូមមើលផែនទីខាងក្រោម។ </span>
+                </p>
 
-
-                <!-- <div data-ref="detailButton" :class="['mt-6 transition-all duration-1000 delay-900',
-                  visibleElements.detailButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                  <button @click="openMap()" class="group relative z-10 overflow-hidden px-10 py-4 rounded-full
-                    backdrop-blur-md bg-white/10 border border-white/40
-                    font-nokora font-semibold text-lg
-                    shadow-[0_8px_32px_0_rgba(31,38,135,0.2)]
-                    hover:bg-white/20 hover:scale-105 transition-all duration-500 active:scale-95">
-                    <span class="relative z-10 dust-white-text font-nokora flex items-center gap-2 sm:gap-3">
-                      មើលផែនទី
-                    </span>
-                  </button>
-                </div> -->
+                <div class="w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-1000 delay-1100"
+                  :class="visibleElements.locationInfo ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2596.2338699207767!2d104.78883584470641!3d11.55024844097073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDMzJzAxLjAiTiAxMDTCsDQ3JzE5LjgiRQ!5e0!3m2!1sen!2skh!4v1775452810688!5m2!1sen!2skh"
+                    width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <h3 data-ref="invitationTitle" :class="['brown-text text-lg md:text-lg leading-relaxed lg:text-lg mt-4 mb-12 text-center transition-all duration-1000 delay-400',
+                  visibleElements.invitationTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                  :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
+                  {{ isEnglish ? 'Location Wedding Ceremony' : 'ទីតាំងពិធីនៅគេហដ្ឋានខាងស្រី' }}
+                </h3>
 
                 <div data-ref="timelineSection" :class="['relative h-auto mt-8 bg-transparent transition-all duration-1000 delay-1000',
                   visibleElements.timelineSection ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
@@ -793,38 +770,39 @@ onMounted(() => {
                     {{ isEnglish ? 'Wedding Ceremony' : 'កម្មវិធីមង្គលអាពាហ៍ពិពាហ៍' }}
                   </h2>
                   <template v-if="showTimelineFirstDay">
-                  <h2 :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
-                    timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
-                    :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
-                    {{ isEnglish ? 'Saturday, April 25, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសៅរ៍ ទី២៥ ខែមេសា ឆ្នាំ២០២៦' }}
-                  </h2>
-                  <div class="relative">
-                    <div
-                      class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-secondary dark:bg-primary/30 h-full">
-                    </div>
+                    <h2 :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
+                      timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">
+                      {{ isEnglish ? 'Saturday, April 25, 2026' : 'កម្មវិធីថ្ងៃទី១៖ ថ្ងៃសៅរ៍ ទី២៥ ខែមេសា ឆ្នាំ២០២៦' }}
+                    </h2>
+                    <div class="relative">
+                      <div
+                        class="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-secondary dark:bg-primary/30 h-full">
+                      </div>
 
-                    <div class="grid grid-cols-[auto_1fr] gap-x-4 -gap-y-2 text-left">
-                      <template v-for="(event, index) in timelineEventsfday" :key="index">
-                        <div :ref="el => setTimelineRef(el, index, 'icon', 'day1')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
-                          visibleItems[`day1-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                          <div class="text-primary text-3xl">
-                            <img :src="event.icon" alt="event icon"
-                              class="w-18 sm:w-12 md:w-16 rounded-xl bg-transparent mix-blend-multiply" />
+                      <div class="grid grid-cols-[auto_1fr] gap-x-4 -gap-y-2 text-left">
+                        <template v-for="(event, index) in timelineEventsfday" :key="index">
+                          <div :ref="el => setTimelineRef(el, index, 'icon', 'day1')" :class="['flex flex-col items-left gap-1 pt-3 relative transition-all duration-700',
+                            visibleItems[`day1-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                            <div class="text-primary text-3xl">
+                              <img :src="event.icon" alt="event icon"
+                                class="w-18 sm:w-12 md:w-16 rounded-xl bg-transparent mix-blend-multiply" />
+                            </div>
+                            <div class="w-0.5 bg-secondary dark:bg-primary/30 h-2"></div>
                           </div>
-                          <div class="w-0.5 bg-secondary dark:bg-primary/30 h-2"></div>
-                        </div>
-                        <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700',
-                          visibleItems[`day1-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
-                          <p class="text-text-light font-nokora brown-text text-base font-semibold leading-normal">
-                            {{ event.title }}
-                          </p>
-                          <p class="text-base green-text font-moul leading-normal"
-                            :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">{{ event.time
-                            }}</p>
-                        </div>
-                      </template>
+                          <div :class="['flex flex-1 flex-col pb-6 pt-2 transition-all duration-700',
+                            visibleItems[`day1-${index}`] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']">
+                            <p class="text-text-light font-nokora brown-text text-base font-semibold leading-normal">
+                              {{ event.title }}
+                            </p>
+                            <p class="text-base green-text font-moul leading-normal"
+                              :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Moul, serif' }">{{
+                                event.time
+                              }}</p>
+                          </div>
+                        </template>
+                      </div>
                     </div>
-                  </div>
                   </template>
                   <h2 data-ref="timelineHeader" :class="['brown-text text-base leading-loose text-center font-moul p-3 sm:p-4 rounded-lg transition-all duration-1000 delay-1500',
                     timelineHeaderVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20']"
@@ -876,9 +854,9 @@ onMounted(() => {
 
                 <div class="flex items-start justify-around pb-4" aria-label="Dress code colors">
                   <div class="flex flex-col items-center gap-1">
-                    <i class="fa-solid fa-shirt dress-icon" style="color: #560591;" aria-hidden="true"></i>
+                    <i class="fa-solid fa-shirt dress-icon" style="color: #ac4642;" aria-hidden="true"></i>
                     <span class="text-xs sm:text-sm"
-                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif', color: '#560591' }">Indigo</span>
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif', color: '#ac4642' }">Darker Red</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
                     <i class="fa-solid fa-shirt dress-icon" style="color: #2C106A;" aria-hidden="true"></i>
@@ -887,9 +865,9 @@ onMounted(() => {
                       Indigo</span>
                   </div>
                   <div class="flex flex-col items-center gap-1">
-                    <i class="fa-solid fa-shirt dress-icon" style="color: #f28cb5;" aria-hidden="true"></i>
-                    <span class="text-xs sm:text-sm text-pink-400"
-                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif' }">Pink
+                    <i class="fa-solid fa-shirt dress-icon" style="color: #e4a442;" aria-hidden="true"></i>
+                    <span class="text-xs sm:text-sm"
+                      :style="{ fontFamily: isEnglish ? 'Montserrat, sans-serif' : 'Montserrat, serif', color: '#e4a442' }">Dull Gold
                     </span>
                   </div>
                 </div>
